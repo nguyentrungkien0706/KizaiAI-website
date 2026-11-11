@@ -25,6 +25,7 @@ const vi = {
   },
 
   hero: {
+    photoAlt: "Cận cảnh dao phay CNC đang gia công phôi kim loại, phoi bắn ra dưới ánh đèn xưởng",
     badge: "Nền tảng dữ liệu AI cho nhà máy",
     title: "Hỏi bản vẽ của bạn như hỏi một kỹ sư lâu năm",
     sub: "Kizai kết nối bản vẽ 2D/3D, BOM, dữ liệu ERP/PLM và lịch sử sản xuất thành một kho tri thức chung. Thiết kế, thu mua và sản xuất chỉ cần đặt câu hỏi: AI tìm chi tiết tương tự, kiểm tra DFM và ước tính chi phí.",
@@ -85,6 +86,7 @@ const vi = {
     items: [
       {
         tab: "Tìm kiếm bản vẽ",
+        imageAlt: "Tay đeo găng cầm chi tiết gia công trước màn hình hiển thị lưới mô hình 3D tương tự",
         name: "AI Visual Search & Explorer",
         who: "Cho thiết kế, kỹ thuật, thu mua",
         desc: "Công cụ tìm kiếm hình học và dữ liệu kỹ thuật cho toàn doanh nghiệp.",
@@ -96,6 +98,7 @@ const vi = {
       },
       {
         tab: "Duyệt thiết kế",
+        imageAlt: "Bản vẽ kỹ thuật in trên bàn, một vị trí được khoanh bút đỏ để xem lại",
         name: "AI Design Review",
         who: "Cho thiết kế, QA",
         desc: "Trợ lý đồng kiểm tra, tự động hóa khâu duyệt bản vẽ.",
@@ -107,6 +110,7 @@ const vi = {
       },
       {
         tab: "Tái sử dụng",
+        imageAlt: "Kệ chứa đồ gá và khuôn đã gia công, mỗi món gắn thẻ mã",
         name: "Design Reuse & Chuẩn hóa linh kiện",
         who: "Cho thiết kế, kỹ thuật",
         desc: "Ngăn vẽ mới linh kiện đã có, rút ngắn thời gian thiết kế.",
@@ -117,6 +121,7 @@ const vi = {
       },
       {
         tab: "Chi phí & RFQ",
+        imageAlt: "Các chi tiết cơ khí đã gia công và thước cặp điện tử trên bàn đo",
         name: "Cost Review & RFQ Copilot",
         who: "Cho thu mua, kinh doanh",
         desc: "Ước tính chi phí và quản lý yêu cầu báo giá.",
@@ -128,6 +133,7 @@ const vi = {
       },
       {
         tab: "Sản xuất & MRO",
+        imageAlt: "Kỹ thuật viên chụp ổ bi của máy bằng điện thoại ngay tại xưởng",
         name: "Process, Tooling & MRO",
         who: "Cho kỹ thuật sản xuất, bảo trì",
         desc: "Kiểm soát mức sẵn sàng sản xuất và vòng đời thiết bị.",

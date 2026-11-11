@@ -27,6 +27,7 @@ const en: Dictionary = {
   },
 
   hero: {
+    photoAlt: "Close-up of a CNC mill cutting a metal workpiece, chips flying under shop lights",
     badge: "The AI data platform for factories",
     title: "Ask your drawings the way you'd ask a veteran engineer",
     sub: "Kizai connects 2D/3D drawings, BOMs, ERP/PLM data and production history into one shared knowledge base. Design, purchasing and production just ask: the AI finds similar parts, checks DFM and estimates cost.",
@@ -86,6 +87,7 @@ const en: Dictionary = {
     items: [
       {
         tab: "Drawing search",
+        imageAlt: "Gloved hand holding a machined part in front of a screen showing a grid of similar 3D models",
         name: "AI Visual Search & Explorer",
         who: "For design, engineering, purchasing",
         desc: "A search engine for geometry and technical data across the whole company.",
@@ -97,6 +99,7 @@ const en: Dictionary = {
       },
       {
         tab: "Design review",
+        imageAlt: "Printed engineering drawing on a desk with one area circled in red pen for review",
         name: "AI Design Review",
         who: "For design, QA",
         desc: "A co-checker that automates drawing review.",
@@ -108,6 +111,7 @@ const en: Dictionary = {
       },
       {
         tab: "Reuse",
+        imageAlt: "Shelves of machined fixtures and jigs, each with an ID tag",
         name: "Design Reuse & Part Standardization",
         who: "For design, engineering",
         desc: "Stops parts that already exist from being drawn again, shortening design time.",
@@ -118,6 +122,7 @@ const en: Dictionary = {
       },
       {
         tab: "Cost & RFQ",
+        imageAlt: "Machined mechanical parts and a digital caliper on an inspection bench",
         name: "Cost Review & RFQ Copilot",
         who: "For purchasing, sales",
         desc: "Cost estimation and quote request management.",
@@ -129,6 +134,7 @@ const en: Dictionary = {
       },
       {
         tab: "Production & MRO",
+        imageAlt: "Technician photographing a machine bearing with a phone on the shop floor",
         name: "Process, Tooling & MRO",
         who: "For production engineering, maintenance",
         desc: "Production readiness and equipment life cycle under control.",

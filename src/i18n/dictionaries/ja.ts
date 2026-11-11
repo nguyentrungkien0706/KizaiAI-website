@@ -27,6 +27,7 @@ const ja: Dictionary = {
   },
 
   hero: {
+    photoAlt: "金属ワークを切削するCNCフライスのクローズアップ。工場の照明の下で切りくずが飛ぶ",
     badge: "製造業のためのAIデータプラットフォーム",
     title: "図面に聞くだけ。ベテラン技術者のように答えます",
     sub: "Kizaiは2D/3D図面、BOM、ERP/PLMデータ、製造履歴をひとつのナレッジにつなぎます。設計・調達・製造の担当者は質問するだけ。AIが類似部品を探し、DFMを確認し、コストを見積もります。",
@@ -86,6 +87,7 @@ const ja: Dictionary = {
     items: [
       {
         tab: "図面検索",
+        imageAlt: "手袋をした手が加工部品を持ち、類似3Dモデルの一覧画面の前にかざしている",
         name: "AI Visual Search & Explorer",
         who: "対象：設計、技術、調達",
         desc: "全社の形状データと技術データを横断する検索エンジン。",
@@ -97,6 +99,7 @@ const ja: Dictionary = {
       },
       {
         tab: "設計レビュー",
+        imageAlt: "机の上の印刷図面。確認が必要な箇所が赤ペンで囲まれている",
         name: "AI Design Review",
         who: "対象：設計、品質保証",
         desc: "図面レビューを自動化するAIチェッカー。",
@@ -108,6 +111,7 @@ const ja: Dictionary = {
       },
       {
         tab: "再利用",
+        imageAlt: "治具や型が並ぶ棚。それぞれに管理タグが付いている",
         name: "Design Reuse & 部品標準化",
         who: "対象：設計、技術",
         desc: "既存部品の重複設計を防ぎ、設計時間を短縮。",
@@ -118,6 +122,7 @@ const ja: Dictionary = {
       },
       {
         tab: "コスト・RFQ",
+        imageAlt: "加工済みの機械部品とデジタルノギスが置かれた測定台",
         name: "Cost Review & RFQ Copilot",
         who: "対象：調達、営業",
         desc: "コスト見積もりと見積依頼の管理。",
@@ -129,6 +134,7 @@ const ja: Dictionary = {
       },
       {
         tab: "製造・MRO",
+        imageAlt: "技術者が現場で設備のベアリングをスマートフォンで撮影している",
         name: "Process, Tooling & MRO",
         who: "対象：生産技術、保全",
         desc: "量産準備度と設備ライフサイクルの管理。",

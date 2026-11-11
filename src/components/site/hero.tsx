@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import heroPhoto from "@/assets/images/hero-cnc.webp";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge, Container, displayClass } from "@/components/ui/drafting";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
@@ -11,10 +13,19 @@ export function Hero({ t }: { t: Dictionary }) {
     <section aria-labelledby="hero-title" className="pt-3 md:pt-4">
       <Container>
         <div className="on-night relative overflow-hidden rounded-xl bg-night text-on-night-2">
-          {/* Lưới giấy vẽ mờ làm nền */}
+          {/* Ảnh xưởng CNC làm nền, phủ tối dần sang trái để chữ luôn đọc rõ */}
+          <Image
+            src={heroPhoto}
+            alt={h.photoAlt}
+            fill
+            priority
+            placeholder="blur"
+            sizes="(min-width: 1328px) 1280px, 100vw"
+            className="object-cover object-[70%_center] opacity-80"
+          />
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:32px_32px]"
+            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.55)_0%,rgba(12,12,12,0.92)_55%,#0c0c0c_100%)] lg:bg-[linear-gradient(90deg,#0c0c0c_0%,rgba(12,12,12,0.9)_38%,rgba(12,12,12,0.45)_70%,rgba(12,12,12,0.6)_100%)]"
           />
           <div className="relative grid grid-cols-1 items-center gap-10 px-6 pt-12 pb-8 md:px-12 md:pt-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-12 lg:py-20 xl:px-16">
             <div>
@@ -40,7 +51,7 @@ export function Hero({ t }: { t: Dictionary }) {
               </div>
             </div>
 
-            <figure className="m-0">
+            <figure className="m-0 rounded-xl bg-night/80 p-4 ring-1 ring-white/10 backdrop-blur-sm md:p-6">
               <BracketDrawing label={h.drawing.label} partName={h.drawing.partName} />
               <figcaption className="mt-4 rounded-lg bg-night-2 p-4 text-[14px] ring-1 ring-night-line md:p-5">
                 <p className="font-semibold text-white">{h.drawing.reviewTitle}</p>

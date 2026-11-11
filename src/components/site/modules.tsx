@@ -1,7 +1,16 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import imgSearch from "@/assets/images/module-search.webp";
+import imgReview from "@/assets/images/module-review.webp";
+import imgReuse from "@/assets/images/module-reuse.webp";
+import imgRfq from "@/assets/images/module-rfq.webp";
+import imgMro from "@/assets/images/module-mro.webp";
+
+/** Ảnh minh hoạ theo thứ tự module trong từ điển. */
+const moduleImages = [imgSearch, imgReview, imgReuse, imgRfq, imgMro];
 import { buttonVariants } from "@/components/ui/button";
 import { Badge, Container, Section, SectionHeading } from "@/components/ui/drafting";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
@@ -68,6 +77,17 @@ export function Modules({ t }: { t: Dictionary }) {
             tabIndex={0}
             className="rounded-lg bg-surface p-6 md:p-10"
           >
+            <div className="relative -mx-2 -mt-2 mb-8 aspect-[16/9] overflow-hidden rounded-lg bg-night md:-mx-4 md:-mt-4">
+              <Image
+                key={active}
+                src={moduleImages[active]}
+                alt={current.imageAlt}
+                fill
+                placeholder="blur"
+                sizes="(min-width: 1280px) 760px, (min-width: 1024px) 60vw, 100vw"
+                className="object-cover"
+              />
+            </div>
             <Badge className="bg-white">{current.who}</Badge>
             <h3 className="mt-5 text-[28px] leading-[1.15] font-normal tracking-[-0.025em] md:text-[36px]">{current.name}</h3>
             <p className="mt-3 max-w-[40rem] text-[17px] text-ink-3">{current.desc}</p>

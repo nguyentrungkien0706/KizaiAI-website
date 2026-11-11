@@ -74,3 +74,10 @@ Quy tắc: tiêu đề section căn giữa; không viết hoa toàn bộ; không
 - Kiểm tra 375 / 768 / 1024 / 1440px ở cả ba ngôn ngữ, không cuộn ngang.
 - Vùng chạm ≥ 44px, focus luôn nhìn thấy, contrast đạt WCAG AA (kiểm bằng axe).
 - Đủ trạng thái hover, focus, active, disabled, loading, rỗng, lỗi.
+
+## Hình ảnh (v0.2.1)
+
+- Ảnh tạo bằng Google Gemini, lưu ở `src/assets/images/*.webp` (đã cắt watermark, nén WebP q80, dùng `next/image` với blur placeholder).
+- Hero: `hero-cnc.webp` làm nền panel tối, phủ gradient từ trái (#0C0C0C) để chữ luôn đạt tương phản; bản vẽ AI nằm trên khung `bg-night/80`.
+- Module: mỗi tab có một ảnh 16:9 ở đầu panel (`module-search|review|reuse|rfq|mro.webp`). Alt text nằm trong từ điển (`hero.photoAlt`, `modules.items[].imageAlt`).
+- Ảnh là minh hoạ AI, không phải ảnh khách hàng hay nhà máy thật. Thay bằng ảnh thật khi có.
