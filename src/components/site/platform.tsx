@@ -5,51 +5,40 @@ import type { Dictionary } from "@/i18n/dictionaries/vi";
 export function Platform({ t }: { t: Dictionary }) {
   const p = t.platform;
   return (
-    <Section id="platform" aria-labelledby="platform-title" className="border-t border-rule">
+    <Section id="platform" aria-labelledby="platform-title" className="pt-0 md:pt-0 xl:pt-0">
       <Container>
         <SectionHeading id="platform-title" title={p.title} sub={p.sub} />
 
-        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-16">
-          {/* Bốn tầng: thật sự là một trình tự, nên được đánh số */}
-          <ol className="relative">
-            {p.layers.map((layer, i) => (
-              <li key={layer.name} className="relative grid grid-cols-[3rem_minmax(0,1fr)] gap-x-5 pb-10 last:pb-0">
-                {i < p.layers.length - 1 ? (
-                  <span aria-hidden="true" className="absolute top-12 bottom-0 left-6 w-px border-l border-dashed border-rule-strong" />
-                ) : null}
-                <span
-                  aria-hidden="true"
-                  className="relative z-10 flex size-12 items-center justify-center rounded-control border-[1.5px] border-ink bg-paper-raised text-lg font-semibold tabular-nums"
-                >
+        {/* Bốn tầng nối tiếp nhau, nên được đánh số */}
+        <ol className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {p.layers.map((layer, i) => (
+            <li key={layer.name} className="flex flex-col">
+              <div className="flex aspect-[4/3] flex-col justify-between rounded-xl bg-surface p-6">
+                <span aria-hidden="true" className="font-display text-[56px] leading-none tracking-[-0.04em] text-ink-4">
                   {i + 1}
                 </span>
-                <div className="pt-1">
-                  <h3 className="text-xl font-semibold">
-                    <span className="sr-only">
-                      {p.layerLabel} {i + 1}:{" "}
-                    </span>
-                    {layer.name}
-                  </h3>
-                  <p className="mt-0.5 font-medium text-ink-2">{layer.short}</p>
-                  <p className="mt-3 max-w-[60ch] text-ink-2">{layer.desc}</p>
-                  <ul className="mt-4 flex flex-wrap gap-2">
-                    {layer.tags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-control border border-rule bg-paper-raised px-2 py-0.5 text-caption leading-[1.45] text-ink-2"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
+                <ul className="flex flex-wrap gap-1.5">
+                  {layer.tags.map((tag) => (
+                    <li key={tag} className="rounded-full bg-white px-3 py-1 text-[13px] font-medium text-ink-2">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <h3 className="mt-5 text-[22px] leading-[1.25] font-medium tracking-[-0.015em]">
+                <span className="sr-only">
+                  {p.layerLabel} {i + 1}:{" "}
+                </span>
+                {layer.name}
+              </h3>
+              <p className="mt-1 text-[15px] font-medium text-ink-2">{layer.short}</p>
+              <p className="mt-3 text-[15px] leading-[1.6] text-ink-3">{layer.desc}</p>
+            </li>
+          ))}
+        </ol>
 
-          <div className="lg:sticky lg:top-24 lg:self-start">
-            <AskDemo t={p.ask} />
-          </div>
+        <div className="mt-20">
+          <AskDemo t={p.ask} />
         </div>
       </Container>
     </Section>

@@ -1,98 +1,109 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Kizai Design System "Redline": tokens from design-system/MASTER.md
+   Kizai Design System v0.2 "Studio": tokens from design-system/MASTER.md
+   Nền trắng, chữ đen, khối xám nhạt bo góc, chữ lớn nét mảnh.
+   Màu đỏ duyệt bản vẽ chỉ dành cho dấu khoanh của AI.
    ------------------------------------------------------------------ */
 @theme {
-  --color-paper: #eef1ec;
-  --color-paper-raised: #f7f8f5;
-  --color-paper-sunken: #e3e7e1;
-  --color-ink: #1b2430;
-  --color-ink-2: #4a5866;
-  --color-ink-3: #5f6b75;
-  --color-ink-hover: #2a3644;
-  --color-ink-active: #111820;
-  --color-rule: #b9c2bc;
-  --color-rule-strong: #7d8880;
+  --color-bg: #ffffff;
+  --color-surface: #f4f5f7;
+  --color-surface-2: #eef0f3;
+  --color-surface-3: #e4e7eb;
+  --color-ink: #0c0c0c;
+  --color-ink-2: #404040;
+  --color-ink-3: #6b6b6b;
+  --color-ink-4: #8a8f98; /* chỉ cho chữ lớn ≥ 24px hoặc viền điều khiển */
+  --color-line: #e4e6ea;
+  --color-line-strong: #8a8f98;
+  --color-ink-hover: #2a2a2a;
+
+  --color-night: #0c0c0c;
+  --color-night-2: #161616;
+  --color-night-line: #2a2a2a;
+  --color-on-night: #ffffff;
+  --color-on-night-2: #a3a3a3;
 
   --color-redline: #b8321a;
-  --color-redline-hover: #9c2914;
-  --color-redline-active: #84220f;
-  --color-redline-tint: #f4dcd5;
-  --color-redline-on-ink: #e2735a;
+  --color-redline-bright: #ff6a4d;
+  --color-redline-tint: #fbe4de;
 
   --color-success: #2e6b3f;
-  --color-success-tint: #dceadf;
-  --color-warning: #7a5200;
-  --color-warning-tint: #f6e7c1;
+  --color-success-tint: #e3f1e6;
   --color-danger: #8e1538;
-  --color-danger-tint: #f5dce3;
+  --color-danger-tint: #f8e1e7;
 
-  --font-sans: var(--font-plex), var(--font-plex-jp), system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-noto-jp), system-ui, sans-serif;
+  --font-sans: var(--font-inter), var(--font-noto-jp), system-ui, sans-serif;
 
-  --text-caption: 13px;
-  --text-caption--line-height: 1.45;
-  --text-small: 15px;
-  --text-small--line-height: 1.55;
-  --text-body: 17px;
-  --text-body--line-height: 1.65;
-
-  --radius-sheet: 2px;
-  --radius-control: 4px;
-  --radius-panel: 8px;
-
-  --shadow-sheet: 0 1px 0 #b9c2bc, 0 12px 32px -16px rgb(27 36 48 / 0.22);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 
   --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* shadcn/ui variables mapped onto Redline tokens */
+/* shadcn/ui variables */
 :root {
-  --background: var(--color-paper);
+  --background: var(--color-bg);
   --foreground: var(--color-ink);
-  --card: var(--color-paper-raised);
+  --card: var(--color-surface);
   --card-foreground: var(--color-ink);
-  --popover: var(--color-paper-raised);
-  --popover-foreground: var(--color-ink);
-  --primary: var(--color-redline);
+  --primary: var(--color-ink);
   --primary-foreground: #ffffff;
-  --secondary: var(--color-ink);
-  --secondary-foreground: var(--color-paper);
-  --muted: var(--color-paper-sunken);
+  --secondary: var(--color-surface-2);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-surface);
   --muted-foreground: var(--color-ink-3);
-  --accent: var(--color-paper-sunken);
-  --accent-foreground: var(--color-ink);
   --destructive: var(--color-danger);
-  --border: var(--color-rule);
-  --input: var(--color-rule-strong);
+  --border: var(--color-line);
+  --input: var(--color-line-strong);
   --ring: var(--color-ink);
-  --radius: var(--radius-control);
+  --radius: var(--radius-md);
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 72px;
+    scroll-padding-top: 80px;
+    scroll-behavior: smooth;
   }
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-bg);
+    color: var(--color-ink-2);
     font-family: var(--font-sans);
-    font-size: var(--text-body);
-    line-height: var(--text-body--line-height);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "kern";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    line-height: 1.15;
   }
   :lang(ja) body {
-    font-family: var(--font-plex-jp), var(--font-plex), system-ui, sans-serif;
-    line-height: 1.9;
+    font-family: var(--font-noto-jp), var(--font-inter), system-ui, sans-serif;
+    line-height: 1.85;
     line-break: strict;
     word-break: auto-phrase;
     overflow-wrap: anywhere;
+    font-feature-settings: "palt";
+  }
+  :lang(ja) :is(h1, h2, h3, h4) {
+    font-family: var(--font-noto-jp), var(--font-inter-tight), sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1.45;
   }
   :focus-visible {
     outline: 2px solid var(--color-ink);
     outline-offset: 2px;
+  }
+  .on-night :focus-visible {
+    outline-color: #ffffff;
   }
   ::selection {
     background: var(--color-redline-tint);
@@ -101,13 +112,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 

@@ -1,20 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { IBM_Plex_Sans, IBM_Plex_Sans_JP } from "next/font/google";
+import { Inter, Inter_Tight, Noto_Sans_JP } from "next/font/google";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import "../globals.css";
 
-const plex = IBM_Plex_Sans({
+const inter = Inter({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const plexJp = IBM_Plex_Sans_JP({
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-jp",
+const interTight = Inter_Tight({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-inter-tight",
+  display: "swap",
+});
+
+const notoJp = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-jp",
   display: "swap",
   preload: false,
 });
@@ -51,7 +57,7 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale} className={`${plex.variable} ${plexJp.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${interTight.variable} ${notoJp.variable}`}>
       <body>{children}</body>
     </html>
   );

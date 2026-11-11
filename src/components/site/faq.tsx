@@ -5,20 +5,22 @@ import type { Dictionary } from "@/i18n/dictionaries/vi";
 export function Faq({ t }: { t: Dictionary }) {
   const f = t.faq;
   return (
-    <Section id="faq" aria-labelledby="faq-title" className="border-t border-rule">
-      <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-16">
+    <Section id="faq" aria-labelledby="faq-title">
+      <Container className="max-w-[880px]">
         <SectionHeading id="faq-title" title={f.title} />
-        <div className="border-t border-ink">
+        <div className="mt-12 border-t border-line">
           {f.items.map((item) => (
-            <details key={item.q} className="group border-b border-rule">
-              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-semibold hover:text-redline [&::-webkit-details-marker]:hidden">
+            <details key={item.q} className="group border-b border-line">
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-[19px] font-medium tracking-[-0.01em] text-ink [&::-webkit-details-marker]:hidden">
                 <span>{item.q}</span>
-                <Plus
-                  aria-hidden="true"
-                  className="size-5 shrink-0 transition-transform duration-[200ms] ease-standard group-open:rotate-45"
-                />
+                <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-surface-2 transition-colors group-hover:bg-surface-3">
+                  <Plus
+                    aria-hidden="true"
+                    className="size-4 transition-transform duration-[200ms] ease-standard group-open:rotate-45"
+                  />
+                </span>
               </summary>
-              <p className="max-w-[68ch] pb-6 text-ink-2">{item.a}</p>
+              <p className="max-w-[44rem] pb-6 text-[16px] text-ink-3">{item.a}</p>
             </details>
           ))}
         </div>

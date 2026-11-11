@@ -37,15 +37,15 @@ export function Navbar({ locale, t }: NavbarProps) {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper">
-      <div className="mx-auto flex h-14 max-w-[1304px] items-center gap-6 px-4 md:px-8 lg:h-16">
+    <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur-sm supports-[backdrop-filter]:bg-white/85">
+      <div className="mx-auto flex h-16 max-w-[1328px] items-center gap-8 px-4 md:px-6">
         <a
           href="#main"
           aria-label={t.a11y.home}
-          className="-mx-1 rounded-control px-1 text-[22px] leading-none font-semibold tracking-[-0.02em] text-ink"
+          className="-mx-1 rounded-sm px-1 font-display text-[24px] leading-none font-semibold tracking-[-0.04em] text-ink"
         >
           {/* [LOGO KIZAI]: thay bằng file logo chính thức khi có */}
-          Kizai
+          kizai
         </a>
 
         <nav aria-label={t.a11y.mainNav} className="hidden lg:block">
@@ -58,9 +58,8 @@ export function Navbar({ locale, t }: NavbarProps) {
                     href={link.href}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "relative inline-flex h-11 items-center rounded-control px-3 text-[15px] font-medium text-ink-2 transition-colors duration-[120ms] hover:text-redline",
-                      "after:absolute after:inset-x-3 after:bottom-1.5 after:h-0.5 after:bg-ink after:opacity-0",
-                      isActive && "text-ink after:opacity-100",
+                      "inline-flex h-10 items-center rounded-md px-3 text-[14px] font-medium text-ink transition-colors duration-[120ms] hover:bg-surface",
+                      isActive && "bg-surface",
                     )}
                   >
                     {link.label}
@@ -71,20 +70,12 @@ export function Navbar({ locale, t }: NavbarProps) {
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 lg:gap-4">
-          <div className="hidden lg:block">
-            <LanguageSwitcher current={locale} label={t.a11y.language} />
-          </div>
-          <a
-            href={site.loginUrl}
-            className="hidden h-11 items-center rounded-control px-2 text-[15px] font-medium text-ink underline decoration-rule-strong underline-offset-4 transition-colors duration-[120ms] hover:text-redline hover:decoration-redline lg:inline-flex"
-          >
+        <div className="ml-auto flex items-center gap-2">
+          <LanguageSwitcher current={locale} label={t.a11y.language} className="mr-2 hidden lg:flex" />
+          <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "hidden h-10 text-[14px] lg:inline-flex")}>
             {t.nav.login}
           </a>
-          <a
-            href="#contact"
-            className={cn(buttonVariants({ variant: "primary", size: "md" }), "px-4 text-[15px] lg:px-5")}
-          >
+          <a href="#contact" className={cn(buttonVariants({ variant: "primary" }), "h-10 text-[14px]")}>
             {t.nav.demo}
           </a>
           <button
@@ -94,7 +85,7 @@ export function Navbar({ locale, t }: NavbarProps) {
             aria-controls={panelId}
             aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
             onClick={() => setOpen((v) => !v)}
-            className="-mr-2 inline-flex size-11 items-center justify-center rounded-control text-ink hover:bg-paper-sunken lg:hidden"
+            className="-mr-2 inline-flex size-11 items-center justify-center rounded-md text-ink hover:bg-surface lg:hidden"
           >
             {open ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
           </button>
@@ -102,32 +93,25 @@ export function Navbar({ locale, t }: NavbarProps) {
       </div>
 
       {/* Menu mobile/tablet */}
-      <div
-        id={panelId}
-        hidden={!open}
-        className="border-t border-rule bg-paper-raised lg:hidden"
-      >
-        <nav aria-label={t.a11y.mainNav} className="mx-auto max-w-[1304px] px-4 pb-6 md:px-8">
-          <ul className="divide-y divide-rule">
+      <div id={panelId} hidden={!open} className="border-t border-line bg-white lg:hidden">
+        <nav aria-label={t.a11y.mainNav} className="mx-auto max-w-[1328px] px-4 pt-2 pb-6 md:px-6">
+          <ul>
             {t.nav.links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
                   aria-current={active === link.href.slice(1) ? "true" : undefined}
-                  className="flex h-14 items-center text-lg font-medium text-ink hover:text-redline aria-[current=true]:underline aria-[current=true]:decoration-2 aria-[current=true]:underline-offset-8"
+                  className="flex h-14 items-center font-display text-[22px] tracking-[-0.02em] text-ink aria-[current=true]:text-ink-3"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
+          <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-6">
             <LanguageSwitcher current={locale} label={t.a11y.language} />
-            <a
-              href={site.loginUrl}
-              className="inline-flex h-11 items-center text-base font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-redline hover:decoration-redline"
-            >
+            <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "ml-auto")}>
               {t.nav.login}
             </a>
           </div>
