@@ -32,7 +32,7 @@ Mở http://localhost:3000 (tự chuyển sang /vi, /ja hoặc /en theo ngôn ng
 
 ## Việc còn lại
 
-1. **Form đặt demo chưa gửi đi đâu.** `src/app/api/demo-request/route.ts` chỉ kiểm tra dữ liệu và ghi log. Cần nối tới email, CRM hoặc Google Sheet.
+1. **Form đặt demo:** đã nối qua webhook. Làm theo `docs/google-sheet-form.md` để tạo Google Sheet + email, rồi đặt `DEMO_WEBHOOK_URL` và `DEMO_WEBHOOK_SECRET` (xem `.env.example`).
 2. Số liệu hiệu quả của Kizai AI (sau POC) và trích dẫn khách hàng: hiện chưa hiển thị, thêm khi có.
 3. Link Đăng nhập (`src/lib/site.ts`): để trống thì nút được ẩn.
 4. Logo đối tác số 7 trên kizai.vn chưa rõ tên nên chưa dùng.
