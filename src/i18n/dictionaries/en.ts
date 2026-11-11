@@ -17,9 +17,10 @@ const en: Dictionary = {
   },
   nav: {
     links: [
+      { href: "#modules", label: "Product" },
       { href: "#platform", label: "Platform" },
-      { href: "#modules", label: "Products" },
-      { href: "#integrations", label: "Integrations" },
+      { href: "#customers", label: "Customers" },
+      { href: "#about", label: "About" },
       { href: "#contact", label: "Contact" },
     ],
     login: "Log in",
@@ -68,14 +69,6 @@ const en: Dictionary = {
         title: "Review experience lives in a few people's heads",
         text: "Lessons from past drawing reviews aren't recorded, so the same DFM issues come back on the next project.",
       },
-    ],
-    impactTitle: "Results at customer sites",
-    impactNote: "Figures will be added after the POC.",
-    impact: [
-      { value: "[ ]", label: "Design hours saved per year by reusing drawings" },
-      { value: "[ ]%", label: "Less time spent finding drawings and technical documents" },
-      { value: "[ ]%", label: "Lower purchasing cost for machined parts" },
-      { value: "[ ]%", label: "Lower cost of poor quality (COPQ)" },
     ],
   },
 
@@ -239,43 +232,132 @@ const en: Dictionary = {
     ],
   },
 
-  customers: {
-    title: "Working with mechanical, electronics and industrial equipment factories",
-    logosLabel: "Customers",
-    logos: ["[CUSTOMER 1]", "[CUSTOMER 2]", "[CUSTOMER 3]", "[CUSTOMER 4]", "[CUSTOMER 5]", "[CUSTOMER 6]"],
-    testimonials: [
-      { quote: "[CUSTOMER QUOTE]", name: "[FULL NAME]", role: "[TITLE, COMPANY]" },
-      { quote: "[CUSTOMER QUOTE]", name: "[FULL NAME]", role: "[TITLE, COMPANY]" },
+  about: {
+    title: "About Kizai Solution",
+    sub: "Kizai Solution advises manufacturers on digital transformation and implements it, with a team of engineers who have worked in Japan. We bring Japanese care, discipline and quality standards to every project.",
+    stats: [
+      {
+        value: "200+",
+        label: "Companies"
+      },
+      {
+        value: "100+",
+        label: "Projects delivered"
+      },
+      {
+        value: "10+",
+        label: "Years of experience"
+      },
+      {
+        value: "24/7",
+        label: "Technical support"
+      }
     ],
+    points: [
+      {
+        title: "Japanese–Vietnamese engineers",
+        text: "Experience advising large groups in Japan and Vietnam."
+      },
+      {
+        title: "Meticulous process",
+        text: "We work to strict Japanese rules and quality standards."
+      },
+      {
+        title: "Tailored to your plant",
+        text: "Configured for how each factory works, not a one-size process."
+      },
+      {
+        title: "Long-term support",
+        text: "24/7 technical support, maintenance and ongoing updates."
+      }
+    ],
+    ecosystemTitle: "The Kizai product family",
+    ecosystemSub: "Kizai AI works alongside the Kizai systems your plant may already run.",
+    ecosystem: [
+      "KIZAI ERP",
+      "KIZAI MES",
+      "KIZAI HRM",
+      "KIZAI PMS",
+      "KIZAI RPA",
+      "KIZAI LIMS",
+      "KIZAI IoT FACTORY",
+      "EMS Power",
+      "EMS Machine",
+      "EMS Cooling",
+      "EMS Gas",
+      "EMS Water"
+    ],
+    more: "More about Kizai Solution",
+    moreHref: "https://kizai.vn/about"
+  },
+
+  customers: {
+    title: "More than 200 manufacturers have chosen Kizai Solution",
+    logosLabel: "Kizai Solution partners and customers",
+    casesTitle: "Customer stories",
+    casesSub: "Results Kizai Solution has delivered in customer plants.",
+    readMore: "Read the case study",
+    allCases: "See all projects",
+    allCasesHref: "https://kizai.vn/case-studies",
+    clientLabel: "Customer",
+    scopeLabel: "Solution",
+    cases: [
+      {
+        client: "Yamaha Motor Vietnam",
+        partner: 2,
+        scope: "KIZAI IoT FACTORY: EMS Power, EMS Gas, EMS Machine",
+        title: "Digital energy and equipment monitoring across casting, boilers and compressed air",
+        facts: [
+          "Survey and proposal in 5 days",
+          "14 days to install, 2 weeks of training, then go-live",
+          "Automatic energy and CO₂ reports for ESG filings",
+          "Now expanded into a third phase"
+        ],
+        href: "https://kizai.vn/case-studies/kizai-solution-va-hanh-trinh-so-hoa-nha-may-thong-minh-tai-yamaha-motor-viet-nam"
+      },
+      {
+        client: "Viqualita",
+        partner: 13,
+        scope: "KIZAI IoT FACTORY: EMS Power, EMS Gas",
+        title: "Real-time power and LPG monitoring on the road to Net Zero",
+        facts: [
+          "20% performance gain in 6 months",
+          "Threshold alerts by light, siren, SMS and email",
+          "Energy converted to CO₂ emissions automatically",
+          "Manual energy reporting retired"
+        ],
+        href: "https://kizai.vn/case-studies/kizai-solution-dong-hanh-cung-viqualita-hien-thuc-hoa-muc-tieu-net-zero-thong-qua-giam-sat-nang-luong-thong-minh"
+      }
+    ]
   },
 
   pricing: {
-    title: "Services and how we work together",
-    sub: "Cost depends on factory size and deployment type. Contact us for a specific quote.",
+    title: "How we work together, in 5 steps",
+    sub: "You see the solution running on your plant's data before you get a quote.",
     stepLabel: "Step",
-    priceLabel: "Price",
-    durationLabel: "Duration",
     steps: [
       {
-        name: "1-on-1 demo",
-        text: "A Kizai engineer runs Kizai on your factory's sample data and answers your team's questions.",
-        price: "[PRICE]",
-        duration: "[DURATION]",
+        name: "Survey & analysis",
+        text: "Kizai engineers learn your systems, data and real requirements."
       },
       {
-        name: "POC on real data",
-        text: "A trial on a specific set of drawings and workflows, measuring results before rolling out.",
-        price: "[PRICE]",
-        duration: "[DURATION]",
+        name: "Trial & quote",
+        text: "You try a demo on sample data and understand the solution before we quote."
       },
       {
-        name: "Rollout",
-        text: "Deploy in the cloud or on your own servers, connect CAD, PLM and ERP, and set permissions per department.",
-        price: "[PRICE]",
-        duration: "[DURATION]",
+        name: "System setup",
+        text: "We prepare servers (cloud or on-site), connect CAD, PLM and ERP, and set permissions."
       },
+      {
+        name: "Rollout & training",
+        text: "We install on site and train each department in detail."
+      },
+      {
+        name: "Maintenance & upgrades",
+        text: "Ongoing maintenance, 24/7 support and regular new features."
+      }
     ],
-    cta: "Get a quote",
+    cta: "Get a free consultation"
   },
 
   faq: {
@@ -287,7 +369,7 @@ const en: Dictionary = {
       { q: "Which systems does Kizai connect to?", a: "PLM/PDM such as Teamcenter, Windchill, 3DEXPERIENCE and SolidWorks PDM, and ERP such as SAP, Oracle, SharePoint or an in-house ERP." },
       { q: "Who in the company can see which data?", a: "Access is set by department, project and customer." },
       { q: "How does the demo work?", a: "A Kizai engineer runs a 1-on-1 demo on your factory's sample data, then recommends a POC plan that fits your size." },
-      { q: "How much does Kizai cost?", a: "It depends on your size and deployment type. [ADD PRICING POLICY]" },
+      { q: "How much does Kizai cost?", a: "It depends on your size and deployment type. You try Kizai on sample data first, then we send a detailed quote." },
     ],
   },
 
@@ -295,6 +377,17 @@ const en: Dictionary = {
     title: "See the AI work on your own drawings",
     sub: "Send a few details and a Kizai engineer will prepare a demo on your factory's sample data.",
     points: ["1-on-1 demo with a Kizai engineer", "Try it on your real drawings", "A POC plan that fits your size"],
+    info: {
+      title: "Or contact us directly",
+      address: "X5, Tráng Việt, Mê Linh, Hà Nội, Vietnam",
+      phone: "+84 38 631 2345",
+      email: "kiennguyen@kizai.vn",
+      hours: "Mon – Fri, 08:30 – 17:30 (GMT+7)",
+      addressLabel: "Address",
+      phoneLabel: "Phone",
+      emailLabel: "Email",
+      hoursLabel: "Hours"
+    },
     required: "(required)",
     fields: {
       name: "Full name",
@@ -324,32 +417,58 @@ const en: Dictionary = {
   },
 
   footer: {
-    company: "Kizai Solutions JSC",
-    tagline: "The AI data platform for factories",
+    company: "Kizai Solution",
+    tagline: "Digital transformation and AI data solutions for manufacturers, built to Japanese standards.",
     cells: {
       contact: "Contact",
-      product: "Products",
+      product: "Kizai AI",
       resources: "Company",
-      legal: "Legal",
-      revision: "Revised",
-      scale: "Scale",
-      language: "Language",
+      legal: "Legal"
     },
-    address: "[ADDRESS]",
-    email: "[EMAIL]",
-    phone: "[PHONE NUMBER]",
+    address: "X5, Tráng Việt, Mê Linh, Hà Nội, Vietnam",
+    email: "kiennguyen@kizai.vn",
+    phone: "+84 38 631 2345",
     resources: [
-      { label: "Data security", href: "#integrations" },
-      { label: "Customer stories", href: "#customers" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Partners", href: "#" },
+      {
+        label: "About us",
+        href: "https://kizai.vn/about"
+      },
+      {
+        label: "Services",
+        href: "https://kizai.vn/services"
+      },
+      {
+        label: "Case studies",
+        href: "https://kizai.vn/case-studies"
+      },
+      {
+        label: "Blog",
+        href: "https://kizai.vn/news"
+      }
     ],
     legal: [
-      { label: "Privacy policy", href: "#" },
-      { label: "Terms", href: "#" },
+      {
+        label: "Privacy policy",
+        href: "https://kizai.vn/privacy"
+      },
+      {
+        label: "Terms",
+        href: "https://kizai.vn/terms"
+      }
     ],
-    copyright: "© 2026 Kizai Solutions JSC",
+    social: [
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/share/18UWj5SRNY/"
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/106299784/"
+      }
+    ],
+    copyright: "© 2026 Kizai Solution"
   },
+
 };
 
 export default en;

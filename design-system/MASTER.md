@@ -81,3 +81,10 @@ Quy tắc: tiêu đề section căn giữa; không viết hoa toàn bộ; không
 - Hero: `hero-cnc.webp` làm nền panel tối, phủ gradient từ trái (#0C0C0C) để chữ luôn đạt tương phản; bản vẽ AI nằm trên khung `bg-night/80`.
 - Module: mỗi tab có một ảnh 16:9 ở đầu panel (`module-search|review|reuse|rfq|mro.webp`). Alt text nằm trong từ điển (`hero.photoAlt`, `modules.items[].imageAlt`).
 - Ảnh là minh hoạ AI, không phải ảnh khách hàng hay nhà máy thật. Thay bằng ảnh thật khi có.
+
+## Thương hiệu Kizai Solution (v0.3)
+
+- Màu lấy từ logo: brand #153039 (nút chính, khối tối), brand-hover #03577B (hover, số bước, dấu đầu dòng), night #0F262E cho hero và khối "Về Kizai". Đỏ redline vẫn chỉ dành cho dấu khoanh của AI.
+- Logo chính thức: `src/assets/brand/kizai-logo.webp` (cắt từ kizai.vn/logo-wide.png).
+- Logo đối tác: `src/assets/partners/p*.webp` (từ kizai.vn/partners), hiển thị xám, hiện màu khi rê chuột. Ảnh số 7 chưa rõ tên nên chưa dùng.
+- Nội dung thật lấy từ kizai.vn: số liệu 200+ doanh nghiệp / 100+ dự án / 10+ năm / 24/7, quy trình 5 bước, case study Yamaha Motor và Viqualita, địa chỉ, điện thoại, email, giờ làm việc, liên kết mạng xã hội.

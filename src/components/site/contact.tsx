@@ -79,9 +79,39 @@ export function Contact({ t, locale }: { t: Dictionary; locale: Locale }) {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-10 border-t border-line pt-8">
+              <h3 className="text-[17px] font-semibold">{c.info.title}</h3>
+              <dl className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4 text-[15px] sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <div>
+                  <dt className="text-ink-3">{c.info.phoneLabel}</dt>
+                  <dd className="m-0 font-medium text-ink">
+                    <a href={`tel:${c.info.phone.replace(/[^+\d]/g, "")}`} className="underline decoration-line-strong underline-offset-4 hover:decoration-ink">
+                      {c.info.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-ink-3">{c.info.emailLabel}</dt>
+                  <dd className="m-0 font-medium text-ink">
+                    <a href={`mailto:${c.info.email}`} className="underline decoration-line-strong underline-offset-4 hover:decoration-ink">
+                      {c.info.email}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-ink-3">{c.info.addressLabel}</dt>
+                  <dd className="m-0 text-ink">{c.info.address}</dd>
+                </div>
+                <div>
+                  <dt className="text-ink-3">{c.info.hoursLabel}</dt>
+                  <dd className="m-0 text-ink">{c.info.hours}</dd>
+                </div>
+              </dl>
+            </div>
           </div>
 
-          <div className="rounded-lg bg-white p-6 md:p-8">
+          <div className="self-start rounded-lg bg-white p-6 md:p-8">
             {status === "success" ? (
               <div ref={successRef} tabIndex={-1} role="status" className="focus:outline-none">
                 <div className="flex gap-3 rounded-md bg-success-tint p-4 text-success">

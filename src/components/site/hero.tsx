@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import heroPhoto from "@/assets/images/hero-cnc.webp";
+import { partners } from "@/lib/partners";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge, Container, displayClass } from "@/components/ui/drafting";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
@@ -25,7 +26,7 @@ export function Hero({ t }: { t: Dictionary }) {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.55)_0%,rgba(12,12,12,0.92)_55%,#0c0c0c_100%)] lg:bg-[linear-gradient(90deg,#0c0c0c_0%,rgba(12,12,12,0.9)_38%,rgba(12,12,12,0.45)_70%,rgba(12,12,12,0.6)_100%)]"
+            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,38,46,0.55)_0%,rgba(15,38,46,0.92)_55%,#0f262e_100%)] lg:bg-[linear-gradient(90deg,#0f262e_0%,rgba(15,38,46,0.9)_38%,rgba(15,38,46,0.45)_70%,rgba(15,38,46,0.6)_100%)]"
           />
           <div className="relative grid grid-cols-1 items-center gap-10 px-6 pt-12 pb-8 md:px-12 md:pt-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-12 lg:py-20 xl:px-16">
             <div>
@@ -75,13 +76,21 @@ export function Hero({ t }: { t: Dictionary }) {
           </div>
         </div>
 
-        {/* Dải logo khách hàng: placeholder cho tới khi có logo thật */}
-        <div id="customers-strip" className="py-12 text-center md:py-16">
-          <p className="text-[15px] text-ink-3">{c.title}</p>
-          <ul aria-label={c.logosLabel} className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {c.logos.map((logo) => (
-              <li key={logo} className="font-display text-[15px] font-semibold tracking-[-0.01em] text-ink-3">
-                {logo}
+        {/* Dải logo đối tác và khách hàng thật, lấy từ kizai.vn */}
+        <div id="customers-strip" className="py-12 md:py-16">
+          <p className="text-center text-[15px] text-ink-3">{c.title}</p>
+          <ul
+            aria-label={c.logosLabel}
+            className="mx-auto mt-8 grid max-w-[1120px] grid-cols-3 items-center gap-x-6 gap-y-7 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 lg:gap-x-8"
+          >
+            {partners.map((p) => (
+              <li key={p.id} className="flex h-10 items-center justify-center">
+                <Image
+                  src={p.logo}
+                  alt={p.name}
+                  sizes="120px"
+                  className="max-h-10 w-auto max-w-full object-contain opacity-60 mix-blend-multiply grayscale transition duration-200 hover:opacity-100 hover:grayscale-0"
+                />
               </li>
             ))}
           </ul>
@@ -201,11 +210,11 @@ function BracketDrawing({ label, partName }: { label: string; partName: string }
       </g>
       <g className="redline-fade" style={{ animationDelay: "1000ms" }}>
         <circle cx="296" cy="146" r="10" fill="var(--color-redline-bright)" />
-        <text x="296" y="150" textAnchor="middle" className="fill-[#0c0c0c] text-[12px] font-semibold">1</text>
+        <text x="296" y="150" textAnchor="middle" className="fill-night text-[12px] font-semibold">1</text>
       </g>
       <g className="redline-fade" style={{ animationDelay: "1600ms" }}>
         <circle cx="176" cy="40" r="10" fill="var(--color-redline-bright)" />
-        <text x="176" y="44" textAnchor="middle" className="fill-[#0c0c0c] text-[12px] font-semibold">2</text>
+        <text x="176" y="44" textAnchor="middle" className="fill-night text-[12px] font-semibold">2</text>
       </g>
     </svg>
   );

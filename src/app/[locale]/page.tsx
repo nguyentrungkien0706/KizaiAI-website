@@ -8,6 +8,7 @@ import { Modules } from "@/components/site/modules";
 import { Platform } from "@/components/site/platform";
 import { Integrations } from "@/components/site/integrations";
 import { Customers } from "@/components/site/customers";
+import { About } from "@/components/site/about";
 import { Pricing } from "@/components/site/pricing";
 import { Faq } from "@/components/site/faq";
 import { Contact } from "@/components/site/contact";
@@ -38,6 +39,7 @@ export default async function HomePage({
         <Platform t={t} />
         <Integrations t={t} />
         <Customers t={t} />
+        <About t={t} />
         <Pricing t={t} />
         <Faq t={t} />
         <Contact t={t} locale={locale} />

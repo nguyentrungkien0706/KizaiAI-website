@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/drafting";
+import logo from "@/assets/brand/kizai-logo.webp";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
@@ -13,8 +15,17 @@ export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
       <Container>
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-12">
           <div className="col-span-2 md:col-span-4">
-            <p className="font-display text-[28px] leading-none font-semibold tracking-[-0.04em] text-ink">kizai</p>
-            <p className="mt-3 max-w-[18rem] text-[14px] text-ink-3">{f.tagline}</p>
+            <Image src={logo} alt="Kizai Solution" sizes="160px" className="h-11 w-auto" />
+            <p className="mt-4 max-w-[20rem] text-[14px] text-ink-3">{f.tagline}</p>
+            <ul className="mt-4 flex gap-4">
+              {f.social.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} target="_blank" rel="noopener" className={linkClass}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <FooterCol title={f.cells.product} className="md:col-span-2">
@@ -30,7 +41,7 @@ export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
           <FooterCol title={f.cells.resources} className="md:col-span-2">
             {f.resources.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className={linkClass}>
+                <a href={l.href} target="_blank" rel="noopener" className={linkClass}>
                   {l.label}
                 </a>
               </li>
@@ -40,7 +51,7 @@ export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
           <FooterCol title={f.cells.legal} className="md:col-span-2">
             {f.legal.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className={linkClass}>
+                <a href={l.href} target="_blank" rel="noopener" className={linkClass}>
                   {l.label}
                 </a>
               </li>
@@ -50,8 +61,16 @@ export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
           <FooterCol title={f.cells.contact} className="md:col-span-2">
             <li className="py-1.5 text-[14px] text-ink-3">{f.company}</li>
             <li className="py-1.5 text-[14px] text-ink-3">{f.address}</li>
-            <li className="py-1.5 text-[14px] text-ink-3">{f.email}</li>
-            <li className="py-1.5 text-[14px] text-ink-3">{f.phone}</li>
+            <li>
+              <a href={`mailto:${f.email}`} className={linkClass}>
+                {f.email}
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${f.phone.replace(/[^+\d]/g, "")}`} className={linkClass}>
+                {f.phone}
+              </a>
+            </li>
           </FooterCol>
         </div>
 

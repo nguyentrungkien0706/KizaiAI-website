@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/brand/kizai-logo.webp";
 import { buttonVariants } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import type { Locale } from "@/i18n/config";
@@ -42,10 +44,9 @@ export function Navbar({ locale, t }: NavbarProps) {
         <a
           href="#main"
           aria-label={t.a11y.home}
-          className="-mx-1 rounded-sm px-1 font-display text-[24px] leading-none font-semibold tracking-[-0.04em] text-ink"
+          className="-mx-1 inline-flex shrink-0 items-center rounded-sm px-1"
         >
-          {/* [LOGO KIZAI]: thay bằng file logo chính thức khi có */}
-          kizai
+          <Image src={logo} alt="Kizai Solution" priority className="h-9 w-auto" sizes="130px" />
         </a>
 
         <nav aria-label={t.a11y.mainNav} className="hidden lg:block">
@@ -72,9 +73,11 @@ export function Navbar({ locale, t }: NavbarProps) {
 
         <div className="ml-auto flex items-center gap-2">
           <LanguageSwitcher current={locale} label={t.a11y.language} className="mr-2 hidden lg:flex" />
-          <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "hidden h-10 text-[14px] lg:inline-flex")}>
-            {t.nav.login}
-          </a>
+          {site.loginUrl ? (
+            <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "hidden h-10 text-[14px] lg:inline-flex")}>
+              {t.nav.login}
+            </a>
+          ) : null}
           <a href="#contact" className={cn(buttonVariants({ variant: "primary" }), "h-10 text-[14px]")}>
             {t.nav.demo}
           </a>
@@ -111,9 +114,11 @@ export function Navbar({ locale, t }: NavbarProps) {
           </ul>
           <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-6">
             <LanguageSwitcher current={locale} label={t.a11y.language} />
-            <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "ml-auto")}>
-              {t.nav.login}
-            </a>
+            {site.loginUrl ? (
+              <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "ml-auto")}>
+                {t.nav.login}
+              </a>
+            ) : null}
           </div>
         </nav>
       </div>

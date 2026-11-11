@@ -17,9 +17,10 @@ const ja: Dictionary = {
   },
   nav: {
     links: [
-      { href: "#platform", label: "プラットフォーム" },
       { href: "#modules", label: "製品" },
-      { href: "#integrations", label: "連携" },
+      { href: "#platform", label: "プラットフォーム" },
+      { href: "#customers", label: "導入事例" },
+      { href: "#about", label: "会社情報" },
       { href: "#contact", label: "お問い合わせ" },
     ],
     login: "ログイン",
@@ -68,14 +69,6 @@ const ja: Dictionary = {
         title: "図面レビューのノウハウは一部の人の頭の中に",
         text: "前回のレビューの教訓が記録されず、同じDFMの問題が次のプロジェクトでも繰り返されます。",
       },
-    ],
-    impactTitle: "導入効果",
-    impactNote: "数値はPOC後に更新します。",
-    impact: [
-      { value: "[ ]", label: "図面の再利用で削減した年間設計時間" },
-      { value: "[ ]%", label: "図面・技術資料の検索時間を削減" },
-      { value: "[ ]%", label: "加工部品の調達コストを削減" },
-      { value: "[ ]%", label: "品質ロスコスト（COPQ）を削減" },
     ],
   },
 
@@ -239,43 +232,132 @@ const ja: Dictionary = {
     ],
   },
 
-  customers: {
-    title: "機械、電子、産業機器の工場とともに",
-    logosLabel: "導入企業",
-    logos: ["[導入企業1]", "[導入企業2]", "[導入企業3]", "[導入企業4]", "[導入企業5]", "[導入企業6]"],
-    testimonials: [
-      { quote: "[お客様の声]", name: "[氏名]", role: "[役職、会社名]" },
-      { quote: "[お客様の声]", name: "[氏名]", role: "[役職、会社名]" },
+  about: {
+    title: "Kizai Solutionについて",
+    sub: "Kizai Solutionは、日本での勤務経験を持つエンジニアチームが、製造業のDXをコンサルティングから導入まで支援するテクノロジー企業です。日本の几帳面さと規律、品質基準をすべてのプロジェクトに持ち込みます。",
+    stats: [
+      {
+        value: "200+",
+        label: "導入企業"
+      },
+      {
+        value: "100+",
+        label: "導入プロジェクト"
+      },
+      {
+        value: "10+",
+        label: "年の実績"
+      },
+      {
+        value: "24/7",
+        label: "技術サポート"
+      }
     ],
+    points: [
+      {
+        title: "日越エンジニアチーム",
+        text: "日本とベトナムの大手企業へのコンサルティング経験。"
+      },
+      {
+        title: "きめ細かなプロセス",
+        text: "日本の厳格な品質基準とルールに沿って進めます。"
+      },
+      {
+        title: "オーダーメイド",
+        text: "工場ごとの特性に合わせて構成し、既成の手順を押し付けません。"
+      },
+      {
+        title: "長期の伴走",
+        text: "24時間365日の技術サポート、保守、継続的な機能更新。"
+      }
+    ],
+    ecosystemTitle: "Kizaiソリューション群",
+    ecosystemSub: "Kizai AIは、工場ですでに使われているKizaiシステムと連携して動きます。",
+    ecosystem: [
+      "KIZAI ERP",
+      "KIZAI MES",
+      "KIZAI HRM",
+      "KIZAI PMS",
+      "KIZAI RPA",
+      "KIZAI LIMS",
+      "KIZAI IoT FACTORY",
+      "EMS Power",
+      "EMS Machine",
+      "EMS Cooling",
+      "EMS Gas",
+      "EMS Water"
+    ],
+    more: "Kizai Solutionについて詳しく見る",
+    moreHref: "https://kizai.vn/about"
+  },
+
+  customers: {
+    title: "200社以上の製造業がKizai Solutionを選んでいます",
+    logosLabel: "Kizai Solutionのパートナーと顧客",
+    casesTitle: "導入事例",
+    casesSub: "Kizai Solutionがお客様の工場で実現した成果です。",
+    readMore: "事例を読む",
+    allCases: "すべての事例を見る",
+    allCasesHref: "https://kizai.vn/case-studies",
+    clientLabel: "お客様",
+    scopeLabel: "ソリューション",
+    cases: [
+      {
+        client: "ヤマハ発動機ベトナム",
+        partner: 2,
+        scope: "KIZAI IoT FACTORY：EMS Power、EMS Gas、EMS Machine",
+        title: "鋳造・ボイラー・圧縮空気設備のエネルギーと設備監視をデジタル化",
+        facts: [
+          "調査・提案は5日間",
+          "機器設置とソフト導入14日、研修2週間を経て本稼働",
+          "エネルギーとCO₂排出量のレポートを自動作成しESGに活用",
+          "第3期への拡張が決定"
+        ],
+        href: "https://kizai.vn/case-studies/kizai-solution-va-hanh-trinh-so-hoa-nha-may-thong-minh-tai-yamaha-motor-viet-nam"
+      },
+      {
+        client: "Viqualita",
+        partner: 13,
+        scope: "KIZAI IoT FACTORY：EMS Power、EMS Gas",
+        title: "ネットゼロに向けた電力とLPGのリアルタイム監視",
+        facts: [
+          "6か月でパフォーマンス20%向上",
+          "しきい値超過をランプ・ブザー・SMS・メールで通知",
+          "エネルギーをCO₂排出量へ自動換算",
+          "手作業のエネルギー報告を廃止"
+        ],
+        href: "https://kizai.vn/case-studies/kizai-solution-dong-hanh-cung-viqualita-hien-thuc-hoa-muc-tieu-net-zero-thong-qua-giam-sat-nang-luong-thong-minh"
+      }
+    ]
   },
 
   pricing: {
-    title: "サービスと導入の流れ",
-    sub: "費用は工場の規模と導入形態によって異なります。具体的なお見積もりはお問い合わせください。",
+    title: "5ステップの導入プロセス",
+    sub: "お見積もりの前に、工場の実データで動く様子をご確認いただけます。",
     stepLabel: "ステップ",
-    priceLabel: "価格",
-    durationLabel: "期間",
     steps: [
       {
-        name: "1対1デモ",
-        text: "Kizaiの技術者が貴社のサンプルデータで実演し、チームの質問にお答えします。",
-        price: "[価格]",
-        duration: "[期間]",
+        name: "調査・分析",
+        text: "Kizaiのエンジニアがシステム、データ、現場の要件を把握します。"
       },
       {
-        name: "実データでのPOC",
-        text: "特定の図面と業務プロセスで試行し、展開前に効果を測定します。",
-        price: "[価格]",
-        duration: "[期間]",
+        name: "試用・お見積もり",
+        text: "サンプルデータでデモを試していただき、内容をご理解いただいてからお見積もりします。"
       },
       {
-        name: "本導入",
-        text: "クラウドまたは専用サーバーに導入し、CAD・PLM・ERPと連携、部門ごとに権限を設定します。",
-        price: "[価格]",
-        duration: "[期間]",
+        name: "システム構築",
+        text: "サーバー（クラウドまたは工場内）を準備し、CAD・PLM・ERP連携と権限を設定します。"
       },
+      {
+        name: "導入・研修",
+        text: "現地に導入し、部門ごとに詳しく操作をご案内します。"
+      },
+      {
+        name: "保守・アップグレード",
+        text: "保守と24時間365日のサポート、新機能の継続的な提供。"
+      }
     ],
-    cta: "見積もりを依頼",
+    cta: "無料で相談する"
   },
 
   faq: {
@@ -287,7 +369,7 @@ const ja: Dictionary = {
       { q: "どのシステムと連携できますか？", a: "Teamcenter、Windchill、3DEXPERIENCE、SolidWorks PDMなどのPLM/PDM、SAP、Oracle、SharePoint、自社ERPなどと連携できます。" },
       { q: "社内の誰がどのデータを見られますか？", a: "部門・プロジェクト・顧客単位でアクセス権限を設定できます。" },
       { q: "デモはどのように行われますか？", a: "Kizaiの技術者が貴社のサンプルデータで1対1のデモを行い、規模に合ったPOCの進め方をご提案します。" },
-      { q: "費用はいくらですか？", a: "規模と導入形態によって異なります。[料金ポリシーを記入]" },
+      { q: "費用はいくらですか？", a: "規模と導入形態によって異なります。まずサンプルデータで試していただき、その後に具体的なお見積もりをお送りします。" },
     ],
   },
 
@@ -295,6 +377,17 @@ const ja: Dictionary = {
     title: "貴社の図面でAIを体験",
     sub: "簡単な情報をお送りいただければ、Kizaiの技術者が貴社のサンプルデータでデモを準備します。",
     points: ["Kizai技術者との1対1デモ", "実際の図面で試せる", "規模に合ったPOCロードマップをご提案"],
+    info: {
+      title: "直接のお問い合わせ",
+      address: "X5, Tráng Việt, Mê Linh, Hà Nội（ベトナム・ハノイ）",
+      phone: "+84 38 631 2345",
+      email: "kiennguyen@kizai.vn",
+      hours: "月〜金 8:30〜17:30（ベトナム時間）",
+      addressLabel: "所在地",
+      phoneLabel: "電話",
+      emailLabel: "メール",
+      hoursLabel: "営業時間"
+    },
     required: "（必須）",
     fields: {
       name: "氏名",
@@ -324,32 +417,58 @@ const ja: Dictionary = {
   },
 
   footer: {
-    company: "Kizai Solutions JSC",
-    tagline: "製造業のためのAIデータプラットフォーム",
+    company: "Kizai Solution",
+    tagline: "日本基準の、製造業のためのDXとAIデータソリューション。",
     cells: {
       contact: "お問い合わせ",
-      product: "製品",
+      product: "Kizai AI",
       resources: "会社情報",
-      legal: "法的情報",
-      revision: "更新",
-      scale: "尺度",
-      language: "言語",
+      legal: "規約"
     },
-    address: "[住所]",
-    email: "[メールアドレス]",
-    phone: "[電話番号]",
+    address: "X5, Tráng Việt, Mê Linh, Hà Nội（ベトナム・ハノイ）",
+    email: "kiennguyen@kizai.vn",
+    phone: "+84 38 631 2345",
     resources: [
-      { label: "データセキュリティ", href: "#integrations" },
-      { label: "導入事例", href: "#customers" },
-      { label: "料金", href: "#pricing" },
-      { label: "パートナー", href: "#" },
+      {
+        label: "会社概要",
+        href: "https://kizai.vn/about"
+      },
+      {
+        label: "サービス",
+        href: "https://kizai.vn/services"
+      },
+      {
+        label: "導入事例",
+        href: "https://kizai.vn/case-studies"
+      },
+      {
+        label: "ブログ",
+        href: "https://kizai.vn/news"
+      }
     ],
     legal: [
-      { label: "プライバシーポリシー", href: "#" },
-      { label: "利用規約", href: "#" },
+      {
+        label: "プライバシーポリシー",
+        href: "https://kizai.vn/privacy"
+      },
+      {
+        label: "利用規約",
+        href: "https://kizai.vn/terms"
+      }
     ],
-    copyright: "© 2026 Kizai Solutions JSC",
+    social: [
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/share/18UWj5SRNY/"
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/106299784/"
+      }
+    ],
+    copyright: "© 2026 Kizai Solution"
   },
+
 };
 
 export default ja;

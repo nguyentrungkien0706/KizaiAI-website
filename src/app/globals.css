@@ -18,11 +18,16 @@
   --color-line-strong: #8a8f98;
   --color-ink-hover: #2a2a2a;
 
-  --color-night: #0c0c0c;
-  --color-night-2: #161616;
-  --color-night-line: #2a2a2a;
+  /* Màu thương hiệu lấy từ logo Kizai Solution */
+  --color-brand: #153039;
+  --color-brand-hover: #03577b;
+  --color-brand-tint: #e6f0f4;
+
+  --color-night: #0f262e;
+  --color-night-2: #163540;
+  --color-night-line: #24464f;
   --color-on-night: #ffffff;
-  --color-on-night-2: #a3a3a3;
+  --color-on-night-2: #a8bac1;
 
   --color-redline: #b8321a;
   --color-redline-bright: #ff6a4d;
@@ -50,7 +55,7 @@
   --foreground: var(--color-ink);
   --card: var(--color-surface);
   --card-foreground: var(--color-ink);
-  --primary: var(--color-ink);
+  --primary: var(--color-brand);
   --primary-foreground: #ffffff;
   --secondary: var(--color-surface-2);
   --secondary-foreground: var(--color-ink);

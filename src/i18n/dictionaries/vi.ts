@@ -15,9 +15,10 @@ const vi = {
   },
   nav: {
     links: [
-      { href: "#platform", label: "Nền tảng" },
       { href: "#modules", label: "Sản phẩm" },
-      { href: "#integrations", label: "Tích hợp" },
+      { href: "#platform", label: "Nền tảng" },
+      { href: "#customers", label: "Khách hàng" },
+      { href: "#about", label: "Về Kizai" },
       { href: "#contact", label: "Liên hệ" },
     ],
     login: "Đăng nhập",
@@ -67,14 +68,6 @@ const vi = {
         title: "Kinh nghiệm duyệt bản vẽ nằm trong đầu vài người",
         text: "Lỗi DFM lặp lại ở dự án sau vì bài học từ lần duyệt trước không được lưu ở đâu.",
       },
-    ],
-    impactTitle: "Hiệu quả tại khách hàng",
-    impactNote: "Số liệu sẽ được cập nhật sau POC.",
-    impact: [
-      { value: "[ ]", label: "Giờ thiết kế tiết kiệm mỗi năm nhờ tái sử dụng bản vẽ" },
-      { value: "[ ]%", label: "Giảm thời gian tìm bản vẽ và tài liệu kỹ thuật" },
-      { value: "[ ]%", label: "Giảm chi phí thu mua linh kiện gia công" },
-      { value: "[ ]%", label: "Giảm chi phí lỗi chất lượng (COPQ)" },
     ],
   },
 
@@ -242,43 +235,132 @@ const vi = {
     ],
   },
 
-  customers: {
-    title: "Đồng hành cùng các nhà máy cơ khí, điện tử và thiết bị công nghiệp",
-    logosLabel: "Khách hàng",
-    logos: ["[KHÁCH HÀNG 1]", "[KHÁCH HÀNG 2]", "[KHÁCH HÀNG 3]", "[KHÁCH HÀNG 4]", "[KHÁCH HÀNG 5]", "[KHÁCH HÀNG 6]"],
-    testimonials: [
-      { quote: "[TRÍCH DẪN CỦA KHÁCH HÀNG]", name: "[HỌ TÊN]", role: "[CHỨC DANH, CÔNG TY]" },
-      { quote: "[TRÍCH DẪN CỦA KHÁCH HÀNG]", name: "[HỌ TÊN]", role: "[CHỨC DANH, CÔNG TY]" },
+  about: {
+    title: "Về Kizai Solution",
+    sub: "Kizai Solution tư vấn và triển khai chuyển đổi số cho doanh nghiệp sản xuất, với đội ngũ kỹ sư từng làm việc tại Nhật Bản. Chúng tôi mang tinh thần tỉ mỉ, kỷ luật và nguyên tắc chất lượng của Nhật Bản vào từng dự án.",
+    stats: [
+      {
+        value: "200+",
+        label: "Doanh nghiệp"
+      },
+      {
+        value: "100+",
+        label: "Dự án đã triển khai"
+      },
+      {
+        value: "10+",
+        label: "Năm kinh nghiệm"
+      },
+      {
+        value: "24/7",
+        label: "Hỗ trợ kỹ thuật"
+      }
     ],
+    points: [
+      {
+        title: "Đội ngũ kỹ sư Nhật – Việt",
+        text: "Kinh nghiệm tư vấn cho các tập đoàn lớn tại Nhật Bản và Việt Nam."
+      },
+      {
+        title: "Quy trình tỉ mỉ",
+        text: "Làm việc theo nguyên tắc và tiêu chuẩn chất lượng khắt khe của Nhật Bản."
+      },
+      {
+        title: "Giải pháp may đo",
+        text: "Cấu hình theo đặc thù từng nhà máy, không áp đặt quy trình có sẵn."
+      },
+      {
+        title: "Đồng hành dài hạn",
+        text: "Hỗ trợ kỹ thuật 24/7, bảo trì và cập nhật hệ thống liên tục."
+      }
+    ],
+    ecosystemTitle: "Hệ sinh thái giải pháp Kizai",
+    ecosystemSub: "Kizai AI chạy cùng các hệ thống Kizai mà nhà máy có thể đang dùng.",
+    ecosystem: [
+      "KIZAI ERP",
+      "KIZAI MES",
+      "KIZAI HRM",
+      "KIZAI PMS",
+      "KIZAI RPA",
+      "KIZAI LIMS",
+      "KIZAI IoT FACTORY",
+      "EMS Power",
+      "EMS Machine",
+      "EMS Cooling",
+      "EMS Gas",
+      "EMS Water"
+    ],
+    more: "Tìm hiểu thêm về Kizai Solution",
+    moreHref: "https://kizai.vn/about"
+  },
+
+  customers: {
+    title: "Hơn 200 doanh nghiệp sản xuất đã chọn Kizai Solution",
+    logosLabel: "Đối tác và khách hàng của Kizai Solution",
+    casesTitle: "Dự án tiêu biểu",
+    casesSub: "Kết quả Kizai Solution đã mang lại tại nhà máy của khách hàng.",
+    readMore: "Đọc case study",
+    allCases: "Xem tất cả dự án",
+    allCasesHref: "https://kizai.vn/case-studies",
+    clientLabel: "Khách hàng",
+    scopeLabel: "Giải pháp",
+    cases: [
+      {
+        client: "Yamaha Motor Việt Nam",
+        partner: 2,
+        scope: "KIZAI IoT FACTORY: EMS Power, EMS Gas, EMS Machine",
+        title: "Số hóa giám sát năng lượng và thiết bị tại phân xưởng đúc, lò hơi và khí nén",
+        facts: [
+          "Khảo sát và tư vấn trong 5 ngày",
+          "Lắp đặt, cài đặt trong 14 ngày, đào tạo 2 tuần rồi go-live",
+          "Tự động báo cáo năng lượng và phát thải CO₂ cho hồ sơ ESG",
+          "Khách hàng đã mở rộng hệ thống sang chu kỳ thứ 3"
+        ],
+        href: "https://kizai.vn/case-studies/kizai-solution-va-hanh-trinh-so-hoa-nha-may-thong-minh-tai-yamaha-motor-viet-nam"
+      },
+      {
+        client: "Viqualita",
+        partner: 13,
+        scope: "KIZAI IoT FACTORY: EMS Power, EMS Gas",
+        title: "Giám sát điện năng và khí LPG theo thời gian thực cho lộ trình Net Zero",
+        facts: [
+          "Hiệu năng tăng 20% sau 6 tháng",
+          "Cảnh báo vượt ngưỡng qua đèn, còi, SMS và email",
+          "Tự động quy đổi năng lượng sang phát thải CO₂",
+          "Bỏ hẳn báo cáo năng lượng thủ công"
+        ],
+        href: "https://kizai.vn/case-studies/kizai-solution-dong-hanh-cung-viqualita-hien-thuc-hoa-muc-tieu-net-zero-thong-qua-giam-sat-nang-luong-thong-minh"
+      }
+    ]
   },
 
   pricing: {
-    title: "Gói dịch vụ và lộ trình hợp tác",
-    sub: "Chi phí tùy quy mô nhà máy và hình thức triển khai. Liên hệ để nhận báo giá cụ thể.",
+    title: "Lộ trình hợp tác 5 bước",
+    sub: "Bạn thấy giải pháp chạy trên dữ liệu thật của nhà máy trước khi nhận báo giá.",
     stepLabel: "Bước",
-    priceLabel: "Giá",
-    durationLabel: "Thời gian",
     steps: [
       {
-        name: "Demo 1-1",
-        text: "Kỹ sư Kizai chạy thử trên dữ liệu mẫu của nhà máy bạn và trả lời câu hỏi của đội ngũ.",
-        price: "[GIÁ]",
-        duration: "[THỜI GIAN]",
+        name: "Khảo sát & phân tích",
+        text: "Kỹ sư Kizai nắm rõ hệ thống, dữ liệu và yêu cầu thực tế của nhà máy."
       },
       {
-        name: "POC trên dữ liệu thật",
-        text: "Thử nghiệm với một bộ bản vẽ và quy trình cụ thể, đo hiệu quả trước khi mở rộng.",
-        price: "[GIÁ]",
-        duration: "[THỜI GIAN]",
+        name: "Chạy thử & báo giá",
+        text: "Bạn dùng thử bản demo trên dữ liệu mẫu, hiểu rõ giải pháp rồi mới nhận báo giá."
       },
       {
-        name: "Triển khai",
-        text: "Triển khai trên cloud hoặc máy chủ riêng, kết nối CAD, PLM, ERP và phân quyền cho từng phòng ban.",
-        price: "[GIÁ]",
-        duration: "[THỜI GIAN]",
+        name: "Thiết lập hệ thống",
+        text: "Chuẩn bị máy chủ (cloud hoặc tại nhà máy), kết nối CAD, PLM, ERP và phân quyền."
       },
+      {
+        name: "Triển khai & đào tạo",
+        text: "Cài đặt tại đơn vị và hướng dẫn chi tiết cho từng phòng ban."
+      },
+      {
+        name: "Bảo trì & nâng cấp",
+        text: "Đồng hành bảo trì, hỗ trợ 24/7 và cập nhật tính năng mới liên tục."
+      }
     ],
-    cta: "Nhận báo giá",
+    cta: "Nhận tư vấn miễn phí"
   },
 
   faq: {
@@ -310,7 +392,7 @@ const vi = {
       },
       {
         q: "Chi phí sử dụng Kizai là bao nhiêu?",
-        a: "Chi phí tùy quy mô và hình thức triển khai. [ĐIỀN CHÍNH SÁCH GIÁ]",
+        a: "Chi phí tùy quy mô và hình thức triển khai. Kizai cho bạn chạy thử trên dữ liệu mẫu trước, sau đó mới gửi báo giá cụ thể.",
       },
     ],
   },
@@ -319,6 +401,17 @@ const vi = {
     title: "Trải nghiệm AI trên chính bản vẽ của bạn",
     sub: "Gửi vài thông tin, kỹ sư Kizai sẽ chuẩn bị buổi demo trên dữ liệu mẫu của nhà máy bạn.",
     points: ["Demo 1-1 với kỹ sư Kizai", "Chạy thử trên bản vẽ thật của bạn", "Tư vấn lộ trình POC phù hợp quy mô"],
+    info: {
+      title: "Hoặc liên hệ trực tiếp",
+      address: "X5, Tráng Việt, Mê Linh, Hà Nội",
+      phone: "038 631 2345",
+      email: "kiennguyen@kizai.vn",
+      hours: "Thứ 2 – Thứ 6, 08:30 – 17:30",
+      addressLabel: "Địa chỉ",
+      phoneLabel: "Điện thoại",
+      emailLabel: "Email",
+      hoursLabel: "Giờ làm việc"
+    },
     required: "(bắt buộc)",
     fields: {
       name: "Họ và tên",
@@ -348,32 +441,58 @@ const vi = {
   },
 
   footer: {
-    company: "Kizai Solutions JSC",
-    tagline: "Nền tảng dữ liệu AI cho nhà máy",
+    company: "Kizai Solution",
+    tagline: "Giải pháp chuyển đổi số và dữ liệu AI cho doanh nghiệp sản xuất, theo tiêu chuẩn Nhật Bản.",
     cells: {
       contact: "Liên hệ",
-      product: "Sản phẩm",
+      product: "Kizai AI",
       resources: "Công ty",
-      legal: "Pháp lý",
-      revision: "Cập nhật",
-      scale: "Tỉ lệ",
-      language: "Ngôn ngữ",
+      legal: "Pháp lý"
     },
-    address: "[ĐỊA CHỈ]",
-    email: "[EMAIL]",
-    phone: "[SỐ ĐIỆN THOẠI]",
+    address: "X5, Tráng Việt, Mê Linh, Hà Nội",
+    email: "kiennguyen@kizai.vn",
+    phone: "038 631 2345",
     resources: [
-      { label: "Bảo mật dữ liệu", href: "#integrations" },
-      { label: "Câu chuyện khách hàng", href: "#customers" },
-      { label: "Bảng giá", href: "#pricing" },
-      { label: "Đối tác", href: "#" },
+      {
+        label: "Về chúng tôi",
+        href: "https://kizai.vn/about"
+      },
+      {
+        label: "Dịch vụ",
+        href: "https://kizai.vn/services"
+      },
+      {
+        label: "Case study",
+        href: "https://kizai.vn/case-studies"
+      },
+      {
+        label: "Blog",
+        href: "https://kizai.vn/news"
+      }
     ],
     legal: [
-      { label: "Chính sách bảo mật", href: "#" },
-      { label: "Điều khoản", href: "#" },
+      {
+        label: "Chính sách bảo mật",
+        href: "https://kizai.vn/privacy"
+      },
+      {
+        label: "Điều khoản",
+        href: "https://kizai.vn/terms"
+      }
     ],
-    copyright: "© 2026 Kizai Solutions JSC",
+    social: [
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/share/18UWj5SRNY/"
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/106299784/"
+      }
+    ],
+    copyright: "© 2026 Kizai Solution"
   },
+
 };
 
 export default vi;
