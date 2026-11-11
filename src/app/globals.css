@@ -88,6 +88,7 @@
     line-height: 1.9;
     line-break: strict;
     word-break: auto-phrase;
+    overflow-wrap: anywhere;
   }
   :focus-visible {
     outline: 2px solid var(--color-ink);
@@ -107,5 +108,34 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Khoảnh khắc chuyển động duy nhất: AI khoanh đỏ bản vẽ ở hero */
+@keyframes redline-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes redline-fade {
+  to {
+    opacity: 1;
+  }
+}
+.redline-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: redline-draw 700ms var(--ease-standard) forwards;
+}
+.redline-fade {
+  opacity: 0;
+  animation: redline-fade 240ms var(--ease-standard) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .redline-draw,
+  .redline-fade {
+    animation: none !important;
+    stroke-dashoffset: 0;
+    opacity: 1;
   }
 }

@@ -2,6 +2,16 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { Navbar } from "@/components/site/navbar";
+import { Hero } from "@/components/site/hero";
+import { Problem } from "@/components/site/problem";
+import { Modules } from "@/components/site/modules";
+import { Platform } from "@/components/site/platform";
+import { Integrations } from "@/components/site/integrations";
+import { Customers } from "@/components/site/customers";
+import { Pricing } from "@/components/site/pricing";
+import { Faq } from "@/components/site/faq";
+import { Contact } from "@/components/site/contact";
+import { Footer } from "@/components/site/footer";
 
 export default async function HomePage({
   params,
@@ -16,14 +26,23 @@ export default async function HomePage({
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-control focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-control focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
       >
         {t.a11y.skipToContent}
       </a>
       <Navbar locale={locale} t={t} />
-      <main id="main" tabIndex={-1} className="min-h-[200vh] focus:outline-none">
-        {/* Các section tiếp theo (Hero, ...) sẽ được thêm ở đây. */}
+      <main id="main" tabIndex={-1} className="focus:outline-none">
+        <Hero t={t} />
+        <Problem t={t} />
+        <Modules t={t} />
+        <Platform t={t} />
+        <Integrations t={t} />
+        <Customers t={t} />
+        <Pricing t={t} />
+        <Faq t={t} />
+        <Contact t={t} locale={locale} />
       </main>
+      <Footer t={t} locale={locale} />
     </>
   );
 }

@@ -8,7 +8,7 @@ export function LanguageSwitcher({ current, label }: LanguageSwitcherProps) {
   return (
     <ul
       aria-label={label}
-      className="flex items-center rounded-control border border-rule-strong p-0.5"
+      className="flex w-fit items-center rounded-control border border-rule-strong p-0.5"
     >
       {locales.map((l) => {
         const isCurrent = l === current;
