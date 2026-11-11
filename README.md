@@ -36,3 +36,9 @@ Mở http://localhost:3000 (tự chuyển sang /vi, /ja hoặc /en theo ngôn ng
 2. Số liệu hiệu quả của Kizai AI (sau POC) và trích dẫn khách hàng: hiện chưa hiển thị, thêm khi có.
 3. Link Đăng nhập (`src/lib/site.ts`): để trống thì nút được ẩn.
 4. Logo đối tác số 7 trên kizai.vn chưa rõ tên nên chưa dùng.
+
+## Triển khai bằng Docker / Dokploy
+
+- `Dockerfile` build bản Next.js standalone, chạy cổng 3000.
+- Build arg: `NEXT_PUBLIC_SITE_URL` (tên miền thật, cần có lúc build).
+- Biến môi trường lúc chạy: `DEMO_WEBHOOK_URL`, `DEMO_WEBHOOK_SECRET`.
