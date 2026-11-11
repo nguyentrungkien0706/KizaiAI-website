@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Kizai Design System "Redline": tokens from design-system/MASTER.md
+   ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #eef1ec;
+  --color-paper-raised: #f7f8f5;
+  --color-paper-sunken: #e3e7e1;
+  --color-ink: #1b2430;
+  --color-ink-2: #4a5866;
+  --color-ink-3: #5f6b75;
+  --color-ink-hover: #2a3644;
+  --color-ink-active: #111820;
+  --color-rule: #b9c2bc;
+  --color-rule-strong: #7d8880;
+
+  --color-redline: #b8321a;
+  --color-redline-hover: #9c2914;
+  --color-redline-active: #84220f;
+  --color-redline-tint: #f4dcd5;
+  --color-redline-on-ink: #e2735a;
+
+  --color-success: #2e6b3f;
+  --color-success-tint: #dceadf;
+  --color-warning: #7a5200;
+  --color-warning-tint: #f6e7c1;
+  --color-danger: #8e1538;
+  --color-danger-tint: #f5dce3;
+
+  --font-sans: var(--font-plex), var(--font-plex-jp), system-ui, sans-serif;
+
+  --text-caption: 13px;
+  --text-caption--line-height: 1.45;
+  --text-small: 15px;
+  --text-small--line-height: 1.55;
+  --text-body: 17px;
+  --text-body--line-height: 1.65;
+
+  --radius-sheet: 2px;
+  --radius-control: 4px;
+  --radius-panel: 8px;
+
+  --shadow-sheet: 0 1px 0 #b9c2bc, 0 12px 32px -16px rgb(27 36 48 / 0.22);
+
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* shadcn/ui variables mapped onto Redline tokens */
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper-raised);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-raised);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-redline);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-ink);
+  --secondary-foreground: var(--color-paper);
+  --muted: var(--color-paper-sunken);
+  --muted-foreground: var(--color-ink-3);
+  --accent: var(--color-paper-sunken);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-danger);
+  --border: var(--color-rule);
+  --input: var(--color-rule-strong);
+  --ring: var(--color-ink);
+  --radius: var(--radius-control);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 72px;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "kern";
+  }
+  :lang(ja) body {
+    font-family: var(--font-plex-jp), var(--font-plex), system-ui, sans-serif;
+    line-height: 1.9;
+    line-break: strict;
+    word-break: auto-phrase;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--color-redline-tint);
+    color: var(--color-ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
