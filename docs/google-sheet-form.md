@@ -60,6 +60,8 @@ Cách này cũng dùng được với CRM có webhook (HubSpot, Bitrix24…): ch
 Đã cài xong:
 - Google Sheet **Kizai – Yêu cầu demo** trong thư mục Drive *Website Claude* (múi giờ Việt Nam, dòng tiêu đề cố định).
 - Apps Script **Kizai – Nhận form demo** (cùng thư mục), triển khai dạng ứng dụng web, đã được cấp quyền.
-- URL và mã bí mật nằm trong file `.env.local` ở thư mục dự án (không đưa lên git). Đã thử: sai mã bị từ chối, đúng mã ghi được vào Sheet và gửi email.
+- `DEMO_WEBHOOK_URL`: xem trong Apps Script → Triển khai → Quản lý tùy chọn triển khai (URL ứng dụng web, kết thúc bằng `/exec`).
+- `DEMO_WEBHOOK_SECRET`: chính là giá trị `SECRET` ở dòng 2 code Apps Script. Không ghi vào code website hay chia sẻ công khai.
+- Đã thử: sai mã bị từ chối, đúng mã ghi được vào Sheet và gửi email.
 
 Nếu sửa code Apps Script, phải vào **Triển khai → Quản lý tùy chọn triển khai → Chỉnh sửa → Phiên bản mới** thì thay đổi mới có hiệu lực, URL giữ nguyên.
