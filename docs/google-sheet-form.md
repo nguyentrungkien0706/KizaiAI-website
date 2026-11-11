@@ -54,3 +54,12 @@ DEMO_WEBHOOK_SECRET=doi-thanh-chuoi-bi-mat-cua-ban
 `DEMO_WEBHOOK_SECRET` phải giống hệt `SECRET` trong Apps Script. Không ghi hai giá trị này vào code.
 
 Cách này cũng dùng được với CRM có webhook (HubSpot, Bitrix24…): chỉ cần đổi `DEMO_WEBHOOK_URL`.
+
+## Trạng thái hiện tại (11/11/2026)
+
+Đã cài xong:
+- Google Sheet **Kizai – Yêu cầu demo** trong thư mục Drive *Website Claude* (múi giờ Việt Nam, dòng tiêu đề cố định).
+- Apps Script **Kizai – Nhận form demo** (cùng thư mục), triển khai dạng ứng dụng web, đã được cấp quyền.
+- URL và mã bí mật nằm trong file `.env.local` ở thư mục dự án (không đưa lên git). Đã thử: sai mã bị từ chối, đúng mã ghi được vào Sheet và gửi email.
+
+Nếu sửa code Apps Script, phải vào **Triển khai → Quản lý tùy chọn triển khai → Chỉnh sửa → Phiên bản mới** thì thay đổi mới có hiệu lực, URL giữ nguyên.
