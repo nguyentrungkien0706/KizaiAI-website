@@ -3,24 +3,18 @@
 import * as React from "react";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
-import imgSearch from "@/assets/images/module-search.webp";
-import imgReview from "@/assets/images/module-review.webp";
-import imgReuse from "@/assets/images/module-reuse.webp";
-import imgRfq from "@/assets/images/module-rfq.webp";
-import imgMro from "@/assets/images/module-mro.webp";
-
-/** Ảnh minh hoạ theo thứ tự module trong từ điển. */
-const moduleImages = [imgSearch, imgReview, imgReuse, imgRfq, imgMro];
+import { moduleImages } from "@/lib/module-images";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge, Container, Section, SectionHeading } from "@/components/ui/drafting";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
+import type { Locale } from "@/i18n/config";
+import { moduleSlugs } from "@/i18n/seo-content";
 import { cn } from "@/lib/utils";
 
-export function Modules({ t }: { t: Dictionary }) {
+export function Modules({ t, locale, detailLabel }: { t: Dictionary; locale: Locale; detailLabel: string }) {
   const m = t.modules;
   const [active, setActive] = React.useState(0);
   const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
-  const current = m.items[active];
 
   function onKeyDown(e: React.KeyboardEvent, index: number) {
     const last = m.items.length - 1;
@@ -54,7 +48,7 @@ export function Modules({ t }: { t: Dictionary }) {
                   role="tab"
                   id={`module-tab-${i}`}
                   aria-selected={selected}
-                  aria-controls="module-panel"
+                  aria-controls={`module-panel-${i}`}
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setActive(i)}
                   onKeyDown={(e) => onKeyDown(e, i)}
@@ -70,42 +64,51 @@ export function Modules({ t }: { t: Dictionary }) {
             })}
           </div>
 
-          <div
-            id="module-panel"
-            role="tabpanel"
-            aria-labelledby={`module-tab-${active}`}
-            tabIndex={0}
-            className="rounded-lg bg-surface p-6 md:p-10"
-          >
-            <div className="relative -mx-2 -mt-2 mb-8 aspect-[16/9] overflow-hidden rounded-lg bg-night md:-mx-4 md:-mt-4">
-              <Image
-                key={active}
-                src={moduleImages[active]}
-                alt={current.imageAlt}
-                fill
-                placeholder="blur"
-                sizes="(min-width: 1280px) 760px, (min-width: 1024px) 60vw, 100vw"
-                className="object-cover"
-              />
+          {/* Dựng sẵn cả 5 panel vào HTML để Google và AI đọc được; panel không chọn được ẩn bằng thuộc tính hidden. */}
+          {m.items.map((item, i) => (
+            <div
+              key={item.tab}
+              id={`module-panel-${i}`}
+              role="tabpanel"
+              aria-labelledby={`module-tab-${i}`}
+              hidden={i !== active}
+              tabIndex={0}
+              className="rounded-lg bg-surface p-6 md:p-10"
+            >
+              <div className="relative -mx-2 -mt-2 mb-8 aspect-[16/9] overflow-hidden rounded-lg bg-night md:-mx-4 md:-mt-4">
+                <Image
+                  src={moduleImages[i]}
+                  alt={item.imageAlt}
+                  fill
+                  placeholder="blur"
+                  sizes="(min-width: 1280px) 760px, (min-width: 1024px) 60vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <Badge className="bg-white">{item.who}</Badge>
+              <h3 className="mt-5 text-[28px] leading-[1.15] font-bold tracking-[-0.025em] md:text-[36px]">{item.name}</h3>
+              <p className="mt-3 max-w-[40rem] text-[17px] text-ink-3">{item.desc}</p>
+
+              <ul className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2">
+                {item.features.map((f) => (
+                  <li key={f.title} className="rounded-lg bg-white p-5">
+                    <h4 className="text-[17px] font-semibold tracking-[-0.01em]">{f.title}</h4>
+                    <p className="mt-1.5 text-[15px] text-ink-3">{f.text}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#contact" className={buttonVariants({ variant: "primary" })}>
+                  {m.cta}
+                  <ChevronRight aria-hidden="true" />
+                </a>
+                <a href={`/${locale}/modules/${moduleSlugs[i]}`} className={buttonVariants({ variant: "light" })}>
+                  {detailLabel}
+                </a>
+              </div>
             </div>
-            <Badge className="bg-white">{current.who}</Badge>
-            <h3 className="mt-5 text-[28px] leading-[1.15] font-bold tracking-[-0.025em] md:text-[36px]">{current.name}</h3>
-            <p className="mt-3 max-w-[40rem] text-[17px] text-ink-3">{current.desc}</p>
-
-            <ul className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2">
-              {current.features.map((f) => (
-                <li key={f.title} className="rounded-lg bg-white p-5">
-                  <h4 className="text-[17px] font-semibold tracking-[-0.01em]">{f.title}</h4>
-                  <p className="mt-1.5 text-[15px] text-ink-3">{f.text}</p>
-                </li>
-              ))}
-            </ul>
-
-            <a href="#contact" className={cn(buttonVariants({ variant: "primary" }), "mt-8")}>
-              {m.cta}
-              <ChevronRight aria-hidden="true" />
-            </a>
-          </div>
+          ))}
         </div>
       </Container>
     </Section>

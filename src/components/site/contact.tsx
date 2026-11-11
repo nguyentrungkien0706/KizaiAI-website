@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { trackEvent } from "@/components/site/analytics";
 import { AlertCircle, Check, CheckCircle2, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container, Section, displayClass } from "@/components/ui/drafting";
@@ -47,6 +48,7 @@ export function Contact({ t, locale }: { t: Dictionary; locale: Locale }) {
         body: JSON.stringify({ ...Object.fromEntries(data), locale }),
       });
       if (!res.ok) throw new Error(String(res.status));
+      trackEvent("generate_lead", { form: "demo_request", locale, page_path: window.location.pathname });
       setStatus("success");
       formRef.current?.reset();
       requestAnimationFrame(() => successRef.current?.focus());

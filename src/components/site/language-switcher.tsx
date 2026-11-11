@@ -1,10 +1,10 @@
 import { localeNames, locales, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
-type LanguageSwitcherProps = { current: Locale; label: string; className?: string };
+type LanguageSwitcherProps = { current: Locale; label: string; path?: string; className?: string };
 
 /** Chuyển ngôn ngữ VI / JA / EN. */
-export function LanguageSwitcher({ current, label, className }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ current, label, path = "", className }: LanguageSwitcherProps) {
   return (
     <ul aria-label={label} className={cn("flex w-fit items-center gap-0.5 rounded-md bg-surface-2 p-0.5", className)}>
       {locales.map((l) => {
@@ -12,7 +12,7 @@ export function LanguageSwitcher({ current, label, className }: LanguageSwitcher
         return (
           <li key={l}>
             <a
-              href={`/${l}`}
+              href={`/${l}${path}`}
               hrefLang={l}
               lang={l}
               aria-label={localeNames[l].full}

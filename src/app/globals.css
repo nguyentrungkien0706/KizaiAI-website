@@ -38,8 +38,8 @@
   --color-danger: #8e1538;
   --color-danger-tint: #f8e1e7;
 
-  --font-display: var(--font-montserrat), var(--font-noto-jp), system-ui, sans-serif;
-  --font-sans: var(--font-montserrat), var(--font-noto-jp), system-ui, sans-serif;
+  --font-display: var(--font-montserrat), system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
 
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -92,7 +92,8 @@
     line-height: 1.2;
   }
   :lang(ja) body {
-    font-family: var(--font-noto-jp), var(--font-montserrat), system-ui, sans-serif;
+    /* Font tiếng Nhật của hệ điều hành: không tải ~900 KB web font. */
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Yu Gothic UI", "Yu Gothic", Meiryo, "Noto Sans JP", "Noto Sans CJK JP", var(--font-montserrat), system-ui, sans-serif;
     line-height: 1.85;
     line-break: strict;
     word-break: auto-phrase;
@@ -100,7 +101,7 @@
     font-feature-settings: "palt";
   }
   :lang(ja) :is(h1, h2, h3, h4) {
-    font-family: var(--font-noto-jp), var(--font-montserrat), sans-serif;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Yu Gothic UI", "Yu Gothic", Meiryo, "Noto Sans JP", "Noto Sans CJK JP", var(--font-montserrat), sans-serif;
     letter-spacing: 0.01em;
     line-height: 1.45;
   }

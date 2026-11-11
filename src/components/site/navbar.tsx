@@ -11,9 +11,10 @@ import type { Dictionary } from "@/i18n/dictionaries/vi";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-type NavbarProps = { locale: Locale; t: Dictionary };
+/** base: "" trên trang chủ, "/vi" (…) trên trang con để link neo trỏ về trang chủ. path: phần đường dẫn sau ngôn ngữ, cho nút đổi ngôn ngữ. */
+type NavbarProps = { locale: Locale; t: Dictionary; base?: string; path?: string };
 
-export function Navbar({ locale, t }: NavbarProps) {
+export function Navbar({ locale, t, base = "", path = "" }: NavbarProps) {
   const [open, setOpen] = React.useState(false);
   const active = useActiveSection(t.nav.links.map((l) => l.href.slice(1)));
   const menuButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -42,7 +43,7 @@ export function Navbar({ locale, t }: NavbarProps) {
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur-sm supports-[backdrop-filter]:bg-white/85">
       <div className="mx-auto flex h-16 max-w-[1328px] items-center gap-8 px-4 md:px-6">
         <a
-          href="#main"
+          href={base || "#main"}
           aria-label={t.a11y.home}
           className="-mx-1 inline-flex shrink-0 items-center rounded-sm px-1"
         >
@@ -56,7 +57,7 @@ export function Navbar({ locale, t }: NavbarProps) {
               return (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={`${base}${link.href}`}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
                       "inline-flex h-10 items-center rounded-md px-3 text-[14px] font-medium text-ink transition-colors duration-[120ms] hover:bg-surface",
@@ -72,13 +73,13 @@ export function Navbar({ locale, t }: NavbarProps) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <LanguageSwitcher current={locale} label={t.a11y.language} className="mr-2 hidden lg:flex" />
+          <LanguageSwitcher current={locale} path={path} label={t.a11y.language} className="mr-2 hidden lg:flex" />
           {site.loginUrl ? (
             <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "hidden h-10 text-[14px] lg:inline-flex")}>
               {t.nav.login}
             </a>
           ) : null}
-          <a href="#contact" className={cn(buttonVariants({ variant: "primary" }), "h-10 text-[14px]")}>
+          <a href={`${base}#contact`} className={cn(buttonVariants({ variant: "primary" }), "h-10 text-[14px]")}>
             {t.nav.demo}
           </a>
           <button
@@ -102,7 +103,7 @@ export function Navbar({ locale, t }: NavbarProps) {
             {t.nav.links.map((link) => (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={`${base}${link.href}`}
                   onClick={() => setOpen(false)}
                   aria-current={active === link.href.slice(1) ? "true" : undefined}
                   className="flex h-14 items-center font-display text-[22px] font-semibold tracking-[-0.02em] text-ink aria-[current=true]:text-ink-3"
@@ -113,7 +114,7 @@ export function Navbar({ locale, t }: NavbarProps) {
             ))}
           </ul>
           <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-6">
-            <LanguageSwitcher current={locale} label={t.a11y.language} />
+            <LanguageSwitcher current={locale} path={path} label={t.a11y.language} />
             {site.loginUrl ? (
               <a href={site.loginUrl} className={cn(buttonVariants({ variant: "secondary" }), "ml-auto")}>
                 {t.nav.login}

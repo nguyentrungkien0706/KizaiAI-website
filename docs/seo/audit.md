@@ -83,7 +83,7 @@ Vấn đề lớn nhất nằm ở **cấu trúc nội dung**, không phải l�
 | Ảnh | 26 ảnh, tất cả có alt mô tả. 24 ảnh lazy-load. Hai ảnh `fill` không có width/height nhưng có khung cố định (CLS = 0). | | | Đạt |
 | Link nội bộ | Chỉ có link neo (#modules, #contact…) và link đổi ngôn ngữ. Không có trang con để liên kết. | | | P1 (sẽ giải quyết khi có trang module) |
 | Link ra ngoài | kizai.vn (giới thiệu, dịch vụ, case study, blog, chính sách), Facebook, LinkedIn | | | Đạt. Nên để kizai.vn link ngược về aki.kizai.vn. P2 |
-| Link đổi ngôn ngữ | Không có thuộc tính `hreflang` hay `lang` trên thẻ `<a>` | | | P3 |
+| Link đổi ngôn ngữ | Đã có `hrefLang` và `lang` trên thẻ `<a>` (đính chính 2026-11-12: lần kiểm tra đầu ghi nhầm) | Đạt | | |
 | Tên thương hiệu | "Kizai" (title), "Kizai Solution" (Organization, og:site_name). Bạn gọi sản phẩm là "Kizai AI". | | | **P1**: thống nhất tên sản phẩm trên mọi nơi để AI và Google nhận diện một thực thể |
 
 ---
@@ -187,7 +187,7 @@ Nhận xét:
 | 12 | P2 | sitemap lastmod đổi mỗi lần build | Dùng ngày sửa nội dung |
 | 13 | P2 | TBT 0,6–1,4 s | Giảm phần hydrate |
 | 14 | P2 | kizai.vn chưa link về aki.kizai.vn | Thêm link từ menu hoặc trang dịch vụ trên kizai.vn |
-| 15 | P3 | Không có HSTS, lộ `x-powered-by`, redirect 2 bước cho URL lạ, link đổi ngôn ngữ thiếu `hreflang`, ảnh OG không cache | Sửa trong mã nguồn (HSTS nên đặt ở NPM, cần bạn duyệt) |
+| 15 | P3 | Không có HSTS, lộ `x-powered-by`, redirect 2 bước cho URL lạ, ảnh OG không cache | Sửa trong mã nguồn (HSTS nên đặt ở NPM, cần bạn duyệt) |
 
 ## 12. Chưa kiểm tra được
 

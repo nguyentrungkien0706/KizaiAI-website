@@ -4,8 +4,9 @@ import logo from "@/assets/brand/kizai-logo.webp";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
+import { moduleSlugs } from "@/i18n/seo-content";
 
-export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
+export function Footer({ t, locale, path = "" }: { t: Dictionary; locale: Locale; path?: string }) {
   const f = t.footer;
   const linkClass =
     "inline-flex min-h-10 items-center text-[14px] text-ink-3 transition-colors duration-[120ms] hover:text-ink md:min-h-8";
@@ -29,9 +30,9 @@ export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
           </div>
 
           <FooterCol title={f.cells.product} className="md:col-span-2">
-            {t.modules.items.map((m) => (
+            {t.modules.items.map((m, i) => (
               <li key={m.tab}>
-                <a href="#modules" className={linkClass}>
+                <a href={`/${locale}/modules/${moduleSlugs[i]}`} className={linkClass}>
                   {m.tab}
                 </a>
               </li>
@@ -76,7 +77,7 @@ export function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
 
         <div className="mt-14 flex flex-col-reverse gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[13px] text-ink-3">{f.copyright}</p>
-          <LanguageSwitcher current={locale} label={t.a11y.language} />
+          <LanguageSwitcher current={locale} path={path} label={t.a11y.language} />
         </div>
       </Container>
     </footer>

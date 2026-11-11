@@ -1,14 +1,22 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/config";
+import { contentUpdated, moduleSlugs } from "@/i18n/seo-content";
 import { site } from "@/lib/site";
 
+/** Trang chủ + 5 trang module, mỗi trang 3 ngôn ngữ, kèm hreflang. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = Object.fromEntries(locales.map((l) => [l, `${site.url}/${l}`]));
-  return locales.map((l) => ({
-    url: `${site.url}/${l}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: l === "vi" ? 1 : 0.8,
-    alternates: { languages },
-  }));
+  const paths = ["", ...moduleSlugs.map((s) => `/modules/${s}`)];
+  return paths.flatMap((path) => {
+    const languages = {
+      ...Object.fromEntries(locales.map((l) => [l, `${site.url}/${l}${path}`])),
+      "x-default": `${site.url}/vi${path}`,
+    };
+    return locales.map((l) => ({
+      url: `${site.url}/${l}${path}`,
+      lastModified: contentUpdated,
+      changeFrequency: "monthly" as const,
+      priority: path === "" ? 1 : 0.8,
+      alternates: { languages },
+    }));
+  });
 }
