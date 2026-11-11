@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Montserrat, Noto_Sans_JP } from "next/font/google";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
+import { site } from "@/lib/site";
 import "../globals.css";
 
 // Montserrat: font thương hiệu của kizai.vn, có đủ dấu tiếng Việt.
@@ -33,12 +34,25 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const t = getDictionary(locale);
+  const ogLocale = { vi: "vi_VN", ja: "ja_JP", en: "en_US" }[locale];
   return {
+    metadataBase: new URL(site.url),
     title: t.meta.title,
     description: t.meta.description,
     alternates: {
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+      canonical: `/${locale}`,
+      languages: { ...Object.fromEntries(locales.map((l) => [l, `/${l}`])), "x-default": "/vi" },
     },
+    openGraph: {
+      type: "website",
+      siteName: site.name,
+      locale: ogLocale,
+      url: `/${locale}`,
+      title: t.meta.title,
+      description: t.meta.description,
+      images: [{ url: `/og/og-${locale}.jpg`, width: 1200, height: 630, alt: t.meta.title }],
+    },
+    twitter: { card: "summary_large_image", title: t.meta.title, description: t.meta.description, images: [`/og/og-${locale}.jpg`] },
   };
 }
 

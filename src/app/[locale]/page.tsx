@@ -13,6 +13,7 @@ import { Pricing } from "@/components/site/pricing";
 import { Faq } from "@/components/site/faq";
 import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
+import { site } from "@/lib/site";
 
 export default async function HomePage({
   params,
@@ -23,8 +24,22 @@ export default async function HomePage({
   if (!isLocale(locale)) notFound();
   const t = getDictionary(locale);
 
+  // Dữ liệu có cấu trúc cho Google: thông tin công ty lấy từ kizai.vn.
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Kizai Solution",
+    url: site.url,
+    logo: `${site.url}/icon.png`,
+    email: t.contact.info.email,
+    telephone: "+84 38 631 2345",
+    address: { "@type": "PostalAddress", streetAddress: "X5, Tráng Việt", addressLocality: "Mê Linh, Hà Nội", addressCountry: "VN" },
+    sameAs: t.footer.social.map((s) => s.href),
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-ink focus:px-4 focus:py-3 focus:text-white"

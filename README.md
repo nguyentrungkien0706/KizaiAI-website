@@ -20,13 +20,19 @@ Mở http://localhost:3000 (tự chuyển sang /vi, /ja hoặc /en theo ngôn ng
 - `src/i18n/dictionaries/`: nội dung chữ của từng ngôn ngữ
 - `src/components/site/`: các section của trang
 - `src/components/ui/`: component dùng chung (theo kiểu shadcn/ui)
-- `src/lib/site.ts`: các đường dẫn còn là placeholder
+- `src/lib/site.ts`: tên miền, link đăng nhập
+- `src/lib/partners.ts`: logo đối tác (ảnh trong `src/assets/partners`)
+- `public/og/`: ảnh chia sẻ mạng xã hội cho từng ngôn ngữ
+- `_anh-goc/` (chỉ có trên Google Drive): ảnh gốc từ Gemini và kizai.vn
 
-Các giá trị dạng `[...]` là placeholder, cần thay bằng dữ liệu thật.
+## Đưa lên mạng
 
-## Việc cần làm trước khi đưa lên mạng
+1. Đặt biến môi trường `NEXT_PUBLIC_SITE_URL` là tên miền thật (ví dụ `https://ai.kizai.vn`). Biến này dùng cho link chuẩn (canonical), hreflang, sitemap.xml, robots.txt và ảnh chia sẻ.
+2. `npm run build` rồi `npm start`, hoặc triển khai lên Vercel hay máy chủ có Node.js 20 trở lên.
+
+## Việc còn lại
 
 1. **Form đặt demo chưa gửi đi đâu.** `src/app/api/demo-request/route.ts` chỉ kiểm tra dữ liệu và ghi log. Cần nối tới email, CRM hoặc Google Sheet.
-2. Thay các placeholder `[...]` trong `src/i18n/dictionaries/vi.ts`, `ja.ts`, `en.ts`: số liệu hiệu quả, logo và trích dẫn khách hàng, giá và thời gian từng gói, địa chỉ, email, số điện thoại, chính sách giá, nhà cung cấp và đơn giá trong demo hỏi AI.
-3. Thay logo chữ "Kizai" bằng file logo chính thức (`src/components/site/navbar.tsx`, `footer.tsx`).
-4. Điền link Đăng nhập (`src/lib/site.ts`), link Đối tác, Chính sách bảo mật, Điều khoản (trong `footer` của từng file ngôn ngữ).
+2. Số liệu hiệu quả của Kizai AI (sau POC) và trích dẫn khách hàng: hiện chưa hiển thị, thêm khi có.
+3. Link Đăng nhập (`src/lib/site.ts`): để trống thì nút được ẩn.
+4. Logo đối tác số 7 trên kizai.vn chưa rõ tên nên chưa dùng.

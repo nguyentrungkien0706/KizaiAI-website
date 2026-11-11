@@ -201,15 +201,15 @@ const en: Dictionary = {
         {
           q: "Estimate machining cost for BR-2041 (100 pcs)",
           title: "Estimated cost breakdown",
-          items: ["Material: [MATERIAL UNIT PRICE]", "Machine time: [MACHINE HOURS × RATE]", "Finishing, surface treatment: [COST]"],
+          items: ["Material: SS400 stock weight × the unit price already in your ERP", "Machine time: from actual machine hours on the similar part BR-1877", "Finishing, surface treatment: from past supplier quotes"],
         },
         {
           q: "Suggest suppliers for BR-2041",
           title: "Suitable suppliers, ranked by capability and history",
           items: [
-            "[SUPPLIER A]: CNC milling, on-time delivery [ ]%",
-            "[SUPPLIER B]: laser cutting and bending, good quality history",
-            "[SUPPLIER C]: competitive price, check lead time",
+            "The supplier that machined BR-1877: CNC milling, on time on recent orders",
+            "Laser cutting and bending supplier: good quality history on SS400",
+            "New supplier: competitive price, lead time to be checked",
           ],
         },
       ],
