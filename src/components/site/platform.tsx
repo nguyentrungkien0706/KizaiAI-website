@@ -14,7 +14,7 @@ export function Platform({ t }: { t: Dictionary }) {
           {p.layers.map((layer, i) => (
             <li key={layer.name} className="flex flex-col">
               <div className="flex aspect-[4/3] flex-col justify-between rounded-xl bg-surface p-6">
-                <span aria-hidden="true" className="font-display text-[56px] leading-none tracking-[-0.04em] text-ink-4">
+                <span aria-hidden="true" className="font-display font-bold text-[56px] leading-none tracking-[-0.04em] text-ink-4">
                   {i + 1}
                 </span>
                 <ul className="flex flex-wrap gap-1.5">

@@ -59,7 +59,7 @@ export function Modules({ t }: { t: Dictionary }) {
                   onClick={() => setActive(i)}
                   onKeyDown={(e) => onKeyDown(e, i)}
                   className={cn(
-                    "rounded-md py-2.5 text-left font-display text-[24px] leading-[1.2] tracking-[-0.02em] transition-colors duration-[120ms] md:text-[28px]",
+                    "rounded-md py-2.5 text-left font-display text-[22px] font-semibold leading-[1.2] tracking-[-0.02em] transition-colors duration-[120ms] md:text-[24px]",
                     "[:lang(ja)_&]:text-[22px] [:lang(ja)_&]:tracking-normal",
                     selected ? "text-ink" : "text-ink-3 hover:text-ink-2",
                   )}
@@ -89,7 +89,7 @@ export function Modules({ t }: { t: Dictionary }) {
               />
             </div>
             <Badge className="bg-white">{current.who}</Badge>
-            <h3 className="mt-5 text-[28px] leading-[1.15] font-normal tracking-[-0.025em] md:text-[36px]">{current.name}</h3>
+            <h3 className="mt-5 text-[28px] leading-[1.15] font-bold tracking-[-0.025em] md:text-[36px]">{current.name}</h3>
             <p className="mt-3 max-w-[40rem] text-[17px] text-ink-3">{current.desc}</p>
 
             <ul className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2">

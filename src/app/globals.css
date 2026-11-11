@@ -38,8 +38,8 @@
   --color-danger: #8e1538;
   --color-danger-tint: #f8e1e7;
 
-  --font-display: var(--font-inter-tight), var(--font-noto-jp), system-ui, sans-serif;
-  --font-sans: var(--font-inter), var(--font-noto-jp), system-ui, sans-serif;
+  --font-display: var(--font-montserrat), var(--font-noto-jp), system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), var(--font-noto-jp), system-ui, sans-serif;
 
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -88,10 +88,11 @@
   h4 {
     color: var(--color-ink);
     font-family: var(--font-display);
-    line-height: 1.15;
+    font-weight: 700;
+    line-height: 1.2;
   }
   :lang(ja) body {
-    font-family: var(--font-noto-jp), var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-noto-jp), var(--font-montserrat), system-ui, sans-serif;
     line-height: 1.85;
     line-break: strict;
     word-break: auto-phrase;
@@ -99,7 +100,7 @@
     font-feature-settings: "palt";
   }
   :lang(ja) :is(h1, h2, h3, h4) {
-    font-family: var(--font-noto-jp), var(--font-inter-tight), sans-serif;
+    font-family: var(--font-noto-jp), var(--font-montserrat), sans-serif;
     letter-spacing: 0.01em;
     line-height: 1.45;
   }

@@ -13,7 +13,7 @@ export function Section({ className, ...props }: React.ComponentProps<"section">
 
 /** Cỡ chữ tiêu đề dùng chung. */
 export const displayClass =
-  "font-normal tracking-[-0.02em] text-balance [:lang(ja)_&]:font-medium [:lang(ja)_&]:tracking-[0.01em]";
+  "font-bold tracking-[-0.02em] text-balance [:lang(ja)_&]:font-bold [:lang(ja)_&]:tracking-[0.01em]";
 
 /** Tiêu đề section: chữ lớn nét mảnh, căn giữa hoặc căn trái. */
 export function SectionHeading({

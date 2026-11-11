@@ -105,7 +105,7 @@ export function Navbar({ locale, t }: NavbarProps) {
                   href={link.href}
                   onClick={() => setOpen(false)}
                   aria-current={active === link.href.slice(1) ? "true" : undefined}
-                  className="flex h-14 items-center font-display text-[22px] tracking-[-0.02em] text-ink aria-[current=true]:text-ink-3"
+                  className="flex h-14 items-center font-display text-[22px] font-semibold tracking-[-0.02em] text-ink aria-[current=true]:text-ink-3"
                 >
                   {link.label}
                 </a>

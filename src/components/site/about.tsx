@@ -35,7 +35,7 @@ export function About({ t }: { t: Dictionary }) {
               {a.stats.map((s) => (
                 <div key={s.label} className="flex flex-col gap-2 bg-night p-5 md:p-7">
                   <dt className="order-2 text-[15px]">{s.label}</dt>
-                  <dd className="order-1 m-0 font-display text-[44px] leading-none tracking-[-0.03em] text-white md:text-[56px]">
+                  <dd className="order-1 m-0 font-display font-bold text-[44px] leading-none tracking-[-0.03em] text-white md:text-[56px]">
                     {s.value}
                   </dd>
                 </div>

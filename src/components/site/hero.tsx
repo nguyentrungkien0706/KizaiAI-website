@@ -35,7 +35,7 @@ export function Hero({ t }: { t: Dictionary }) {
                 id="hero-title"
                 className={cn(
                   displayClass,
-                  "mt-6 text-[40px] text-white sm:text-[52px] xl:text-[64px] [:lang(ja)_&]:text-[32px] sm:[:lang(ja)_&]:text-[42px] xl:[:lang(ja)_&]:text-[50px]",
+                  "mt-6 text-[36px] text-white sm:text-[48px] xl:text-[56px] [:lang(ja)_&]:text-[32px] sm:[:lang(ja)_&]:text-[42px] xl:[:lang(ja)_&]:text-[50px]",
                 )}
               >
                 {h.title}

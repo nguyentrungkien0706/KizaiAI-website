@@ -88,3 +88,8 @@ Quy tắc: tiêu đề section căn giữa; không viết hoa toàn bộ; không
 - Logo chính thức: `src/assets/brand/kizai-logo.webp` (cắt từ kizai.vn/logo-wide.png).
 - Logo đối tác: `src/assets/partners/p*.webp` (từ kizai.vn/partners), hiển thị xám, hiện màu khi rê chuột. Ảnh số 7 chưa rõ tên nên chưa dùng.
 - Nội dung thật lấy từ kizai.vn: số liệu 200+ doanh nghiệp / 100+ dự án / 10+ năm / 24/7, quy trình 5 bước, case study Yamaha Motor và Viqualita, địa chỉ, điện thoại, email, giờ làm việc, liên kết mạng xã hội.
+
+## Font (v0.3.1)
+
+- Montserrat (Google Fonts, có tiếng Việt), cùng font thương hiệu kizai.vn khai báo. Tiêu đề 700, chỉ số lớn 700, tab module 600, nội dung 400/500. Tiếng Nhật dùng Noto Sans JP.
+- Không viết hoa toàn bộ tiêu đề như kizai.vn, để câu dài tiếng Việt vẫn dễ đọc.

@@ -41,7 +41,7 @@ export function AskDemo({ t }: { t: AskCopy }) {
   return (
     <div className="on-night grid grid-cols-1 gap-8 overflow-hidden rounded-xl bg-night p-6 text-on-night-2 md:p-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-12 xl:p-14">
       <div>
-        <h3 className="text-[30px] leading-[1.15] font-normal tracking-[-0.025em] text-white md:text-[40px] [:lang(ja)_&]:text-[28px]">
+        <h3 className="text-[30px] leading-[1.15] font-bold tracking-[-0.025em] text-white md:text-[40px] [:lang(ja)_&]:text-[28px]">
           {t.title}
         </h3>
 

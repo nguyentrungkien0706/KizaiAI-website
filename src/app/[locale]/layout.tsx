@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Inter, Inter_Tight, Noto_Sans_JP } from "next/font/google";
+import { Montserrat, Noto_Sans_JP } from "next/font/google";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import "../globals.css";
 
-const inter = Inter({
+// Montserrat: font thương hiệu của kizai.vn, có đủ dấu tiếng Việt.
+const montserrat = Montserrat({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const interTight = Inter_Tight({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-inter-tight",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -57,7 +53,7 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${interTight.variable} ${notoJp.variable}`}>
+    <html lang={locale} className={`${montserrat.variable} ${notoJp.variable}`}>
       <body>{children}</body>
     </html>
   );

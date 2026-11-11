@@ -25,7 +25,7 @@ export function Customers({ t }: { t: Dictionary }) {
                   </div>
                   <p className="text-right text-[13px] leading-[1.4] text-ink-3">{cs.scope}</p>
                 </div>
-                <h3 className="mt-8 text-[24px] leading-[1.25] font-normal tracking-[-0.02em] md:text-[28px]">{cs.title}</h3>
+                <h3 className="mt-8 text-[24px] leading-[1.25] font-bold tracking-[-0.02em] md:text-[28px]">{cs.title}</h3>
                 <ul className="mt-6 flex-1 space-y-2.5 border-t border-line pt-6">
                   {cs.facts.map((f) => (
                     <li key={f} className="flex gap-3 text-[15px] text-ink-2">

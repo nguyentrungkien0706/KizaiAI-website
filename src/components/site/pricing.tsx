@@ -13,7 +13,7 @@ export function Pricing({ t }: { t: Dictionary }) {
         <ol className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {p.steps.map((s, i) => (
             <li key={s.name} className="flex flex-col rounded-xl bg-white p-6">
-              <p className="font-display text-[40px] leading-none tracking-[-0.03em] text-brand-hover">
+              <p className="font-display font-bold text-[40px] leading-none tracking-[-0.03em] text-brand-hover">
                 <span className="sr-only">{p.stepLabel} </span>
                 {i + 1}
               </p>
