@@ -12,7 +12,7 @@
 | ✅ | Bing Webmaster: Import từ Search Console | Xong 2026-11-12: đã import aki.kizai.vn, sitemap trạng thái Success, 21 URL |
 | ✅ | Xác nhận số liệu | 2026-11-12: dùng theo kizai.vn (anh Kiên xác nhận) |
 | ✅ | Xác nhận được dùng logo | 2026-11-12: được dùng như trên kizai.vn |
-| ✅ | Thêm link từ kizai.vn sang aki.kizai.vn | Xong 2026-11-12: link "Kizai AI" ở footer kizai.vn, nhóm Công ty (sửa tại kizai.vn/cms/settings). Footer kizai.vn render bằng JavaScript nên link không có trong HTML gốc; Google vẫn đọc được. Nên render footer phía server khi sửa code kizai.vn |
+| ✅ | Thêm link từ kizai.vn sang aki.kizai.vn | Xong 2026-11-12: link "Kizai AI" ở footer kizai.vn, cột KIZAI ERP (dưới KIZAI LIMS) (sửa tại kizai.vn/cms/settings). Footer kizai.vn render bằng JavaScript nên link không có trong HTML gốc; Google vẫn đọc được. Nên render footer phía server khi sửa code kizai.vn |
 | P2 | Cung cấp số liệu POC hoặc trích dẫn khách hàng của Kizai AI (có đồng ý) | Để thêm vào trang module và schema |
 | P2 | Thống nhất tên "Kizai AI" và "Kizai Solution" trên kizai.vn, LinkedIn, Facebook, Google Business Profile | |
 | ✅ | Bật HSTS trên Nginx Proxy Manager cho aki.kizai.vn | Xong 2026-11-12 (anh Kiên bật): Force SSL + HSTS, không bật Sub-domains. Header `max-age=63072000; preload` (2 năm). Muốn tắt: tắt HSTS trong NPM, nhưng trình duyệt đã ghé vẫn nhớ tới hết max-age |
