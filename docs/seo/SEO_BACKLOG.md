@@ -7,8 +7,8 @@
 
 | Ưu tiên | Việc | Ghi chú |
 |---|---|---|
-| P0 | Xác minh Google Search Console và gửi `https://aki.kizai.vn/sitemap.xml` | Cách nhanh nhất: Domain property `kizai.vn` qua bản ghi DNS TXT. Hoặc dùng URL prefix kèm thẻ meta: gửi mã cho Claude, Claude đặt vào build arg `NEXT_PUBLIC_GSC_VERIFICATION` |
-| P0 | Tạo GA4 và gửi Measurement ID `G-…` | Claude đặt vào build arg `NEXT_PUBLIC_GA_ID`, rồi kiểm tra sự kiện `generate_lead` |
+| ✅ | Xác minh Google Search Console và gửi sitemap | Xong 2026-11-12: thuộc tính `https://aki.kizai.vn/`, xác minh bằng tệp `public/google433fe2ac56c56521.html` (không được xóa tệp này). Đã gửi sitemap.xml |
+| ✅ | Tạo GA4 | Xong 2026-11-12: tài khoản "Kizai Solution", tài sản "aki.kizai.vn", ID `G-QLDL2S6HN3`, đặt trong build arg Dokploy `NEXT_PUBLIC_GA_ID`. Cần đánh dấu `generate_lead` là sự kiện chính (key event) trong GA4 sau khi có dữ liệu |
 | P1 | Bing Webmaster: Import từ Search Console | Hoặc gửi mã `msvalidate.01` để đặt vào `NEXT_PUBLIC_BING_VERIFICATION` |
 | P1 | Xác nhận số liệu: 200+ hay 50+ doanh nghiệp, 100+ dự án, 10+ năm | Đang hiển thị 200+ theo trang chủ kizai.vn |
 | P1 | Xác nhận được dùng 20 logo cho sản phẩm Kizai AI | Nếu không, đổi tiêu đề dải logo thành "Khách hàng của Kizai Solution" |
