@@ -46,9 +46,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       url: `/${locale}${path}`,
       title: m.title,
       description: m.description,
-      images: [{ url: `/og/og-${locale}.jpg`, width: 1200, height: 630, alt: m.title }],
+      images: [{ url: `/og/modules/${locale}-${slug}.jpg`, width: 1200, height: 630, alt: m.title }],
     },
-    twitter: { card: "summary_large_image", title: m.title, description: m.description, images: [`/og/og-${locale}.jpg`] },
+    twitter: { card: "summary_large_image", title: m.title, description: m.description, images: [`/og/modules/${locale}-${slug}.jpg`] },
   };
 }
 
@@ -85,7 +85,7 @@ export default async function ModulePage({ params }: { params: Params }) {
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <a href={`${base}#modules`} className="hover:text-ink">
+                <a href={`${base}/modules`} className="hover:text-ink">
                   {s.labels.modules}
                 </a>
               </li>
@@ -114,7 +114,7 @@ export default async function ModulePage({ params }: { params: Params }) {
                   {s.labels.ctaButton}
                   <ChevronRight aria-hidden="true" />
                 </a>
-                <a href={`${base}#modules`} className={buttonVariants({ variant: "secondary", size: "lg" })}>
+                <a href={`${base}/modules`} className={buttonVariants({ variant: "secondary", size: "lg" })}>
                   {s.labels.backToModules}
                 </a>
               </div>

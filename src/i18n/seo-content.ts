@@ -31,6 +31,7 @@ type ModuleSeo = { title: string; description: string; h1: string; intro: string
 
 type SeoContent = {
   home: { title: string; description: string };
+  modulesPage: { title: string; description: string; h1: string; intro: string };
   labels: {
     home: string;
     modules: string;
@@ -52,6 +53,14 @@ export const seoContent: Record<Locale, SeoContent> = {
       title: "Kizai AI: Tìm bản vẽ CAD, kiểm tra DFM, báo giá RFQ bằng AI",
       description:
         "Nền tảng dữ liệu AI cho nhà máy: tìm bản vẽ 2D/3D tương tự, duyệt DFM, tái sử dụng chi tiết, phân tích chi phí RFQ và quản lý MRO. Đặt lịch demo 1-1.",
+    },
+    modulesPage: {
+      title: "Module AI cho nhà máy: bản vẽ, DFM, RFQ, MRO | Kizai AI",
+      description:
+        "5 module của Kizai AI: tìm bản vẽ CAD 2D/3D, kiểm tra DFM, tái sử dụng thiết kế, phân tích chi phí RFQ, quản lý đồ gá và MRO. Dùng riêng từng module hoặc kết hợp.",
+      h1: "5 module AI cho dữ liệu kỹ thuật của nhà máy",
+      intro:
+        "Mỗi module giải quyết một việc cụ thể của phòng thiết kế, thu mua hoặc bảo trì. Tất cả dùng chung một nền tảng dữ liệu, nên bạn có thể bắt đầu từ một module rồi mở rộng dần.",
     },
     labels: {
       home: "Trang chủ",
@@ -115,6 +124,14 @@ export const seoContent: Record<Locale, SeoContent> = {
       description:
         "製造業向けAIデータプラットフォーム。2D/3D類似図面検索、DFMレビュー、部品の再利用、RFQコスト分析、設備保全（MRO）をひとつの基盤で。1対1のデモを予約できます。",
     },
+    modulesPage: {
+      title: "製造業向けAIモジュール一覧｜Kizai AI",
+      description:
+        "Kizai AIの5つのモジュール：2D/3D図面検索、DFMチェック、設計の再利用、RFQコスト分析、治具・MRO管理。単体でも組み合わせても導入できます。",
+      h1: "工場の技術データを活かす5つのAIモジュール",
+      intro:
+        "各モジュールは設計・購買・保全部門の具体的な業務を対象にしています。すべて共通のデータ基盤の上で動くため、1つのモジュールから始めて段階的に広げられます。",
+    },
     labels: {
       home: "ホーム",
       modules: "モジュール",
@@ -176,6 +193,14 @@ export const seoContent: Record<Locale, SeoContent> = {
       title: "Kizai AI: AI CAD Drawing Search, DFM Review & RFQ Costing",
       description:
         "AI data platform for factories: find similar 2D/3D drawings, automate DFM review, reuse existing parts, analyze RFQ costs and manage MRO. Book a 1-on-1 demo.",
+    },
+    modulesPage: {
+      title: "AI Modules for Manufacturing: CAD Search, DFM, RFQ | Kizai AI",
+      description:
+        "The 5 Kizai AI modules: 2D/3D CAD drawing search, DFM review, design reuse, RFQ cost analysis, and tooling and MRO management. Use one module or combine them.",
+      h1: "5 AI modules for your plant's engineering data",
+      intro:
+        "Each module targets a specific job in design, purchasing or maintenance. They all share one data platform, so you can start with a single module and expand from there.",
     },
     labels: {
       home: "Home",

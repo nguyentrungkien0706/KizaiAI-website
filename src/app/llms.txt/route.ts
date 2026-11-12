@@ -18,6 +18,8 @@ export function GET() {
     "",
     "## Modules",
     "",
+    `Overview of all modules: ${site.url}/en/modules`,
+    "",
     ...moduleSlugs.map((slug, i) => `- [${en.modules.items[i].name}](${site.url}/en/modules/${slug}): ${s.modules[slug].description}`),
     "",
     "## Languages",

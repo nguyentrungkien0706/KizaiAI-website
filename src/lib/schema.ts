@@ -127,6 +127,7 @@ export function moduleSchema(locale: Locale, t: Dictionary, slug: ModuleSlug) {
         isPartOf: { "@id": ids.website },
         about: { "@id": ids.product },
         breadcrumb: { "@id": `${url}#breadcrumb` },
+        primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/og/modules/${locale}-${slug}.jpg` },
         mainEntity: {
           "@type": "Thing",
           name: item.name,
@@ -138,8 +139,49 @@ export function moduleSchema(locale: Locale, t: Dictionary, slug: ModuleSlug) {
         "@id": `${url}#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: s.labels.home, item: `${site.url}/${locale}` },
-          { "@type": "ListItem", position: 2, name: s.labels.modules, item: `${site.url}/${locale}#modules` },
+          { "@type": "ListItem", position: 2, name: s.labels.modules, item: `${site.url}/${locale}/modules` },
           { "@type": "ListItem", position: 3, name: item.name, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+export function modulesSchema(locale: Locale, t: Dictionary) {
+  const url = `${site.url}/${locale}/modules`;
+  const s = seoContent[locale];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      organization(t),
+      website(locale),
+      software(locale, t),
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: s.modulesPage.title,
+        description: s.modulesPage.description,
+        inLanguage: inLanguage[locale],
+        isPartOf: { "@id": ids.website },
+        about: { "@id": ids.product },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: moduleSlugs.map((slug, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: t.modules.items[i].name,
+            url: `${site.url}/${locale}/modules/${slug}`,
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: s.labels.home, item: `${site.url}/${locale}` },
+          { "@type": "ListItem", position: 2, name: s.labels.modules, item: url },
         ],
       },
     ],

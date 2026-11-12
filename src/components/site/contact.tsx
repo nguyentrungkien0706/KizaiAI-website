@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { trackEvent } from "@/components/site/analytics";
+import { readSource, trackEvent } from "@/components/site/analytics";
 import { AlertCircle, Check, CheckCircle2, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container, Section, displayClass } from "@/components/ui/drafting";
@@ -45,7 +45,13 @@ export function Contact({ t, locale }: { t: Dictionary; locale: Locale }) {
       const res = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...Object.fromEntries(data), locale }),
+        body: JSON.stringify({
+          ...Object.fromEntries(data),
+          locale,
+          source: readSource().src,
+          landing: readSource().land,
+          page: window.location.pathname,
+        }),
       });
       if (!res.ok) throw new Error(String(res.status));
       trackEvent("generate_lead", { form: "demo_request", locale, page_path: window.location.pathname });

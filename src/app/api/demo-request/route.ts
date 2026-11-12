@@ -25,6 +25,10 @@ export async function POST(request: Request) {
     cad: field("cad"),
     need: field("need"),
     locale: field("locale"),
+    // Nguồn truy cập (UTM hoặc trang giới thiệu), trang vào đầu tiên và trang gửi form.
+    source: field("source"),
+    landing: field("landing"),
+    page: field("page"),
   };
 
   if (!data.name || !data.company || !EMAIL_RE.test(data.email)) {

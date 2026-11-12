@@ -23,7 +23,11 @@ export function middleware(request: NextRequest) {
 
   const url = request.nextUrl.clone();
   url.pathname = `/${preferredLocale(request)}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(url);
+  // Chỉ chuyển hướng các đường dẫn có thật (trang chủ, /modules…). Đường dẫn lạ trả 404 ngay, không qua bước chuyển hướng.
+  if (pathname === "/" || pathname === "/modules" || pathname.startsWith("/modules/")) {
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.rewrite(url);
 }
 
 export const config = {

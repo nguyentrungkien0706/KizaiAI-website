@@ -10,8 +10,8 @@
 | ✅ | Xác minh Google Search Console và gửi sitemap | Xong 2026-11-12: thuộc tính `https://aki.kizai.vn/`, xác minh bằng tệp `public/google433fe2ac56c56521.html` (không được xóa tệp này). Đã gửi sitemap.xml |
 | ✅ | Tạo GA4 | Xong 2026-11-12: tài khoản "Kizai Solution", tài sản "aki.kizai.vn", ID `G-QLDL2S6HN3`, đặt trong build arg Dokploy `NEXT_PUBLIC_GA_ID`. Cần đánh dấu `generate_lead` là sự kiện chính (key event) trong GA4 sau khi có dữ liệu |
 | P1 | Bing Webmaster: Import từ Search Console | Hoặc gửi mã `msvalidate.01` để đặt vào `NEXT_PUBLIC_BING_VERIFICATION` |
-| P1 | Xác nhận số liệu: 200+ hay 50+ doanh nghiệp, 100+ dự án, 10+ năm | Đang hiển thị 200+ theo trang chủ kizai.vn |
-| P1 | Xác nhận được dùng 20 logo cho sản phẩm Kizai AI | Nếu không, đổi tiêu đề dải logo thành "Khách hàng của Kizai Solution" |
+| ✅ | Xác nhận số liệu | 2026-11-12: dùng theo kizai.vn (anh Kiên xác nhận) |
+| ✅ | Xác nhận được dùng logo | 2026-11-12: được dùng như trên kizai.vn |
 | P1 | Thêm link từ kizai.vn (menu hoặc trang Dịch vụ) sang aki.kizai.vn | Giúp Google hiểu quan hệ giữa 2 domain và truyền uy tín |
 | P2 | Cung cấp số liệu POC hoặc trích dẫn khách hàng của Kizai AI (có đồng ý) | Để thêm vào trang module và schema |
 | P2 | Thống nhất tên "Kizai AI" và "Kizai Solution" trên kizai.vn, LinkedIn, Facebook, Google Business Profile | |
@@ -30,10 +30,10 @@
 | P2 | `/llms.txt`, robots.txt khai báo bot AI, sitemap `lastmod` cố định | ✅ Xong |
 | P2 | Bỏ `x-powered-by`, cache ảnh OG, header bảo mật cơ bản | ✅ Xong |
 | P2 | Mục blog `/{locale}/blog` + schema Article (tác giả, người duyệt, ngày) | Chờ bài đầu tiên (CONTENT_PLAN_90D) |
-| P2 | Giảm TBT: chuyển phần tĩnh của Navbar, Contact sang server component | Chưa làm |
-| P2 | Ảnh OG riêng cho từng trang module | Chưa làm (đang dùng ảnh OG chung theo ngôn ngữ) |
-| P2 | Thêm UTM hoặc nguồn truy cập vào dữ liệu form gửi Google Sheet | Chưa làm. Cần thêm cột trong Sheet và sửa Apps Script |
+| P2 | Giảm TBT: chuyển phần tĩnh của Navbar, Contact sang server component | Bỏ qua 2026-11-12: JS riêng của trang chỉ khoảng 23 KB, phần lớn là framework Next.js dùng chung (103 KB), tách menu chỉ giảm vài KB |
+| P2 | Ảnh OG riêng cho từng trang module | ✅ Xong 2026-11-12: `public/og/modules/{locale}-{slug}.jpg` |
+| P2 | Thêm UTM hoặc nguồn truy cập vào dữ liệu form gửi Google Sheet | ✅ Phía web xong 2026-11-12: gửi thêm `source`, `landing`, `page`. Apps Script cần ghi thêm 3 cột |
 | P2 | Môi trường staging (`staging-aki.kizai.vn`, noindex) | Chưa làm. Cần DNS và proxy host |
-| P3 | `/xyz` đang redirect 2 bước rồi mới 404 | Chưa làm |
-| P3 | Trang `/{locale}/modules` (danh sách module) để breadcrumb có URL riêng | Chưa làm (đang trỏ về `#modules`) |
+| P3 | `/xyz` đang redirect 2 bước rồi mới 404 | ✅ Xong 2026-11-12: đường dẫn lạ trả 404 ngay |
+| P3 | Trang `/{locale}/modules` (danh sách module) để breadcrumb có URL riêng | ✅ Xong 2026-11-12, có trong sitemap (21 URL) |
 | P3 | Banner đồng ý cookie khi bật GA4 cho khách châu Âu | Làm khi bật GA4, nếu có khách EU |
