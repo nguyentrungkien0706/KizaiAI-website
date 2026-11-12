@@ -22,7 +22,8 @@ export function middleware(request: NextRequest) {
   if (hasLocale) return;
 
   const url = request.nextUrl.clone();
-  url.pathname = `/${preferredLocale(request)}${pathname === "/" ? "" : pathname}`;
+  // Trang gốc aki.kizai.vn mở thẳng trang Doanh nghiệp SME (anh Kiên yêu cầu 2026-11-12).
+  url.pathname = `/${preferredLocale(request)}${pathname === "/" ? "/doanh-nghiep-sme" : pathname}`;
   // Chỉ chuyển hướng các đường dẫn có thật (trang chủ, /modules…). Đường dẫn lạ trả 404 ngay, không qua bước chuyển hướng.
   if (pathname === "/" || pathname === "/modules" || pathname.startsWith("/modules/") || pathname === "/doanh-nghiep-sme") {
     return NextResponse.redirect(url);
