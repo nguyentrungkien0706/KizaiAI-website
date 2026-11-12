@@ -5,7 +5,7 @@ Cách này miễn phí và không cần API key. Mất khoảng 5 phút.
 ## 1. Tạo Google Sheet
 
 1. Tạo một Google Sheet mới, ví dụ "Kizai – Yêu cầu demo".
-2. Dòng 1 đặt các cột: `Thời gian | Họ tên | Email | Công ty | Số kỹ sư | CAD/PLM | Nhu cầu | Ngôn ngữ`
+2. Dòng 1 đặt các cột: `Thời gian | Họ tên | Email | Công ty | Số kỹ sư | CAD/PLM | Nhu cầu | Ngôn ngữ | Nguồn truy cập | Trang vào đầu tiên | Trang gửi form`
 
 ## 2. Thêm Apps Script
 
@@ -20,7 +20,7 @@ function doPost(e) {
   const d = JSON.parse(e.postData.contents);
   if (d.secret !== SECRET) return ContentService.createTextOutput("forbidden");
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  sheet.appendRow([new Date(d.submittedAt), d.name, d.email, d.company, d.size, d.cad, d.need, d.locale]);
+  sheet.appendRow([new Date(d.submittedAt), d.name, d.email, d.company, d.size, d.cad, d.need, d.locale, d.source || "", d.landing || "", d.page || ""]);
   MailApp.sendEmail({
     to: NOTIFY,
     replyTo: d.email,
@@ -65,3 +65,7 @@ Cách này cũng dùng được với CRM có webhook (HubSpot, Bitrix24…): ch
 - Đã thử: sai mã bị từ chối, đúng mã ghi được vào Sheet và gửi email.
 
 Nếu sửa code Apps Script, phải vào **Triển khai → Quản lý tùy chọn triển khai → Chỉnh sửa → Phiên bản mới** thì thay đổi mới có hiệu lực, URL giữ nguyên.
+
+## Cập nhật 12/11/2026
+
+Form gửi thêm `source` (UTM `nguồn / kênh / chiến dịch`, hoặc `ref: tên miền` nếu đến từ trang khác, hoặc `direct`), `landing` (trang vào đầu tiên trong phiên) và `page` (trang gửi form). Apps Script đã sửa để ghi 3 cột I–K và thêm vào email, triển khai Phiên bản 2 (URL giữ nguyên). Đã thử gửi thật, dòng thử đã xóa.

@@ -32,7 +32,7 @@
 | P2 | Mục blog `/{locale}/blog` + schema Article (tác giả, người duyệt, ngày) | Chờ bài đầu tiên (CONTENT_PLAN_90D) |
 | P2 | Giảm TBT: chuyển phần tĩnh của Navbar, Contact sang server component | Bỏ qua 2026-11-12: JS riêng của trang chỉ khoảng 23 KB, phần lớn là framework Next.js dùng chung (103 KB), tách menu chỉ giảm vài KB |
 | P2 | Ảnh OG riêng cho từng trang module | ✅ Xong 2026-11-12: `public/og/modules/{locale}-{slug}.jpg` |
-| P2 | Thêm UTM hoặc nguồn truy cập vào dữ liệu form gửi Google Sheet | ✅ Phía web xong 2026-11-12: gửi thêm `source`, `landing`, `page`. Apps Script cần ghi thêm 3 cột |
+| P2 | Thêm UTM hoặc nguồn truy cập vào dữ liệu form gửi Google Sheet | ✅ Xong 2026-11-12: Sheet có thêm cột Nguồn truy cập, Trang vào đầu tiên, Trang gửi form (Apps Script phiên bản 2) |
 | P2 | Môi trường staging (`staging-aki.kizai.vn`, noindex) | Chưa làm. Cần DNS và proxy host |
 | P3 | `/xyz` đang redirect 2 bước rồi mới 404 | ✅ Xong 2026-11-12: đường dẫn lạ trả 404 ngay |
 | P3 | Trang `/{locale}/modules` (danh sách module) để breadcrumb có URL riêng | ✅ Xong 2026-11-12, có trong sitemap (21 URL) |
