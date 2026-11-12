@@ -10,6 +10,7 @@ import { Integrations } from "@/components/site/integrations";
 import { Customers } from "@/components/site/customers";
 import { About } from "@/components/site/about";
 import { Pricing } from "@/components/site/pricing";
+import { SmbBand } from "@/components/site/smb-band";
 import { Faq } from "@/components/site/faq";
 import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
@@ -39,6 +40,7 @@ export default async function HomePage({
         <Hero t={t} />
         <Problem t={t} />
         <Modules t={t} locale={locale} detailLabel={seoContent[locale].labels.detail} />
+        <SmbBand locale={locale} />
         <Platform t={t} />
         <Integrations t={t} />
         <Customers t={t} />

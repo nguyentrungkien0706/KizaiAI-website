@@ -18,6 +18,7 @@ const en: Dictionary = {
   nav: {
     links: [
       { href: "#modules", label: "Product" },
+      { href: "/ho-kinh-doanh", label: "Small business" },
       { href: "#platform", label: "Platform" },
       { href: "#customers", label: "Customers" },
       { href: "#about", label: "About" },
@@ -400,7 +401,7 @@ const en: Dictionary = {
     cadHint: "For example: SolidWorks, Teamcenter",
     choose: "Choose one",
     sizes: ["1–30", "30–100", "100–500", "Over 500"],
-    needs: ["Drawing search & reuse", "Automated design review", "RFQ & quote management", "Part standardization", "Production & maintenance"],
+    needs: ["Drawing search & reuse", "Automated design review", "RFQ & quote management", "Part standardization", "Production & maintenance", "Sales, stock, books & tax (small business)"],
     errors: {
       name: "Enter your full name.",
       email: "Enter your work email, for example name@company.com.",

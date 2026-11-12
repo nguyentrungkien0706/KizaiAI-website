@@ -16,6 +16,7 @@ const vi = {
   nav: {
     links: [
       { href: "#modules", label: "Sản phẩm" },
+      { href: "/ho-kinh-doanh", label: "Hộ kinh doanh" },
       { href: "#platform", label: "Nền tảng" },
       { href: "#customers", label: "Khách hàng" },
       { href: "#about", label: "Về Kizai" },
@@ -424,7 +425,7 @@ const vi = {
     cadHint: "Ví dụ: SolidWorks, Teamcenter",
     choose: "Chọn một mục",
     sizes: ["1–30", "30–100", "100–500", "Trên 500"],
-    needs: ["Tìm kiếm & tái sử dụng bản vẽ", "Tự động duyệt thiết kế", "Quản lý RFQ & báo giá", "Chuẩn hóa linh kiện", "Sản xuất & bảo trì"],
+    needs: ["Tìm kiếm & tái sử dụng bản vẽ", "Tự động duyệt thiết kế", "Quản lý RFQ & báo giá", "Chuẩn hóa linh kiện", "Sản xuất & bảo trì", "Bán hàng, kho, sổ sách & thuế (hộ kinh doanh)"],
     errors: {
       name: "Nhập họ và tên của bạn.",
       email: "Nhập email công việc, ví dụ ten@congty.vn.",

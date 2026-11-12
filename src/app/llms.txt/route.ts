@@ -2,6 +2,7 @@ import { locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { brand, moduleSlugs, seoContent } from "@/i18n/seo-content";
 import { site } from "@/lib/site";
+import { smbContent, smbPath } from "@/i18n/smb-content";
 
 export const dynamic = "force-static";
 
@@ -21,6 +22,10 @@ export function GET() {
     `Overview of all modules: ${site.url}/en/modules`,
     "",
     ...moduleSlugs.map((slug, i) => `- [${en.modules.items[i].name}](${site.url}/en/modules/${slug}): ${s.modules[slug].description}`),
+    "",
+    "## For household and small businesses",
+    "",
+    `- [${smbContent.en.hero.h1}](${site.url}/en${smbPath}): ${smbContent.en.seo.description}`,
     "",
     "## Languages",
     "",
