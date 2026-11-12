@@ -18,6 +18,7 @@ const ja: Dictionary = {
   nav: {
     links: [
       { href: "#modules", label: "製品" },
+      { href: "/doanh-nghiep-sme", label: "中小企業" },
       { href: "#platform", label: "プラットフォーム" },
       { href: "#customers", label: "導入事例" },
       { href: "#about", label: "会社情報" },
@@ -400,7 +401,7 @@ const ja: Dictionary = {
     cadHint: "例：SolidWorks、Teamcenter",
     choose: "選択してください",
     sizes: ["1–30名", "30–100名", "100–500名", "500名以上"],
-    needs: ["図面検索と再利用", "設計レビューの自動化", "RFQ・見積管理", "部品の標準化", "製造・保全"],
+    needs: ["図面検索と再利用", "設計レビューの自動化", "RFQ・見積管理", "部品の標準化", "製造・保全", "販売・在庫・会計・税務（中小企業）"],
     errors: {
       name: "氏名を入力してください。",
       email: "会社のメールアドレスを入力してください（例：name@company.co.jp）。",

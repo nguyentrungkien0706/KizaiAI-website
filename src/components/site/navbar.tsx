@@ -57,7 +57,7 @@ export function Navbar({ locale, t, base = "", path = "" }: NavbarProps) {
               return (
                 <li key={link.href}>
                   <a
-                    href={`${base}${link.href}`}
+                    href={link.href.startsWith("/") ? `/${locale}${link.href}` : `${base}${link.href}`}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
                       "inline-flex h-10 items-center rounded-md px-3 text-[14px] font-medium text-ink transition-colors duration-[120ms] hover:bg-surface",
@@ -103,7 +103,7 @@ export function Navbar({ locale, t, base = "", path = "" }: NavbarProps) {
             {t.nav.links.map((link) => (
               <li key={link.href}>
                 <a
-                  href={`${base}${link.href}`}
+                  href={link.href.startsWith("/") ? `/${locale}${link.href}` : `${base}${link.href}`}
                   onClick={() => setOpen(false)}
                   aria-current={active === link.href.slice(1) ? "true" : undefined}
                   className="flex h-14 items-center font-display text-[22px] font-semibold tracking-[-0.02em] text-ink aria-[current=true]:text-ink-3"

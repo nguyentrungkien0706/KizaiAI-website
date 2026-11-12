@@ -5,6 +5,7 @@ import { LanguageSwitcher } from "@/components/site/language-switcher";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
 import { moduleSlugs } from "@/i18n/seo-content";
+import { smbContent, smbPath } from "@/i18n/smb-content";
 
 export function Footer({ t, locale, path = "" }: { t: Dictionary; locale: Locale; path?: string }) {
   const f = t.footer;
@@ -37,6 +38,11 @@ export function Footer({ t, locale, path = "" }: { t: Dictionary; locale: Locale
                 </a>
               </li>
             ))}
+            <li>
+              <a href={`/${locale}${smbPath}`} className={linkClass}>
+                {smbContent[locale].nav}
+              </a>
+            </li>
           </FooterCol>
 
           <FooterCol title={f.cells.resources} className="md:col-span-2">

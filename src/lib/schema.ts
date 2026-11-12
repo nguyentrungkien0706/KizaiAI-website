@@ -2,6 +2,7 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
 import { brand, moduleSlugs, seoContent, type ModuleSlug } from "@/i18n/seo-content";
 import { site } from "@/lib/site";
+import { smbContent, smbPath } from "@/i18n/smb-content";
 
 /**
  * JSON-LD (schema.org) dùng chung. Chỉ ghi dữ liệu có thật: không có giá, đánh giá hay số liệu hiệu quả.
@@ -182,6 +183,52 @@ export function modulesSchema(locale: Locale, t: Dictionary) {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: s.labels.home, item: `${site.url}/${locale}` },
           { "@type": "ListItem", position: 2, name: s.labels.modules, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+
+/** Trang hộ kinh doanh và doanh nghiệp nhỏ: WebPage + FAQPage + BreadcrumbList. */
+export function smbSchema(locale: Locale, t: Dictionary) {
+  const url = `${site.url}/${locale}${smbPath}`;
+  const c = smbContent[locale];
+  const s = seoContent[locale];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      organization(t),
+      website(locale),
+      software(locale, t),
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: c.seo.title,
+        description: c.seo.description,
+        inLanguage: inLanguage[locale],
+        isPartOf: { "@id": ids.website },
+        about: { "@id": ids.product },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        audience: { "@type": "BusinessAudience", name: c.breadcrumb },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        inLanguage: inLanguage[locale],
+        mainEntity: c.faq.items.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: s.labels.home, item: `${site.url}/${locale}` },
+          { "@type": "ListItem", position: 2, name: c.breadcrumb, item: url },
         ],
       },
     ],
