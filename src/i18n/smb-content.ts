@@ -1,12 +1,12 @@
 import type { Locale } from "./config";
 
 /**
- * Trang "Kizai AI cho hộ kinh doanh và doanh nghiệp nhỏ" (/[locale]/ho-kinh-doanh).
+ * Trang "Kizai AI cho doanh nghiệp vừa và nhỏ (SME)" (/[locale]/doanh-nghiep-sme).
  * Nội dung tự viết. Chỉ các việc anh Kiên xác nhận Kizai AI làm được (2026-11-12).
  * Không có giá, số liệu hiệu quả, tên khách hàng hay tên đối tác.
  */
 
-export const smbPath = "/ho-kinh-doanh";
+export const smbPath = "/doanh-nghiep-sme";
 
 export type SmbGroupId = "sales" | "purchase" | "stock" | "cash" | "tax" | "reports" | "grow";
 
@@ -49,14 +49,14 @@ export type SmbContent = {
 
 const vi: SmbContent = {
   seo: {
-    title: "Phần mềm AI bán hàng, kho, sổ sách và thuế cho hộ kinh doanh | Kizai AI",
+    title: "Phần mềm AI bán hàng, kho, kế toán và thuế cho doanh nghiệp SME | Kizai AI",
     description:
-      "Kizai AI ghi đơn bán, nhập hàng, kho, thu chi và lập tờ khai thuế hộ kinh doanh từ tin nhắn, giọng nói hoặc ảnh chụp. Sẵn sàng cho việc bỏ thuế khoán từ 2026.",
+      "Kizai AI cho doanh nghiệp vừa và nhỏ: ghi đơn bán, nhập hàng, kho, thu chi, hóa đơn điện tử và chuẩn bị số liệu thuế từ tin nhắn, giọng nói hoặc ảnh chụp.",
   },
-  nav: "Hộ kinh doanh",
-  breadcrumb: "Hộ kinh doanh & doanh nghiệp nhỏ",
+  nav: "Doanh nghiệp SME",
+  breadcrumb: "Doanh nghiệp vừa và nhỏ (SME)",
   hero: {
-    badge: "Kizai AI cho hộ kinh doanh và doanh nghiệp nhỏ",
+    badge: "Kizai AI cho doanh nghiệp vừa và nhỏ (SME)",
     h1: "Bán hàng, kho, sổ sách và thuế trong một khung chat",
     sub: "Nhắn một câu, nói một câu hoặc chụp một tấm ảnh. Kizai AI hiểu nghiệp vụ, hỏi lại cho chắc rồi mới ghi sổ. Anh chị lo buôn bán, phần giấy tờ để AI làm.",
     primary: "Đặt lịch demo",
@@ -72,16 +72,16 @@ const vi: SmbContent = {
     inputPlaceholder: "Nhắn cho Kizai AI…",
   },
   why: {
-    title: "Từ 2026, sổ sách không còn là việc làm cho có",
-    sub: "Hộ kinh doanh chuyển từ thuế khoán sang tự kê khai. Số liệu bán hàng hằng ngày trở thành căn cứ tính thuế.",
+    title: "Số liệu doanh nghiệp phải khớp từ đơn hàng đến tờ khai",
+    sub: "Quy định về hóa đơn và thuế ngày càng dựa trên dữ liệu thật. SME cần bán hàng, kho, quỹ và kế toán nói cùng một con số.",
     items: [
       {
-        title: "Bỏ thuế khoán",
-        text: "Theo Nghị quyết 68-NQ/TW, thuế khoán với hộ kinh doanh chấm dứt chậm nhất trong năm 2026.",
+        title: "Hộ kinh doanh lên doanh nghiệp",
+        text: "Nghị quyết 68-NQ/TW bỏ thuế khoán chậm nhất năm 2026 và khuyến khích hộ kinh doanh chuyển lên mô hình doanh nghiệp.",
       },
       {
-        title: "Kê khai theo doanh thu thật",
-        text: "Hộ kinh doanh tự kê khai, tự nộp. Doanh thu, chi phí và tồn kho cần ghi đầy đủ, khớp nhau.",
+        title: "Kê khai theo số liệu thật",
+        text: "Doanh thu, chi phí, công nợ và tồn kho phải ghi đầy đủ và khớp nhau để kê khai, quyết toán và làm việc với ngân hàng.",
       },
       {
         title: "Hóa đơn điện tử",
@@ -171,7 +171,7 @@ const vi: SmbContent = {
         id: "tax",
         label: "Cuối tháng và kỳ thuế",
         items: [
-          { title: "Sổ kế toán hộ kinh doanh", text: "Các mẫu sổ theo Thông tư 88/2021/TT-BTC được ghi dần mỗi ngày." },
+          { title: "Sổ sách ghi dần mỗi ngày", text: "Chứng từ bán, mua, kho, quỹ được ghi ngay khi phát sinh. Hộ kinh doanh có sẵn mẫu sổ theo Thông tư 88/2021/TT-BTC." },
           { title: "Tờ khai điền sẵn", text: "Số thuế tính theo doanh thu thực tế, anh chị kiểm tra và xác nhận." },
           { title: "Lịch thuế không bỏ lỡ", text: "Nhắc trước hạn khai và hạn nộp, kèm số tiền ước tính." },
           { title: "Lãi lỗ và dòng tiền", text: "So với tháng trước, xem lãi gộp từng món và tiền mặt còn lại." },
@@ -237,14 +237,14 @@ const vi: SmbContent = {
     items: [
       { q: "Có phải gõ lại toàn bộ danh sách hàng từ đầu không?", a: "Không. Gửi file Excel đang dùng, ảnh sổ ghi nợ hoặc vài hóa đơn gần đây, AI dựng danh mục hàng, khách, nhà cung cấp và số tồn ban đầu. Anh chị chỉ cần xem lại bản tóm tắt." },
       { q: "Tôi nói nhầm số lượng thì sao?", a: "Trước khi lưu, AI luôn đọc lại nội dung để anh chị kiểm tra. Đã lưu rồi vẫn sửa được, các sổ liên quan tự điều chỉnh theo." },
-      { q: "Kizai AI giúp gì khi bỏ thuế khoán?", a: "Sổ kế toán hộ kinh doanh theo Thông tư 88/2021/TT-BTC được ghi từ giao dịch thật mỗi ngày, tờ khai được điền sẵn từ chính số liệu đó, hóa đơn điện tử xuất ngay khi bán." },
+      { q: "Kizai AI giúp gì cho phần thuế?", a: "Hóa đơn điện tử xuất ngay khi bán, chứng từ được ghi từ giao dịch thật mỗi ngày, tờ khai được điền sẵn từ chính số liệu đó để anh chị hoặc kế toán kiểm tra. Hộ kinh doanh đang chuyển lên doanh nghiệp có sẵn mẫu sổ theo Thông tư 88/2021/TT-BTC." },
       { q: "Ai xem được số liệu của cửa hàng tôi?", a: "Dữ liệu thuộc về anh chị và chỉ dùng để phục vụ cửa hàng của anh chị. Kizai không bán dữ liệu cho bên thứ ba." },
       { q: "Khi mở thêm chi nhánh hoặc lên công ty thì sao?", a: "Nhiều điểm bán dùng chung một sổ. Khi cần nhân sự, mua hàng hay ERP đầy đủ, dữ liệu được nối tiếp sang các giải pháp KIZAI HRM, PMS, RPA và ERP." },
       { q: "Chi phí thế nào?", a: "Tùy quy mô và ngành. Để lại thông tin ở cuối trang, Kizai sẽ tư vấn gói phù hợp." },
     ],
   },
   homeBand: {
-    title: "Kizai AI cho hộ kinh doanh và doanh nghiệp nhỏ",
+    title: "Kizai AI cho doanh nghiệp vừa và nhỏ (SME)",
     text: "Bán hàng, kho, thu chi, hóa đơn điện tử và tờ khai thuế qua tin nhắn, giọng nói hoặc ảnh chụp.",
     link: "Xem giải pháp",
   },
@@ -252,14 +252,14 @@ const vi: SmbContent = {
 
 const ja: SmbContent = {
   seo: {
-    title: "個人事業主・小規模事業者向けAI：販売・在庫・帳簿・税務｜Kizai AI",
+    title: "中小企業（SME）向けAI：販売・在庫・会計・税務｜Kizai AI",
     description:
-      "Kizai AIはメッセージ、音声、写真から販売、仕入、在庫、入出金を記帳し、ベトナムの個人事業世帯向け税務申告書を作成します。2026年の定額課税廃止に対応。",
+      "中小企業向けKizai AI：メッセージ、音声、写真から販売、仕入、在庫、入出金、電子インボイスを処理し、税務用のデータを準備します。",
   },
-  nav: "個人事業主",
-  breadcrumb: "個人事業主・小規模事業者",
+  nav: "中小企業",
+  breadcrumb: "中小企業（SME）",
   hero: {
-    badge: "個人事業主・小規模事業者向けKizai AI",
+    badge: "中小企業（SME）向けKizai AI",
     h1: "販売、在庫、帳簿、税務をひとつのチャットで",
     sub: "メッセージを送る、話しかける、写真を撮る。Kizai AIが業務を理解し、内容を確認してから記帳します。お客様は商売に集中できます。",
     primary: "デモを予約",
@@ -275,11 +275,11 @@ const ja: SmbContent = {
     inputPlaceholder: "Kizai AIにメッセージ…",
   },
   why: {
-    title: "2026年、帳簿は「形だけ」では済まなくなる",
-    sub: "ベトナムの個人事業世帯は定額課税から自己申告へ移行します。日々の販売データが課税の根拠になります。",
+    title: "注文から申告書まで、数字が一致していること",
+    sub: "ベトナムのインボイスと税務の規定は、実際のデータに基づくものへと移っています。販売、在庫、資金、会計が同じ数字を示す必要があります。",
     items: [
-      { title: "定額課税の廃止", text: "決議68-NQ/TWにより、個人事業世帯への定額課税は遅くとも2026年中に廃止されます。" },
-      { title: "実際の売上で申告", text: "事業者が自ら申告・納付します。売上、費用、在庫を正しく記録し、整合させる必要があります。" },
+      { title: "個人事業から企業へ", text: "決議68-NQ/TWは遅くとも2026年に定額課税を廃止し、個人事業世帯の法人化を後押ししています。" },
+      { title: "実際の数字で申告", text: "売上、費用、債権債務、在庫を漏れなく整合させ、申告、決算、金融機関との取引に備える必要があります。" },
       { title: "電子インボイス", text: "販売時に規格に沿った電子インボイスを発行し、税務当局へデータを送信します。" },
     ],
     note: "規定は今後さらに細則が出る可能性があります。Kizaiは新しい通達に合わせて計算方法と様式を更新します。",
@@ -365,7 +365,7 @@ const ja: SmbContent = {
         id: "tax",
         label: "月末・申告時期",
         items: [
-          { title: "個人事業世帯の会計帳簿", text: "通達88/2021/TT-BTCの様式で毎日少しずつ記帳。" },
+          { title: "毎日少しずつ記帳", text: "販売、仕入、在庫、資金の証憑を発生時に記録。個人事業世帯には通達88/2021/TT-BTCの様式も用意。" },
           { title: "記入済みの申告書", text: "実際の売上から税額を計算。確認して承認するだけ。" },
           { title: "税務カレンダー", text: "申告・納付期限の前に、見込み税額とともに通知。" },
           { title: "損益と資金繰り", text: "前月比、商品別粗利、手元資金を確認。" },
@@ -431,14 +431,14 @@ const ja: SmbContent = {
     items: [
       { q: "商品リストを最初から入力し直す必要がありますか？", a: "いいえ。使用中のExcel、掛け帳の写真、最近の請求書を送ると、AIが商品、顧客、仕入先、初期在庫を作成します。要約を確認するだけです。" },
       { q: "数量を言い間違えたら？", a: "保存前にAIが必ず内容を読み上げます。保存後も修正でき、関連する帳簿は自動で調整されます。" },
-      { q: "定額課税の廃止にどう役立ちますか？", a: "通達88/2021/TT-BTCに沿った帳簿を実際の取引から毎日記帳し、そのデータで申告書を作成。販売時には電子インボイスを発行します。" },
+      { q: "税務ではどう役立ちますか？", a: "販売時に電子インボイスを発行し、実際の取引から毎日証憑を記録、そのデータで申告書を下書きしてご本人または会計担当が確認します。法人化する個人事業世帯向けに通達88/2021/TT-BTCの様式もあります。" },
       { q: "店の数字は誰が見られますか？", a: "データはお客様のものであり、お客様の事業のためだけに使われます。Kizaiが第三者にデータを販売することはありません。" },
       { q: "支店を増やしたり法人化したら？", a: "複数店舗でひとつの帳簿を共有できます。人事、購買、ERPが必要になれば、KIZAI HRM、PMS、RPA、ERPへデータを引き継げます。" },
       { q: "費用は？", a: "規模と業種によって異なります。ページ下部からお問い合わせいただければ、最適なプランをご案内します。" },
     ],
   },
   homeBand: {
-    title: "個人事業主・小規模事業者向けKizai AI",
+    title: "中小企業（SME）向けKizai AI",
     text: "販売、在庫、入出金、電子インボイス、税務申告をメッセージ・音声・写真で。",
     link: "詳しく見る",
   },
@@ -446,14 +446,14 @@ const ja: SmbContent = {
 
 const en: SmbContent = {
   seo: {
-    title: "AI Sales, Inventory, Bookkeeping and Tax for Small Businesses | Kizai AI",
+    title: "AI Sales, Inventory, Accounting and Tax for SMEs | Kizai AI",
     description:
-      "Kizai AI records sales, purchases, stock and cash from a message, a voice note or a photo, and prepares Vietnamese household-business tax returns. Ready for the end of presumptive tax in 2026.",
+      "Kizai AI for small and medium-sized enterprises: sales, purchasing, stock, cash, e-invoices and tax-ready figures from a message, a voice note or a photo.",
   },
-  nav: "Small business",
-  breadcrumb: "Household & small businesses",
+  nav: "SMEs",
+  breadcrumb: "Small and medium-sized enterprises (SMEs)",
   hero: {
-    badge: "Kizai AI for household and small businesses",
+    badge: "Kizai AI for SMEs",
     h1: "Sales, stock, books and tax in one chat",
     sub: "Send a message, say it out loud or snap a photo. Kizai AI understands the transaction, checks with you, then records it. You run the shop; the AI keeps the books.",
     primary: "Book a demo",
@@ -469,11 +469,11 @@ const en: SmbContent = {
     inputPlaceholder: "Message Kizai AI…",
   },
   why: {
-    title: "From 2026, the books have to be real",
-    sub: "Vietnamese household businesses move from presumptive tax to self-declaration. Daily sales records become the basis for tax.",
+    title: "Figures that match from order to tax return",
+    sub: "Vietnam's invoice and tax rules increasingly rely on real data. Sales, stock, cash and accounting need to show the same numbers.",
     items: [
-      { title: "Presumptive tax ends", text: "Under Resolution 68-NQ/TW, presumptive (lump-sum) tax for household businesses ends no later than 2026." },
-      { title: "Declare actual revenue", text: "Businesses declare and pay on their own. Revenue, costs and stock must be complete and consistent." },
+      { title: "From household business to company", text: "Resolution 68-NQ/TW ends presumptive tax by 2026 at the latest and encourages household businesses to become companies." },
+      { title: "Declare from real figures", text: "Revenue, costs, receivables, payables and stock must be complete and consistent for filing, year-end and dealing with banks." },
       { title: "E-invoices", text: "Sales need compliant e-invoices, with data sent to the tax authority." },
     ],
     note: "Further guidance may follow. Kizai updates its calculations and forms as new rules are issued.",
@@ -559,7 +559,7 @@ const en: SmbContent = {
         id: "tax",
         label: "Month end and tax time",
         items: [
-          { title: "Household-business ledgers", text: "The Circular 88/2021/TT-BTC ledgers, filled in a little every day." },
+          { title: "Books kept as you go", text: "Sales, purchase, stock and cash records are posted as they happen. Circular 88/2021/TT-BTC templates are available for household businesses." },
           { title: "Pre-filled return", text: "Tax calculated on actual revenue; you check and confirm." },
           { title: "Tax calendar", text: "Reminders before filing and payment deadlines, with an estimate." },
           { title: "Profit and cash flow", text: "Month-on-month, margin per item and cash on hand." },
@@ -625,14 +625,14 @@ const en: SmbContent = {
     items: [
       { q: "Do I have to re-enter my whole product list?", a: "No. Send the Excel file you use, photos of your credit book or a few recent invoices; the AI builds products, customers, suppliers and opening stock. You just review the summary." },
       { q: "What if I say the wrong quantity?", a: "Before saving, the AI always reads the transaction back for you to check. Saved entries can still be corrected, and related ledgers adjust automatically." },
-      { q: "How does Kizai AI help as presumptive tax ends?", a: "Circular 88/2021/TT-BTC household-business ledgers are kept daily from real transactions, the return is pre-filled from that data, and e-invoices are issued at the point of sale." },
+      { q: "How does Kizai AI help with tax?", a: "E-invoices are issued at the point of sale, records are posted daily from real transactions, and returns are drafted from that data for you or your accountant to check. Household businesses moving to a company structure also get Circular 88/2021/TT-BTC templates." },
       { q: "Who can see my shop's figures?", a: "Your data belongs to you and is used only to serve your business. Kizai does not sell data to third parties." },
       { q: "What happens when I open more branches or incorporate?", a: "Several outlets can share one set of books. When you need HR, purchasing or a full ERP, your data carries over to KIZAI HRM, PMS, RPA and ERP." },
       { q: "How much does it cost?", a: "It depends on size and industry. Leave your details at the bottom of the page and Kizai will recommend a suitable plan." },
     ],
   },
   homeBand: {
-    title: "Kizai AI for household and small businesses",
+    title: "Kizai AI for SMEs",
     text: "Sales, stock, cash, e-invoices and tax returns from a message, a voice note or a photo.",
     link: "See the solution",
   },

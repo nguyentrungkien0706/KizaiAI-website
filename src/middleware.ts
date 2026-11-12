@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   url.pathname = `/${preferredLocale(request)}${pathname === "/" ? "" : pathname}`;
   // Chỉ chuyển hướng các đường dẫn có thật (trang chủ, /modules…). Đường dẫn lạ trả 404 ngay, không qua bước chuyển hướng.
-  if (pathname === "/" || pathname === "/modules" || pathname.startsWith("/modules/") || pathname === "/ho-kinh-doanh") {
+  if (pathname === "/" || pathname === "/modules" || pathname.startsWith("/modules/") || pathname === "/doanh-nghiep-sme") {
     return NextResponse.redirect(url);
   }
   return NextResponse.rewrite(url);

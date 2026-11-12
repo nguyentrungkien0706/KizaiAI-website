@@ -23,7 +23,7 @@ export function GET() {
     "",
     ...moduleSlugs.map((slug, i) => `- [${en.modules.items[i].name}](${site.url}/en/modules/${slug}): ${s.modules[slug].description}`),
     "",
-    "## For household and small businesses",
+    "## For SMEs (small and medium-sized enterprises)",
     "",
     `- [${smbContent.en.hero.h1}](${site.url}/en${smbPath}): ${smbContent.en.seo.description}`,
     "",
