@@ -58,11 +58,11 @@ Danh sách đầy đủ có trong `SEO_BACKLOG.md`. Các việc quan trọng nh�
 - **P0:** xác minh GSC và gửi sitemap.
 - **P0:** tạo GA4 và gửi Measurement ID. Claude sẽ đặt nó vào build arg `NEXT_PUBLIC_GA_ID` trong Dokploy.
 - **P1:**
-  - Bing Webmaster (Import từ GSC).
+  - ✅ Bing Webmaster (đã import từ GSC 12/11, sitemap 21 URL thành công).
   - Xác nhận số liệu 200+ hay 50+ doanh nghiệp.
   - Xác nhận quyền dùng logo.
-  - Thêm link từ kizai.vn sang aki.kizai.vn.
-- **P3:** HSTS trên Nginx Proxy Manager. Việc này cần bạn duyệt, vì khó rollback.
+  - ✅ Thêm link từ kizai.vn sang aki.kizai.vn (footer, 12/11).
+- ✅ **P3:** HSTS trên Nginx Proxy Manager (bật 12/11, max-age 2 năm, không gồm subdomain).
 
 ## 6. Tài liệu đi kèm
 

@@ -9,13 +9,13 @@
 |---|---|---|
 | ✅ | Xác minh Google Search Console và gửi sitemap | Xong 2026-11-12: thuộc tính `https://aki.kizai.vn/`, xác minh bằng tệp `public/google433fe2ac56c56521.html` (không được xóa tệp này). Đã gửi sitemap.xml |
 | ✅ | Tạo GA4 | Xong 2026-11-12: tài khoản "Kizai Solution", tài sản "aki.kizai.vn", ID `G-QLDL2S6HN3`, đặt trong build arg Dokploy `NEXT_PUBLIC_GA_ID`. Cần đánh dấu `generate_lead` là sự kiện chính (key event) trong GA4 sau khi có dữ liệu |
-| P1 | Bing Webmaster: Import từ Search Console | Hoặc gửi mã `msvalidate.01` để đặt vào `NEXT_PUBLIC_BING_VERIFICATION` |
+| ✅ | Bing Webmaster: Import từ Search Console | Xong 2026-11-12: đã import aki.kizai.vn, sitemap trạng thái Success, 21 URL |
 | ✅ | Xác nhận số liệu | 2026-11-12: dùng theo kizai.vn (anh Kiên xác nhận) |
 | ✅ | Xác nhận được dùng logo | 2026-11-12: được dùng như trên kizai.vn |
-| P1 | Thêm link từ kizai.vn (menu hoặc trang Dịch vụ) sang aki.kizai.vn | Giúp Google hiểu quan hệ giữa 2 domain và truyền uy tín |
+| ✅ | Thêm link từ kizai.vn sang aki.kizai.vn | Xong 2026-11-12: link "Kizai AI" ở footer kizai.vn, nhóm Công ty (sửa tại kizai.vn/cms/settings). Footer kizai.vn render bằng JavaScript nên link không có trong HTML gốc; Google vẫn đọc được. Nên render footer phía server khi sửa code kizai.vn |
 | P2 | Cung cấp số liệu POC hoặc trích dẫn khách hàng của Kizai AI (có đồng ý) | Để thêm vào trang module và schema |
 | P2 | Thống nhất tên "Kizai AI" và "Kizai Solution" trên kizai.vn, LinkedIn, Facebook, Google Business Profile | |
-| P3 | Bật HSTS trên Nginx Proxy Manager cho aki.kizai.vn | Tác động: trình duyệt luôn dùng HTTPS. Rollback khó trong thời hạn max-age, nên bắt đầu với max-age ngắn |
+| ✅ | Bật HSTS trên Nginx Proxy Manager cho aki.kizai.vn | Xong 2026-11-12 (anh Kiên bật): Force SSL + HSTS, không bật Sub-domains. Header `max-age=63072000; preload` (2 năm). Muốn tắt: tắt HSTS trong NPM, nhưng trình duyệt đã ghé vẫn nhớ tới hết max-age |
 
 ## Claude làm
 
