@@ -17,8 +17,8 @@ const ja: Dictionary = {
   },
   nav: {
     links: [
-      { href: "#modules", label: "製品" },
       { href: "/doanh-nghiep-sme", label: "中小企業" },
+      { href: "#modules", label: "ソリューション" },
       { href: "#platform", label: "プラットフォーム" },
       { href: "#customers", label: "導入事例" },
       { href: "#about", label: "会社情報" },

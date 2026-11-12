@@ -15,8 +15,8 @@ const vi = {
   },
   nav: {
     links: [
-      { href: "#modules", label: "Sản phẩm" },
       { href: "/doanh-nghiep-sme", label: "Doanh nghiệp SME" },
+      { href: "#modules", label: "Giải pháp" },
       { href: "#platform", label: "Nền tảng" },
       { href: "#customers", label: "Khách hàng" },
       { href: "#about", label: "Về Kizai" },

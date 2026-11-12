@@ -17,8 +17,8 @@ const en: Dictionary = {
   },
   nav: {
     links: [
-      { href: "#modules", label: "Product" },
       { href: "/doanh-nghiep-sme", label: "SMEs" },
+      { href: "#modules", label: "Solutions" },
       { href: "#platform", label: "Platform" },
       { href: "#customers", label: "Customers" },
       { href: "#about", label: "About" },
