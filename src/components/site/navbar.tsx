@@ -8,6 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
+import { smbContent, smbPath } from "@/i18n/smb-content";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -43,8 +44,8 @@ export function Navbar({ locale, t, base = "", path = "" }: NavbarProps) {
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur-sm supports-[backdrop-filter]:bg-white/85">
       <div className="mx-auto flex h-16 max-w-[1328px] items-center gap-8 px-4 md:px-6">
         <a
-          href={base || "#main"}
-          aria-label={t.a11y.home}
+          href={`/${locale}${smbPath}`}
+          aria-label={`Kizai, ${smbContent[locale].nav}`}
           className="-mx-1 inline-flex shrink-0 items-center rounded-sm px-1"
         >
           <Image src={logo} alt="Kizai Solution" priority className="h-9 w-auto" sizes="130px" />
