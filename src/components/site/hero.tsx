@@ -25,6 +25,7 @@ export function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
   return (
     <HeroSlider
       locale={locale}
+      id="solutions"
       headingId="hero-title"
       slides={slides}
       primary={{ href: "#contact", label: h.cta1 }}

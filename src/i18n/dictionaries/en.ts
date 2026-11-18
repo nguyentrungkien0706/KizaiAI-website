@@ -18,7 +18,7 @@ const en: Dictionary = {
   nav: {
     links: [
       { href: "/doanh-nghiep-sme", label: "SMEs" },
-      { href: "#modules", label: "Solutions" },
+      { href: "#solutions", label: "Solutions" },
       { href: "#platform", label: "Platform" },
       { href: "#customers", label: "Customers" },
       { href: "#about", label: "About" },

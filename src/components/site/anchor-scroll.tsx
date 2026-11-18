@@ -13,7 +13,7 @@ function targetTop(el: HTMLElement) {
  * Bấm menu (Giải pháp, Nền tảng, Liên hệ…) luôn đưa đúng mục lên đầu trang.
  * - Cùng trang: tự cuộn mượt tới mục, rồi kiểm tra lại vị trí khi cuộn xong
  *   (ảnh tải muộn có thể làm trang dài ra giữa chừng) và chỉnh cho khớp.
- * - Từ trang khác sang (vd. trang SME → /vi#modules): sau khi trang và ảnh tải xong,
+ * - Từ trang khác sang (vd. trang SME → /vi#solutions, đầu trang giải pháp): sau khi trang và ảnh tải xong,
  *   căn lại đúng mục vì trình duyệt nhảy tới mục quá sớm, lúc bố cục chưa ổn định.
  */
 export function AnchorScroll() {

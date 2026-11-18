@@ -38,6 +38,8 @@ type Props = {
   slides: HeroSlide[];
   locale: Locale;
   headingId: string;
+  /** id gắn vào khung hero để menu (vd. "Giải pháp") nhảy về đầu trang. */
+  id?: string;
   primary: { href: string; label: string };
   secondary?: { href: string; label: string };
   footer?: React.ReactNode;
@@ -242,7 +244,7 @@ function PlayToggle({ c, tone = "light" }: { c: Ctx; tone?: "light" | "dark" }) 
 function Cinema(c: Ctx) {
   const { s, l, slides } = c;
   return (
-    <section aria-labelledby={c.headingId}>
+    <section id={c.id} aria-labelledby={c.headingId}>
       <div
         {...c.region}
         className="on-night relative isolate flex min-h-[640px] flex-col overflow-hidden bg-night text-on-night-2 lg:h-[calc(100svh-64px)] lg:max-h-[880px] lg:min-h-[640px]"
@@ -302,7 +304,7 @@ function Split(c: Ctx) {
   const { s, l, slides } = c;
   const next = slides[(s.index + 1) % slides.length];
   return (
-    <section aria-labelledby={c.headingId}>
+    <section id={c.id} aria-labelledby={c.headingId}>
       <div
         {...c.region}
         className="relative isolate overflow-hidden bg-[linear-gradient(112deg,rgba(255,255,255,0)_38%,rgba(255,255,255,0.7)_52%,rgba(255,255,255,0)_66%),linear-gradient(100deg,#dbe9ef_0%,#e9f1f4_40%,#f5f8f9_75%,#ffffff_100%)]"
@@ -375,7 +377,7 @@ function Glass(c: Ctx) {
   const { s, l, slides } = c;
   const upcoming = [1, 2, 3].map((k) => (s.index + k) % slides.length);
   return (
-    <section aria-labelledby={c.headingId} className="pt-3 md:pt-4">
+    <section id={c.id} aria-labelledby={c.headingId} className="pt-3 md:pt-4">
       <Container>
         <div
           {...c.region}
