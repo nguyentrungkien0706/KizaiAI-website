@@ -169,3 +169,20 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+
+/* Bấm menu: làm mờ nội dung trong lúc đổi chỗ (thanh menu giữ nguyên), xem anchor-scroll.tsx */
+#main,
+body > footer,
+#main ~ footer {
+  transition: opacity 160ms ease;
+}
+html[data-nav-fade] #main,
+html[data-nav-fade] #main ~ footer {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  #main,
+  #main ~ footer {
+    transition: none;
+  }
+}

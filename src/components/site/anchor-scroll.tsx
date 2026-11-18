@@ -10,6 +10,25 @@ function targetTop(el: HTMLElement) {
   return Math.max(0, el.getBoundingClientRect().top + window.scrollY - OFFSET);
 }
 
+const FADE_MS = 160;
+const sleep = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms));
+
+/** Cho ảnh đang nằm trong màn hình tải ngay, chờ tối đa `max` ms để khi hiện ra không bị ô trắng rồi ảnh mới bật lên. */
+async function imagesInView(max = 700) {
+  const imgs = [...document.querySelectorAll<HTMLImageElement>("#main img, footer img")].filter((img) => {
+    const r = img.getBoundingClientRect();
+    return r.bottom > -200 && r.top < window.innerHeight + 200 && r.width > 0;
+  });
+  imgs.forEach((img) => (img.loading = "eager"));
+  await Promise.race([Promise.all(imgs.map((img) => (img.complete ? null : img.decode().catch(() => null)))), sleep(max)]);
+}
+
+/** Làm mờ phần nội dung (thanh menu vẫn giữ nguyên) trong lúc đổi chỗ, để không thấy trang lướt vụt qua hay ảnh bật lên. */
+const fade = {
+  out: () => document.documentElement.setAttribute("data-nav-fade", ""),
+  in: () => document.documentElement.removeAttribute("data-nav-fade"),
+};
+
 /**
  * Bấm menu (Giải pháp, Nền tảng, Khách hàng…) chuyển mượt và đưa đúng mục lên đầu trang.
  * - Cùng trang: cuộn mượt tới mục, rồi kiểm tra lại vị trí khi cuộn xong.
@@ -35,30 +54,73 @@ export function AnchorScroll() {
       );
     };
 
-    const go = (id: string, smooth: boolean) => {
-      const el = document.getElementById(id);
-      if (!el) return false;
-      userScrolled = false;
-      window.scrollTo({ top: targetTop(el), behavior: smooth && !reduce ? "smooth" : ("instant" as ScrollBehavior) });
-      const done = () => {
-        window.removeEventListener("scrollend", done);
-        settle(el);
-      };
-      if ("onscrollend" in window) window.addEventListener("scrollend", done, { once: true });
-      window.setTimeout(done, 1200);
+    const focus = (el: HTMLElement) => {
       // Đưa focus vào mục để người dùng bàn phím/đọc màn hình đi tiếp từ đó.
       if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
       el.focus({ preventScroll: true });
+    };
+
+    /** Đặt ngay tới mục (không cuộn), dùng khi mở trang có sẵn #mục hoặc bấm nút quay lại. */
+    const go = (id: string) => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      userScrolled = false;
+      window.scrollTo({ top: targetTop(el), behavior: "instant" as ScrollBehavior });
+      settle(el);
+      focus(el);
       return true;
     };
 
-    /** Chờ trang mới (chuyển trang không tải lại) hiện ra rồi đặt ngay đúng mục, không cuộn từ đầu trang xuống. */
-    const goAfterRoute = (path: string, id: string) => {
-      const until = performance.now() + 4000;
-      const tick = () => {
-        const el = window.location.pathname === path ? document.getElementById(id) : null;
-        if (el) go(id, false);
-        else if (performance.now() < until) requestAnimationFrame(tick);
+    let busy = 0;
+    /** Làm mờ, đặt tới mục (hoặc đầu trang), chờ ảnh ở đó sẵn sàng rồi hiện lại. */
+    const jumpWithFade = async (el: HTMLElement | null, run = busy) => {
+      window.scrollTo({ top: el ? targetTop(el) : 0, behavior: "instant" as ScrollBehavior });
+      await imagesInView();
+      if (run !== busy) return;
+      if (el) window.scrollTo({ top: targetTop(el), behavior: "instant" as ScrollBehavior });
+      fade.in();
+      if (el) {
+        settle(el);
+        focus(el);
+      }
+    };
+
+    /** Cùng trang: gần thì cuộn mượt; xa thì mờ đi, đặt tới mục rồi hiện lại (không lướt vụt qua cả trang). */
+    const goSamePage = async (id: string) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      userScrolled = false;
+      const run = ++busy;
+      const distance = Math.abs(targetTop(el) - window.scrollY);
+      if (reduce || distance <= window.innerHeight * 1.2) {
+        window.scrollTo({ top: targetTop(el), behavior: reduce ? ("instant" as ScrollBehavior) : "smooth" });
+        window.setTimeout(() => settle(el), 700);
+        focus(el);
+        return;
+      }
+      fade.out();
+      await sleep(FADE_MS);
+      if (run === busy) await jumpWithFade(el, run);
+    };
+
+    /** Sang trang khác: mờ đi, chuyển trang (không tải lại), đặt đúng chỗ, chờ ảnh rồi hiện lại. */
+    const goOtherPage = async (path: string, id: string, href: string) => {
+      userScrolled = false;
+      const run = ++busy;
+      if (!reduce) {
+        // Mờ hẳn trang cũ trước rồi mới đổi trang, để không bị nháy trắng giữa hai trang.
+        fade.out();
+        await sleep(FADE_MS);
+        if (run !== busy) return;
+      }
+      router.push(href, { scroll: false });
+      const started = performance.now();
+      const tick = async () => {
+        if (run !== busy) return;
+        const ready = window.location.pathname === path && (!id || document.getElementById(id));
+        if (ready) await jumpWithFade(id ? document.getElementById(id) : null, run);
+        else if (performance.now() - started < 5000) requestAnimationFrame(tick);
+        else fade.in();
       };
       requestAnimationFrame(tick);
     };
@@ -76,7 +138,7 @@ export function AnchorScroll() {
         if (!id || !document.getElementById(id)) return;
         e.preventDefault();
         if (window.location.hash !== url.hash) history.pushState(null, "", url.hash);
-        go(id, true);
+        void goSamePage(id);
         return;
       }
 
@@ -85,18 +147,13 @@ export function AnchorScroll() {
       const locale = window.location.pathname.split("/")[1];
       if (!locale || url.pathname.split("/")[1] !== locale) return; // đổi ngôn ngữ: để tải lại bình thường
       e.preventDefault();
-      if (id) {
-        router.push(url.pathname + url.hash, { scroll: false });
-        goAfterRoute(url.pathname, id);
-      } else {
-        router.push(url.pathname + url.search);
-      }
+      void goOtherPage(url.pathname, id, url.pathname + url.search + url.hash);
     };
 
     // Mở trang có sẵn #mục (từ trang khác bấm sang, hoặc mở link chia sẻ).
     const fromHash = () => {
       const id = decodeURIComponent(window.location.hash.slice(1));
-      if (id) go(id, false);
+      if (id) go(id);
     };
     // Đặt ngay đúng mục khi trang vừa hiện (không đợi tải hết ảnh), rồi căn lại một lần sau khi ảnh tải xong.
     const onLoad = () => {
