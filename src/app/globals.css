@@ -159,3 +159,13 @@
     opacity: 1;
   }
 }
+
+/* Hero trình chiếu: chữ hiện lên, vạch tiến trình tự lấp đầy */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes heroBar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}

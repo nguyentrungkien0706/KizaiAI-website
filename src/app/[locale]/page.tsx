@@ -37,8 +37,8 @@ export default async function HomePage({
       </a>
       <Navbar locale={locale} t={t} />
       <main id="main" tabIndex={-1} className="focus:outline-none">
-        <Hero t={t} />
-        <Problem t={t} />
+        <Hero t={t} locale={locale} />
+        <Problem t={t} locale={locale} />
         <Modules t={t} locale={locale} detailLabel={seoContent[locale].labels.detail} />
         <SmbBand locale={locale} />
         <Platform t={t} />

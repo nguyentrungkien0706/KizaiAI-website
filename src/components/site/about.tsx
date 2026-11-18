@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { photos } from "@/lib/photos";
 import { buttonVariants } from "@/components/ui/button";
 import { Container, Section, displayClass } from "@/components/ui/drafting";
 import type { Dictionary } from "@/i18n/dictionaries/vi";
@@ -10,7 +12,9 @@ export function About({ t }: { t: Dictionary }) {
   return (
     <Section id="about" aria-labelledby="about-title" className="pt-0 md:pt-0 xl:pt-0">
       <Container>
-        <div className="on-night rounded-xl bg-night p-7 text-on-night-2 md:p-12 xl:p-16">
+        <div className="on-night relative isolate overflow-hidden rounded-xl bg-night p-7 text-on-night-2 md:p-12 xl:p-16">
+          <Image src={photos.engineerTeam.src} alt="" fill sizes="100vw" placeholder="blur" className="-z-10 object-cover object-top opacity-25" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(15,38,46,0.75)_0%,#0f262e_55%)]" />
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
             <div>
               <h2

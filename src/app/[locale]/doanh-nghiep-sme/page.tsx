@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Camera, Check, ChevronRight, ExternalLink, MessageSquareText, Mic, Plus, X } from "lucide-react";
+import { Camera, Check, ExternalLink, MessageSquareText, Mic, Plus, X } from "lucide-react";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { brand, seoContent } from "@/i18n/seo-content";
 import { smbContent, smbPath } from "@/i18n/smb-content";
 
 import { Navbar } from "@/components/site/navbar";
+import { HeroSlider, Photo, type HeroSlide } from "@/components/site/hero-slider";
+import { photos } from "@/lib/photos";
 import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
-import { buttonVariants } from "@/components/ui/button";
-import { Badge, Container, Section, SectionHeading, displayClass } from "@/components/ui/drafting";
+import { Container, Section, SectionHeading, displayClass } from "@/components/ui/drafting";
 import { jsonLd, smbSchema } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 
 const ogLocales = { vi: "vi_VN", ja: "ja_JP", en: "en_US" } as const;
 const wayIcons = [MessageSquareText, Mic, Camera];
+const stepPhotos = [photos.trainingTablet, photos.purchasing, photos.teamDone];
 
 type Params = Promise<{ locale: string }>;
 
@@ -55,6 +58,14 @@ export default async function SmbPage({ params }: { params: Params }) {
   const s = seoContent[locale];
   const c = smbContent[locale];
   const base = `/${locale}`;
+  const group = (id: string) => c.skills.groups.find((g) => g.id === id)!;
+  const slides: HeroSlide[] = [
+    { eyebrow: c.nav, title: c.hero.h1, text: c.hero.sub, image: photos.aiAssistant.src, alt: photos.aiAssistant.alt[locale] },
+    { eyebrow: c.ways.title, title: c.compare.after.items[0], text: c.ways.sub, image: photos.phoneNotify.src, alt: photos.phoneNotify.alt[locale], flip: true },
+    { eyebrow: group("stock").label, title: group("stock").items[0].title, text: group("stock").items[0].text, image: photos.stockScan.src, alt: photos.stockScan.alt[locale] },
+    { eyebrow: group("tax").label, title: c.compare.after.items[3], text: group("tax").items[0].text, image: photos.accounting.src, alt: photos.accounting.alt[locale] },
+    { eyebrow: c.grow.items.map((g) => g.name.replace("KIZAI ", "")).join(" · "), title: c.grow.title, text: c.grow.sub, image: photos.smallFactory.src, alt: photos.smallFactory.alt[locale] },
+  ];
 
   return (
     <>
@@ -67,10 +78,14 @@ export default async function SmbPage({ params }: { params: Params }) {
       </a>
       <Navbar locale={locale} t={t} base={base} path={smbPath} />
       <main id="main" tabIndex={-1} className="focus:outline-none">
-        {/* Hero: chữ bên trái, khung chat minh họa bên phải */}
-        <section aria-labelledby="smb-title" className="pt-3 md:pt-4">
-          <Container>
-            <nav aria-label="Breadcrumb" className="px-1 pb-4">
+        <HeroSlider
+          locale={locale}
+          headingId="smb-title"
+          slides={slides}
+          primary={{ href: "#contact", label: c.hero.primary }}
+          secondary={{ href: "#viec-ai-lam", label: c.hero.secondary }}
+          footer={
+            <nav aria-label="Breadcrumb" className="px-1 pt-4">
               <ol className="flex flex-wrap items-center gap-1.5 text-[14px] text-ink-3">
                 <li>
                   <a href={base} className="hover:text-ink">
@@ -83,85 +98,30 @@ export default async function SmbPage({ params }: { params: Params }) {
                 </li>
               </ol>
             </nav>
-            <div className="on-night overflow-hidden rounded-xl bg-night text-on-night-2">
-              <div className="grid grid-cols-1 items-center gap-10 px-6 pt-12 pb-8 md:px-12 md:pt-16 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-14 lg:py-20 xl:px-16">
-                <div>
-                  <Badge tone="night">{c.hero.badge}</Badge>
-                  <h1
-                    id="smb-title"
-                    className={cn(
-                      displayClass,
-                      "mt-6 text-[36px] text-white sm:text-[48px] xl:text-[56px] [:lang(ja)_&]:text-[30px] sm:[:lang(ja)_&]:text-[40px] xl:[:lang(ja)_&]:text-[46px]",
-                    )}
-                  >
-                    {c.hero.h1}
-                  </h1>
-                  <p className="mt-6 max-w-[36rem] text-[17px] leading-[1.55] font-medium">{c.hero.sub}</p>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <a href="#contact" className={buttonVariants({ variant: "light", size: "lg" })}>
-                      {c.hero.primary}
-                      <ChevronRight aria-hidden="true" />
-                    </a>
-                    <a href="#viec-ai-lam" className={buttonVariants({ variant: "ghostNight", size: "lg" })}>
-                      {c.hero.secondary}
-                    </a>
-                  </div>
-                </div>
-
-                <figure className="m-0 rounded-xl bg-night-2 ring-1 ring-night-line">
-                  <div className="flex items-center justify-between border-b border-night-line px-5 py-3.5">
-                    <span className="flex items-center gap-2.5 text-[15px] font-semibold text-white">
-                      <span aria-hidden="true" className="inline-flex size-7 items-center justify-center rounded-full bg-white text-[12px] font-bold text-night">
-                        AI
-                      </span>
-                      {c.hero.chatTitle}
-                    </span>
-                    <span className="text-[12px] text-on-night-2">{c.hero.chatNote}</span>
-                  </div>
-                  <ol className="space-y-3 px-5 py-5">
-                    {c.hero.chat.map((m, i) => (
-                      <li key={i} className={cn("flex", m.from === "user" ? "justify-end" : "justify-start")}>
-                        <p
-                          className={cn(
-                            "max-w-[85%] rounded-2xl px-4 py-2.5 text-[15px] leading-[1.45]",
-                            m.from === "user" ? "rounded-br-sm bg-white text-ink" : "rounded-bl-sm bg-night text-white ring-1 ring-night-line",
-                          )}
-                        >
-                          {m.from === "ai" && i === c.hero.chat.length - 1 ? (
-                            <Check aria-hidden="true" className="mr-1.5 inline size-4 -translate-y-px text-success-tint" />
-                          ) : null}
-                          {m.text}
-                        </p>
-                      </li>
-                    ))}
-                  </ol>
-                  <figcaption className="sr-only">{c.hero.chatNote}</figcaption>
-                  <div aria-hidden="true" className="mx-5 mb-5 flex h-11 items-center justify-between rounded-full bg-night px-4 text-[14px] ring-1 ring-night-line">
-                    <span>{c.hero.inputPlaceholder}</span>
-                    <span className="flex gap-3">
-                      <Mic className="size-4" />
-                      <Camera className="size-4" />
-                    </span>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </Container>
-        </section>
+          }
+        />
 
         {/* Vì sao lúc này */}
         <Section aria-labelledby="why-title">
           <Container>
-            <SectionHeading id="why-title" title={c.why.title} sub={c.why.sub} align="left" />
-            <ul className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
-              {c.why.items.map((w) => (
-                <li key={w.title} className="rounded-xl bg-surface p-7">
-                  <h3 className="text-[20px] font-semibold tracking-[-0.01em] text-ink">{w.title}</h3>
-                  <p className="mt-3 text-[16px] text-ink-3">{w.text}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-[14px] text-ink-3">{c.why.note}</p>
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-14">
+              <Photo src={photos.ownerFloor.src} alt={photos.ownerFloor.alt[locale]} className="aspect-[4/3] lg:aspect-auto lg:min-h-[520px]" />
+              <div className="flex flex-col justify-center">
+                <SectionHeading id="why-title" title={c.why.title} sub={c.why.sub} align="left" />
+                <ul className="mt-10 divide-y divide-line border-y border-line">
+                  {c.why.items.map((w, i) => (
+                    <li key={w.title} className="grid grid-cols-[2.5rem_1fr] gap-4 py-6">
+                      <span className="text-[14px] font-semibold text-ink-3 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                      <div>
+                        <h3 className="text-[19px] font-semibold tracking-[-0.01em] text-ink">{w.title}</h3>
+                        <p className="mt-2 text-[16px] text-ink-3">{w.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-5 text-[14px] text-ink-3">{c.why.note}</p>
+              </div>
+            </div>
           </Container>
         </Section>
 
@@ -170,7 +130,9 @@ export default async function SmbPage({ params }: { params: Params }) {
           <Container>
             <SectionHeading id="compare-title" title={c.compare.title} align="left" />
             <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-xl border border-line p-7">
+              <div className="overflow-hidden rounded-xl border border-line">
+                <Photo src={photos.planningBoard.src} alt={photos.planningBoard.alt[locale]} className="aspect-[16/8] rounded-none grayscale-[60%]" />
+                <div className="p-7">
                 <h3 className="text-[15px] font-semibold text-ink-3">{c.compare.before.label}</h3>
                 <ul className="mt-5 space-y-3.5">
                   {c.compare.before.items.map((x) => (
@@ -180,8 +142,11 @@ export default async function SmbPage({ params }: { params: Params }) {
                     </li>
                   ))}
                 </ul>
+                </div>
               </div>
-              <div className="on-night rounded-xl bg-night p-7">
+              <div className="on-night overflow-hidden rounded-xl bg-night">
+                <Photo src={photos.dashboard.src} alt={photos.dashboard.alt[locale]} className="aspect-[16/8] rounded-none" />
+                <div className="p-7">
                 <h3 className="text-[15px] font-semibold text-white">{c.compare.after.label}</h3>
                 <ul className="mt-5 space-y-3.5">
                   {c.compare.after.items.map((x) => (
@@ -191,6 +156,7 @@ export default async function SmbPage({ params }: { params: Params }) {
                     </li>
                   ))}
                 </ul>
+                </div>
               </div>
             </div>
           </Container>
@@ -199,8 +165,51 @@ export default async function SmbPage({ params }: { params: Params }) {
         {/* Ba cách giao việc */}
         <Section aria-labelledby="ways-title" className="pt-0 md:pt-0 xl:pt-0">
           <Container>
-            <SectionHeading id="ways-title" title={c.ways.title} sub={c.ways.sub} align="left" />
-            <ul className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="on-night grid grid-cols-1 items-center gap-10 overflow-hidden rounded-xl bg-night px-6 py-12 md:px-12 md:py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] xl:px-16">
+              <div>
+                <h2 id="ways-title" className={cn(displayClass, "text-[32px] text-white md:text-[44px] [:lang(ja)_&]:text-[28px] md:[:lang(ja)_&]:text-[36px]")}>
+                  {c.ways.title}
+                </h2>
+                <p className="mt-4 max-w-[30rem] text-[17px] text-on-night-2">{c.ways.sub}</p>
+              </div>
+              <figure className="m-0 rounded-xl bg-night-2 ring-1 ring-night-line">
+                <div className="flex items-center justify-between border-b border-night-line px-5 py-3.5">
+                  <span className="flex items-center gap-2.5 text-[15px] font-semibold text-white">
+                    <span aria-hidden="true" className="inline-flex size-7 items-center justify-center rounded-full bg-white text-[12px] font-bold text-night">
+                      AI
+                    </span>
+                    {c.hero.chatTitle}
+                  </span>
+                  <span className="text-[12px] text-on-night-2">{c.hero.chatNote}</span>
+                </div>
+                <ol className="space-y-3 px-5 py-5">
+                  {c.hero.chat.map((m, i) => (
+                    <li key={i} className={cn("flex", m.from === "user" ? "justify-end" : "justify-start")}>
+                      <p
+                        className={cn(
+                          "max-w-[85%] rounded-2xl px-4 py-2.5 text-[15px] leading-[1.45]",
+                          m.from === "user" ? "rounded-br-sm bg-white text-ink" : "rounded-bl-sm bg-night text-white ring-1 ring-night-line",
+                        )}
+                      >
+                        {m.from === "ai" && i === c.hero.chat.length - 1 ? (
+                          <Check aria-hidden="true" className="mr-1.5 inline size-4 -translate-y-px text-success-tint" />
+                        ) : null}
+                        {m.text}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+                <figcaption className="sr-only">{c.hero.chatNote}</figcaption>
+                <div aria-hidden="true" className="mx-5 mb-5 flex h-11 items-center justify-between rounded-full bg-night px-4 text-[14px] ring-1 ring-night-line">
+                  <span>{c.hero.inputPlaceholder}</span>
+                  <span className="flex gap-3">
+                    <Mic className="size-4" />
+                    <Camera className="size-4" />
+                  </span>
+                </div>
+              </figure>
+            </div>
+            <ul className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
               {c.ways.items.map((w, i) => {
                 const Icon = wayIcons[i];
                 return (
@@ -286,12 +295,15 @@ export default async function SmbPage({ params }: { params: Params }) {
             <SectionHeading id="steps-title" title={c.steps.title} sub={c.steps.sub} align="left" />
             <ol className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
               {c.steps.items.map((st, i) => (
-                <li key={st.title} className="rounded-xl bg-surface p-7">
+                <li key={st.title} className="overflow-hidden rounded-xl bg-surface">
+                  <Photo src={stepPhotos[i].src} alt={stepPhotos[i].alt[locale]} className="aspect-[16/10] rounded-none" sizes="(min-width: 768px) 33vw, 100vw" />
+                  <div className="p-7">
                   <span className="inline-flex size-9 items-center justify-center rounded-full bg-ink text-[15px] font-semibold text-white">
                     {i + 1}
                   </span>
                   <h3 className="mt-5 text-[20px] font-semibold tracking-[-0.01em] text-ink">{st.title}</h3>
                   <p className="mt-2 text-[16px] text-ink-3">{st.text}</p>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -301,14 +313,16 @@ export default async function SmbPage({ params }: { params: Params }) {
         {/* Nhắc việc chủ động */}
         <Section aria-labelledby="alerts-title" className="pt-0 md:pt-0 xl:pt-0">
           <Container>
-            <div className="on-night rounded-xl bg-night px-6 py-12 md:px-12 md:py-16">
+            <div className="on-night relative isolate overflow-hidden rounded-xl bg-night px-6 py-12 md:px-12 md:py-16">
+              <Image src={photos.signalTower.src} alt="" fill sizes="100vw" placeholder="blur" className="-z-10 object-cover object-[80%_center] opacity-55" />
+              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0f262e_20%,rgba(15,38,46,0.7)_100%)]" />
               <h2 id="alerts-title" className={cn(displayClass, "text-[30px] text-white md:text-[40px] [:lang(ja)_&]:text-[26px] md:[:lang(ja)_&]:text-[34px]")}>
                 {c.alerts.title}
               </h2>
               <p className="mt-4 max-w-[40rem] text-[17px] text-on-night-2">{c.alerts.sub}</p>
               <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
                 {c.alerts.items.map((a) => (
-                  <li key={a.label} className="rounded-xl bg-night-2 p-6 ring-1 ring-night-line">
+                  <li key={a.label} className="rounded-xl bg-night-2/85 p-6 ring-1 ring-night-line backdrop-blur-sm">
                     <span className="text-[13px] font-semibold text-redline-bright">{a.label}</span>
                     <p className="mt-3 text-[16px] leading-[1.5] text-white">{a.text}</p>
                   </li>
@@ -321,7 +335,10 @@ export default async function SmbPage({ params }: { params: Params }) {
         {/* Lớn lên cùng Kizai */}
         <Section aria-labelledby="grow-title" className="pt-0 md:pt-0 xl:pt-0">
           <Container>
-            <SectionHeading id="grow-title" title={c.grow.title} sub={c.grow.sub} align="left" />
+            <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-2">
+              <SectionHeading id="grow-title" title={c.grow.title} sub={c.grow.sub} align="left" />
+              <Photo src={photos.ownerMeeting.src} alt={photos.ownerMeeting.alt[locale]} className="aspect-[16/9]" />
+            </div>
             <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {c.grow.items.map((g) => (
                 <li key={g.name}>
