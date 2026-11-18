@@ -25,7 +25,6 @@ export type HeroSlide = {
  * - "glass": ảnh tràn trong khối bo góc, chữ nằm trên thẻ kính mờ, ảnh kế tiếp xếp hàng bên phải.
  */
 export type HeroDesign = "cinema" | "split" | "glass";
-const designs: HeroDesign[] = ["cinema", "split", "glass"];
 
 const ui = {
   vi: { prev: "Ảnh trước", next: "Ảnh tiếp theo", pause: "Tạm dừng tự chuyển", play: "Tự chuyển ảnh", go: "Tới ảnh", region: "Trình chiếu giới thiệu", upNext: "Tiếp theo" },
@@ -78,12 +77,8 @@ function useSlider(n: number) {
 
 export function HeroSlider(props: Props) {
   const { slides, locale, footer } = props;
-  const [design, setDesign] = React.useState<HeroDesign>(props.design ?? "cinema");
-  // Xem thử phương án khác qua ?giaodien=cinema|split|glass (chỉ dùng khi duyệt thiết kế).
-  React.useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("giaodien") as HeroDesign | null;
-    if (q && designs.includes(q)) setDesign(q);
-  }, []);
+  // Anh Kiên chọn phương án A "Toàn màn hình" (cinema) ngày 18/11/2026.
+  const design: HeroDesign = props.design ?? "cinema";
   const s = useSlider(slides.length);
   const touchX = React.useRef<number | null>(null);
   const l = ui[locale];
