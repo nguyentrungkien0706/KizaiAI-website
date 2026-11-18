@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 
 /** Khoảng chừa cho thanh menu cố định (cao 64px) + 16px thở. */
 const OFFSET = 80;
@@ -10,13 +11,14 @@ function targetTop(el: HTMLElement) {
 }
 
 /**
- * Bấm menu (Giải pháp, Nền tảng, Liên hệ…) luôn đưa đúng mục lên đầu trang.
- * - Cùng trang: tự cuộn mượt tới mục, rồi kiểm tra lại vị trí khi cuộn xong
- *   (ảnh tải muộn có thể làm trang dài ra giữa chừng) và chỉnh cho khớp.
- * - Từ trang khác sang (vd. trang SME → /vi#solutions, đầu trang giải pháp): sau khi trang và ảnh tải xong,
- *   căn lại đúng mục vì trình duyệt nhảy tới mục quá sớm, lúc bố cục chưa ổn định.
+ * Bấm menu (Giải pháp, Nền tảng, Khách hàng…) chuyển mượt và đưa đúng mục lên đầu trang.
+ * - Cùng trang: cuộn mượt tới mục, rồi kiểm tra lại vị trí khi cuộn xong.
+ * - Sang trang khác cùng ngôn ngữ (vd. trang SME → /vi#customers): chuyển ngay trong trình duyệt
+ *   (không tải lại cả trang), trang đích đã được tải sẵn; hiện ra là đứng đúng mục, không nhảy.
+ * - Mở link có sẵn #mục: đặt ngay đúng mục, căn lại một lần sau khi ảnh tải xong.
  */
 export function AnchorScroll() {
+  const router = useRouter();
   React.useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let userScrolled = false;
@@ -50,17 +52,45 @@ export function AnchorScroll() {
       return true;
     };
 
+    /** Chờ trang mới (chuyển trang không tải lại) hiện ra rồi đặt ngay đúng mục, không cuộn từ đầu trang xuống. */
+    const goAfterRoute = (path: string, id: string) => {
+      const until = performance.now() + 4000;
+      const tick = () => {
+        const el = window.location.pathname === path ? document.getElementById(id) : null;
+        if (el) go(id, false);
+        else if (performance.now() < until) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const a = (e.target as Element | null)?.closest?.("a[href*='#']") as HTMLAnchorElement | null;
-      if (!a || a.target === "_blank") return;
+      const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+      if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
       const url = new URL(a.href, window.location.href);
-      if (url.origin !== window.location.origin || url.pathname !== window.location.pathname || !url.hash) return;
+      if (url.origin !== window.location.origin) return;
       const id = decodeURIComponent(url.hash.slice(1));
-      if (!document.getElementById(id)) return;
+
+      // Cùng trang: cuộn mượt tới mục.
+      if (url.pathname === window.location.pathname) {
+        if (!id || !document.getElementById(id)) return;
+        e.preventDefault();
+        if (window.location.hash !== url.hash) history.pushState(null, "", url.hash);
+        go(id, true);
+        return;
+      }
+
+      // Sang trang khác cùng ngôn ngữ (vd. trang SME → Khách hàng ở trang giải pháp):
+      // chuyển ngay trong trình duyệt, không tải lại cả trang và toàn bộ ảnh nên không bị trắng/giật.
+      const locale = window.location.pathname.split("/")[1];
+      if (!locale || url.pathname.split("/")[1] !== locale) return; // đổi ngôn ngữ: để tải lại bình thường
       e.preventDefault();
-      if (window.location.hash !== url.hash) history.pushState(null, "", url.hash);
-      go(id, true);
+      if (id) {
+        router.push(url.pathname + url.hash, { scroll: false });
+        goAfterRoute(url.pathname, id);
+      } else {
+        router.push(url.pathname + url.search);
+      }
     };
 
     // Mở trang có sẵn #mục (từ trang khác bấm sang, hoặc mở link chia sẻ).
@@ -68,11 +98,29 @@ export function AnchorScroll() {
       const id = decodeURIComponent(window.location.hash.slice(1));
       if (id) go(id, false);
     };
-    const onLoad = () => fromHash();
+    // Đặt ngay đúng mục khi trang vừa hiện (không đợi tải hết ảnh), rồi căn lại một lần sau khi ảnh tải xong.
+    const onLoad = () => {
+      const el = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (el) settle(el);
+    };
     if (window.location.hash) {
-      if (document.readyState === "complete") fromHash();
-      else window.addEventListener("load", onLoad, { once: true });
+      fromHash();
+      if (document.readyState !== "complete") window.addEventListener("load", onLoad, { once: true });
     }
+
+    // Tải sẵn các trang trong menu để bấm là chuyển ngay.
+    const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    idle(() => {
+      const here = window.location.pathname;
+      const seen = new Set<string>();
+      document.querySelectorAll<HTMLAnchorElement>("header a[href^='/']").forEach((a) => {
+        const path = new URL(a.href).pathname;
+        if (path !== here && path.split("/")[1] === here.split("/")[1] && !seen.has(path)) {
+          seen.add(path);
+          router.prefetch(path);
+        }
+      });
+    });
 
     document.addEventListener("click", onClick);
     window.addEventListener("popstate", fromHash);
@@ -87,6 +135,6 @@ export function AnchorScroll() {
       window.removeEventListener("touchmove", markUser);
       window.removeEventListener("keydown", markUser);
     };
-  }, []);
+  }, [router]);
   return null;
 }
