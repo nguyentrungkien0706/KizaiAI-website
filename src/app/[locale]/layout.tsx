@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google";
 import { isLocale, locales } from "@/i18n/config";
 import { brand, seoContent } from "@/i18n/seo-content";
 import { Analytics } from "@/components/site/analytics";
+import { AnchorScroll } from "@/components/site/anchor-scroll";
 import { site } from "@/lib/site";
 import "../globals.css";
 
@@ -72,6 +73,7 @@ export default async function LocaleLayout({
       <body>
         {children}
         <Analytics />
+        <AnchorScroll />
       </body>
     </html>
   );
