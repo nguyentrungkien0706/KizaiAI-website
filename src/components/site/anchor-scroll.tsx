@@ -29,6 +29,26 @@ const fade = {
   in: () => document.documentElement.removeAttribute("data-nav-fade"),
 };
 
+type StartVT = (update: () => Promise<void>) => { finished: Promise<void> };
+/**
+ * Chuyển cảnh bằng View Transitions (Chrome, Edge, Safari mới): trình duyệt giữ nguyên hình màn hình cũ
+ * trong lúc mình đổi chỗ/đổi trang và chờ ảnh, rồi hòa dần sang màn hình mới. Không có khung trắng ở giữa.
+ * Trả về false nếu trình duyệt không hỗ trợ (dùng cách làm mờ thay thế).
+ */
+async function crossfade(update: () => Promise<void>) {
+  const start = (document as Document & { startViewTransition?: StartVT }).startViewTransition;
+  if (typeof start !== "function") return false;
+  document.documentElement.setAttribute("data-nav-vt", "");
+  try {
+    await start.call(document, update).finished;
+  } catch {
+    /* bỏ qua: chuyển cảnh bị huỷ thì trang vẫn đã ở đúng chỗ */
+  } finally {
+    document.documentElement.removeAttribute("data-nav-vt");
+  }
+  return true;
+}
+
 /**
  * Bấm menu (Giải pháp, Nền tảng, Khách hàng…) chuyển mượt và đưa đúng mục lên đầu trang.
  * - Cùng trang: cuộn mượt tới mục, rồi kiểm tra lại vị trí khi cuộn xong.
@@ -86,9 +106,11 @@ export function AnchorScroll() {
     };
 
     /** Cùng trang: gần thì cuộn mượt; xa thì mờ đi, đặt tới mục rồi hiện lại (không lướt vụt qua cả trang). */
-    const goSamePage = async (id: string) => {
-      const el = document.getElementById(id);
-      if (!el) return;
+    const goSamePage = async (id: string, toTop = false) => {
+      const found = toTop ? null : document.getElementById(id);
+      if (!toTop && !found) return;
+      // Về đầu trang: dùng chính thẻ <main> làm đích (đỉnh trang).
+      const el = found ?? (document.getElementById("main") as HTMLElement);
       userScrolled = false;
       const run = ++busy;
       const distance = Math.abs(targetTop(el) - window.scrollY);
@@ -98,31 +120,69 @@ export function AnchorScroll() {
         focus(el);
         return;
       }
+      const used = await crossfade(async () => {
+        window.scrollTo({ top: targetTop(el), behavior: "instant" as ScrollBehavior });
+        await imagesInView();
+        window.scrollTo({ top: targetTop(el), behavior: "instant" as ScrollBehavior });
+      });
+      if (used) {
+        settle(el);
+        focus(el);
+        return;
+      }
       fade.out();
       await sleep(FADE_MS);
       if (run === busy) await jumpWithFade(el, run);
     };
 
     /** Sang trang khác: mờ đi, chuyển trang (không tải lại), đặt đúng chỗ, chờ ảnh rồi hiện lại. */
+    /** Chờ trang mới hiện ra (chuyển trang không tải lại) và có mục cần tới. Dùng setTimeout vì trong lúc chuyển cảnh trình duyệt tạm dừng vẽ khung hình. */
+    /** Chờ trang mới hiện ra (chuyển trang không tải lại) và có mục cần tới. Dùng setTimeout vì trong lúc chuyển cảnh trình duyệt tạm dừng vẽ khung hình. */
+    const routeReady = (path: string, id: string, run: number) =>
+      new Promise<boolean>((resolve) => {
+        const started = performance.now();
+        const tick = () => {
+          if (run !== busy) return resolve(false);
+          if (window.location.pathname === path && (!id || document.getElementById(id))) return resolve(true);
+          if (performance.now() - started > 3000) return resolve(false);
+          window.setTimeout(tick, 16);
+        };
+        tick();
+      });
+
+    /** Sang trang khác: giữ màn hình cũ, chuyển trang (không tải lại), đặt đúng chỗ, chờ ảnh rồi hòa sang. */
     const goOtherPage = async (path: string, id: string, href: string) => {
       userScrolled = false;
       const run = ++busy;
+      const place = () => {
+        const el = id ? document.getElementById(id) : null;
+        window.scrollTo({ top: el ? targetTop(el) : 0, behavior: "instant" as ScrollBehavior });
+        return el;
+      };
       if (!reduce) {
-        // Mờ hẳn trang cũ trước rồi mới đổi trang, để không bị nháy trắng giữa hai trang.
+        const used = await crossfade(async () => {
+          router.push(href, { scroll: false });
+          if (!(await routeReady(path, id, run))) return;
+          place();
+          await imagesInView();
+          place();
+        });
+        if (used) {
+          const el = id ? document.getElementById(id) : null;
+          if (el && run === busy) {
+            settle(el);
+            focus(el);
+          }
+          return;
+        }
+        // Trình duyệt cũ: mờ hẳn trang cũ trước rồi mới đổi trang, để không bị nháy trắng giữa hai trang.
         fade.out();
         await sleep(FADE_MS);
         if (run !== busy) return;
       }
       router.push(href, { scroll: false });
-      const started = performance.now();
-      const tick = async () => {
-        if (run !== busy) return;
-        const ready = window.location.pathname === path && (!id || document.getElementById(id));
-        if (ready) await jumpWithFade(id ? document.getElementById(id) : null, run);
-        else if (performance.now() - started < 5000) requestAnimationFrame(tick);
-        else fade.in();
-      };
-      requestAnimationFrame(tick);
+      if (await routeReady(path, id, run)) await jumpWithFade(id ? document.getElementById(id) : null, run);
+      else fade.in();
     };
 
     const onClick = (e: MouseEvent) => {
@@ -135,6 +195,13 @@ export function AnchorScroll() {
 
       // Cùng trang: cuộn mượt tới mục.
       if (url.pathname === window.location.pathname) {
+        // Bấm link về chính trang đang xem (logo, nút ngôn ngữ đang chọn): về đầu trang, không tải lại.
+        if (!id && url.search === window.location.search) {
+          e.preventDefault();
+          if (window.location.hash) history.pushState(null, "", url.pathname + url.search);
+          void goSamePage("", true);
+          return;
+        }
         if (!id || !document.getElementById(id)) return;
         e.preventDefault();
         if (window.location.hash !== url.hash) history.pushState(null, "", url.hash);

@@ -98,7 +98,13 @@ export function Navbar({ locale, t, base = "", path = "" }: NavbarProps) {
       </div>
 
       {/* Menu mobile/tablet */}
-      <div id={panelId} hidden={!open} className="border-t border-line bg-white lg:hidden">
+      <div
+        id={panelId}
+        hidden={!open}
+        // Bấm bất kỳ link nào trong menu (kể cả nút ngôn ngữ) thì đóng menu.
+        onClick={(e) => (e.target as Element).closest("a") && setOpen(false)}
+        className="border-t border-line bg-white lg:hidden"
+      >
         <nav aria-label={t.a11y.mainNav} className="mx-auto max-w-[1328px] px-4 pt-2 pb-6 md:px-6">
           <ul>
             {t.nav.links.map((link) => (

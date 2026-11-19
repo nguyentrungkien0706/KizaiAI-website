@@ -186,3 +186,10 @@ html[data-nav-fade] #main ~ footer {
     transition: none;
   }
 }
+
+/* Bấm menu tới mục xa / trang khác: hòa nhẹ màn hình cũ sang màn hình mới (View Transitions), xem anchor-scroll.tsx */
+html[data-nav-vt]::view-transition-old(root),
+html[data-nav-vt]::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: ease-out;
+}
